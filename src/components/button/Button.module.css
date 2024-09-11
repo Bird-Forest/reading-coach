@@ -1,0 +1,151 @@
+.wrapBtn {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+}
+.submitBtn {
+  display: grid;
+  grid-template-columns: minmax(280px, 320px);
+  grid-template-rows: 60px;
+  justify-items: center;
+  align-items: center;
+  background-color: rgb(255, 107, 8);
+  color: rgb(255, 255, 255);
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  /* text-align: center; */
+  border: none;
+  outline: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+.submitBtn:hover,
+.submitBtn:focus {
+  background-color: rgb(209, 88, 7);
+}
+/* *** GOOGL BUTTON */
+.wrapBtnGoogl {
+  display: grid;
+  grid-template-columns: 40px 110px;
+  grid-template-rows: 40px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(245, 247, 250);
+  padding: 0;
+}
+.wrapIconGoog {
+  display: grid;
+  grid-template-columns: 40px;
+  grid-template-rows: 40px;
+  align-items: center;
+  justify-items: center;
+}
+.iconGoogl {
+  width: 18px;
+  height: 18px;
+}
+.googlBtn {
+  display: grid;
+  grid-template-columns: 110px;
+  grid-template-rows: 40px;
+  align-items: center;
+  color: rgb(112, 115, 117);
+  font-size: 16px;
+  line-height: 2.4;
+  text-align: left;
+  border: none;
+  background-color: rgb(245, 247, 250);
+  outline: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+  .wrapBtnGoogl {
+    box-shadow: 0px 2px 2px 0px rgba(9, 30, 63, 0.15);
+  }
+}
+/* *** BUTTON MORE */
+.wrapBtnMore {
+  bottom: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 62px;
+  padding: 0 0 12px 0;
+}
+.btnMore {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgb(255, 107, 8);
+  outline: transparent;
+  cursor: pointer;
+}
+.iconMore {
+  width: 18px;
+  height: 18px;
+  fill: rgb(255, 255, 255);
+}
+@media screen and (min-width: 768px) {
+  .wrapBtnMore {
+    display: none;
+  }
+}
+/* *** BUTTON LINK  */
+.btnLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 170px;
+  height: 42px;
+  color: rgb(255, 255, 255);
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  background-color: rgb(255, 107, 8);
+  border: none;
+}
+@media screen and (min-width: 768px) {
+  .btnLink {
+    width: 200px;
+    font-size: 16px;
+  }
+}
+/* *** BUTTON OUT */
+.btnOut {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 16px;
+  color: rgb(36, 42, 55);
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.21;
+  border-bottom: 1px solid rgb(36, 42, 55);
+  background-color: transparent;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+}
+.btnOut:hover,
+.btnOut:focus {
+  color: rgb(242, 81, 55);
+  line-height: 2.71;
+  border-bottom: 1px solid rgb(242, 81, 55);
+}

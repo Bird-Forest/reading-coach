@@ -1,0 +1,110 @@
+[
+  {
+    "_id": "1",
+    "title": "Я бачу, вас цікавить пітьма",
+    "author": "Ілларіон Павлюк",
+    "pages": 520,
+    "year": "2020",
+    "rating": [false, false, false, false, false],
+    "category": "start",
+    "resume": "",
+    "statistics": [],
+    "owner": ""
+  },
+  {
+    "_id": "2",
+    "title": "Мовчазна пацієнтка",
+    "author": "Алекс Майклідіс",
+    "pages": 260,
+    "year": "2019",
+    "rating": [false, false, false, false, false],
+    "category": "init",
+    "resume": "",
+    "statistics": [],
+    "owner": ""
+  },
+  {
+    "_id": "3",
+    "title": "Гудзики та мереживо",
+    "author": "Пенелопа Скай",
+    "pages": 180,
+    "year": "2023",
+    "rating": [true, true, true, false, false],
+    "category": "end",
+    "resume": "",
+    "statistics": [],
+    "owner": ""
+  },
+  {
+    "_id": "4",
+    "title": "Кохана",
+    "author": "Тоні Моррісон",
+    "pages": 350,
+    "year": "2006",
+    "rating": [false, false, false, false, false],
+    "category": "start",
+    "resume": "",
+    "statistics": [],
+    "owner": ""
+  },
+  {
+    "_id": "5",
+    "title": "Найдовша подорож",
+    "author": "Оксана Забужко",
+    "pages": 140,
+    "year": "2022",
+    "rating": [false, false, false, false, false],
+    "category": "init",
+    "resume": "",
+    "statistics": [],
+    "owner": ""
+  },
+  {
+    "_id": "6",
+    "title": "Спитайте Мієчку",
+    "author": "Євгенія Кузнєцова",
+    "pages": 200,
+    "year": "2021",
+    "rating": [true, true, true, true, false],
+    "category": "end",
+    "resume": "",
+    "statistics": [],
+    "owner": ""
+  },
+  {
+    "_id": "7",
+    "title": "Тигролови",
+    "author": "Іван Багряний",
+    "pages": 195,
+    "year": "2009",
+    "rating": [false, false, false, false, false],
+    "category": "start",
+    "resume": "",
+    "statistics": [],
+    "owner": ""
+  },
+  {
+    "_id": "8",
+    "title": "Треба трошки потерпіти. Медичні хроніки",
+    "author": "Анастасія Пристая",
+    "pages": 145,
+    "year": "2024",
+    "rating": [false, false, false, false, false],
+    "category": "init",
+    "resume": "",
+    "statistics": [],
+    "owner": ""
+  },
+  {
+    "_id": "9",
+    "title": "Кров і попіл",
+    "author": "Дженніфер Л. Арментраут",
+    "pages": 320,
+    "year": "2023",
+    "rating": [true, true, true, true, true],
+    "category": "end",
+    "resume": "",
+    "statistics": [],
+    "owner": ""
+  }
+]

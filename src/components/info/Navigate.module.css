@@ -1,0 +1,27 @@
+.wrapNavigate {
+  display: flex;
+  align-items: flex-end;
+  width: 320px;
+  height: 36px;
+  padding: 0 20px;
+  margin-bottom: 18px;
+}
+.wrapIcon {
+  display: flex;
+  width: 320px;
+  height: 36px;
+  padding: 0;
+}
+@media screen and (min-width: 768px) {
+  .wrapNavigate {
+    display: none;
+  }
+  .wrapIcon {
+    display: none;
+  }
+}
+.iconNav {
+  width: 36px;
+  height: 36px;
+  fill: rgb(255, 107, 8);
+}

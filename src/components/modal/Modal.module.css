@@ -1,0 +1,334 @@
+/* *** OVERLAY */
+.overlay {
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(43, 43, 43, 0.1);
+}
+
+/* *** START STEPS */
+/* .boxVisual {
+  top: 94px;
+  position: absolute;
+  display: block;
+} */
+.wrapStart {
+  /* top: 94px;
+  position: absolute; */
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: 425px;
+  gap: 40px;
+  box-shadow: 0px 2px 3px 0px rgba(9, 30, 63, 0.1);
+  background-color: rgb(255, 255, 255);
+  padding: 44px 20px 36px 20px;
+}
+@media screen and (min-width: 768px) {
+  .wrapStart {
+    position: static;
+    width: 608px;
+    height: 272px;
+    gap: 24px;
+    padding: 40px;
+  }
+}
+.wrapSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  width: 242px;
+  height: 124px;
+  gap: 8px;
+}
+@media screen and (min-width: 768px) {
+  .step {
+    width: 480px;
+    height: 84px;
+  }
+}
+.titleStep {
+  color: rgb(36, 42, 55);
+  font-family: var(--font-montserrat);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.22;
+  text-align: left;
+}
+@media screen and (min-width: 768px) {
+  .titleStep {
+    font-size: 20px;
+  }
+}
+.wrapSubTitleStep {
+  display: flex;
+  gap: 16px;
+}
+.wrapIcon {
+  display: flex;
+  width: 22px;
+  height: 22px;
+}
+.iconBook {
+  width: 22px;
+  height: 22px;
+  fill: rgb(166, 171, 185);
+}
+.subtitleStep {
+  display: flex;
+  width: 209px;
+  height: 34px;
+  color: rgb(36, 42, 55);
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.22;
+  text-align: left;
+}
+@media screen and (min-width: 768px) {
+  .subtitleStep {
+    width: 320px;
+    height: 20px;
+    font-size: 20px;
+    font-size: 16px;
+    line-height: 1.25;
+  }
+}
+.wrapTextStep {
+  display: flex;
+  gap: 8px;
+  padding: 0 0 0 28px;
+}
+.iconStep {
+  width: 18px;
+  height: 18px;
+  fill: rgb(255, 107, 8);
+}
+.textStep {
+  display: flex;
+  width: 190px;
+  height: 52px;
+  color: rgb(137, 143, 159);
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.21;
+  text-align: left;
+}
+@media screen and (min-width: 768px) {
+  .textStep {
+    width: 422px;
+    height: 18px;
+  }
+}
+.wrapBtnStep {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .wrapBtnStep {
+    display: none;
+  }
+}
+.btnStep {
+  display: flex;
+  width: 128px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.22;
+  text-align: center;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: rgb(255, 107, 8);
+  border: none;
+  cursor: pointer;
+}
+.btnStep:hover,
+.btnStep:focus {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: rgb(209, 88, 7);
+}
+/* *** RESUME */
+.wrapResume {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 280px;
+  height: 396px;
+  gap: 20px;
+  box-shadow: 10px 10px 20px 0px rgba(9, 30, 63, 0.2);
+  background-color: rgb(255, 255, 255);
+  padding: 20px 20px 40px 20px;
+}
+@media screen and (min-width: 768px) {
+  .wrapResume {
+    width: 608px;
+    height: 400px;
+    gap: 12px;
+  }
+}
+.titleResume {
+  display: flex;
+  justify-content: flex-start;
+  color: rgb(36, 42, 55);
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: left;
+}
+.wrapEorm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.wrapStars {
+  display: flex;
+  justify-content: flex-start;
+  width: 122px;
+  height: 18px;
+  gap: 4px;
+}
+.wrapStar {
+  position: relative;
+  display: flex;
+  width: 18px;
+  height: 18px;
+  color: rgb(255, 107, 8);
+}
+.wrapInput {
+  position: absolute;
+  display: flex;
+  opacity: 0;
+  outline: transparent;
+  border: none;
+  width: 18px;
+  height: 18px;
+}
+.iconStar {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+.labelResume {
+  display: flex;
+  flex-direction: column;
+  color: rgb(36, 42, 55);
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: left;
+  gap: 8px;
+}
+.textarResume {
+  display: flex;
+  width: 240px;
+  height: 170px;
+  resize: none;
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.21;
+  text-align: left;
+  color: rgb(36, 42, 55);
+  border: 1px solid rgb(166, 171, 185);
+  outline: none;
+  padding: 8px;
+}
+.textarResume:placeholder-shown {
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.21;
+  text-align: left;
+  color: rgb(166, 171, 185);
+}
+@media screen and (min-width: 768px) {
+  .labelResume {
+    gap: 12px;
+  }
+  .textarResume {
+    width: 568px;
+  }
+}
+.wrapBtnResume {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  height: 40px;
+}
+@media screen and (min-width: 768px) {
+  .wrapBtnResume {
+    gap: 28px;
+    margin: 8px 0 0 0;
+  }
+}
+.btnResWhite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  color: rgb(36, 42, 55);
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.21;
+  border: 1px solid rgb(36, 42, 55);
+  background-color: rgb(255, 255, 255);
+  outline: transparent;
+  cursor: pointer;
+}
+.btnResWhite:hover,
+.btnResWhite:focus {
+  border: 1px solid rgb(242, 81, 55);
+}
+.btnResOrang {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  color: rgb(255, 255, 255);
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.21;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: rgb(255, 107, 8);
+  outline: transparent;
+  border: none;
+  cursor: pointer;
+}
+.btnResOrang:hover,
+.btnResOrang:focus {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: rgb(209, 88, 7);
+}
+@media screen and (min-width: 768px) {
+  .btnResWhite {
+    width: 130px;
+  }
+  .btnResOrang {
+    width: 130px;
+  }
+}
