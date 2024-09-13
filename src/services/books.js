@@ -6,10 +6,10 @@ import { Book, initializeBookModel } from "@/models/book";
 // import { Book, initializeBookModel } from "@/models/book";
 
 export const createBook = async (values, id) => {
-  console.log(values);
+  // console.log(values);
   // console.log(userId);
   // const _id = userId.owner;
-  console.log("ID", id);
+  // console.log("ID", id);
 
   try {
     await initializeBookModel();
@@ -19,7 +19,7 @@ export const createBook = async (values, id) => {
       owner: mongoose.Types.ObjectId.createFromHexString(id),
       // owner: mongoose.Types.ObjectId(id),
     });
-    console.log(book);
+    // console.log(book);
     return {
       message: "Успішно додано",
     };
@@ -31,6 +31,25 @@ export const createBook = async (values, id) => {
   }
 };
 
+export const getBooksStart = async (id) => {
+  console.log(id);
+
+  try {
+    await initializeBookModel();
+    const books = await Book.find({ category: "start" })
+      .populate({ owner: id })
+      .exec();
+
+    const booksStart = JSON.parse(JSON.stringify(books));
+
+    return booksStart;
+  } catch (e) {
+    console.log(e);
+    return {
+      message: "Відбулася помилка",
+    };
+  }
+};
 // Преобразуйте строку в ObjectId
 // const book = await Book.create(values);
 // import { NextApiRequest, NextApiResponse } from "next";

@@ -75,18 +75,3 @@ export default function BookForm() {
     </Formik>
   );
 }
-
-// const handleSubmit = async (event) => {
-//   event.preventDefault();
-//   const formData = new FormData(event.currentTarget);
-//   const newBook = {
-//     title: formData.get("title"),
-//     author: formData.get("author"),
-//     year: formData.get("year"),
-//     pages: Number(formData.get("pages")),
-//     rating: [false, false, false, false, false],
-//     category: bookCategory.start,
-//   };
-//   console.log(newBook);
-//   event.currentTarget.reset();
-// };

@@ -1,8 +1,6 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
-import Credentials from "next-auth/providers/credentials";
-// import { User } from "@/models/user";
-// import { signInSchema } from "@/lib/zod";
+// import Credentials from "next-auth/providers/credentials";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET,
@@ -11,15 +9,15 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       clientId: process.env.AUTH_GOOGLE_CLIENT_ID,
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
     }),
-    Credentials({
-      credentials: {
-        email: {},
-        pwd: {},
-      },
-      async authorize(credentials) {
-        console.log(credentials);
-      },
-    }),
+    // Credentials({
+    //   credentials: {
+    //     email: {},
+    //     pwd: {},
+    //   },
+    //   async authorize(credentials) {
+    //     console.log(credentials);
+    //   },
+    // }),
   ],
 });
 

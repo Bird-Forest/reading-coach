@@ -1,14 +1,12 @@
 import React from "react";
 import styles from "@/components/liba/Library.module.css";
 import BookForm from "@/components/liba/BookForm";
-import ListBooksStart from "@/components/liba/ListBooksStart";
-import ListBooksInit from "@/components/liba/ListBooksInit";
-import ListBooksEnd from "@/components/liba/ListBooksEnd";
 import NavigateLibrary from "@/components/info/NavigateLibrary";
+import BookCategories from "@/components/liba/BookCategories";
+import { getBooksStart } from "@/services/books";
 
-// export interface PageProps {}
-
-export default function LibraryPage() {
+export default async function LibraryPage() {
+  const booksStart = await getBooksStart();
   return (
     <>
       <div className={styles.wrapLibMob}>
@@ -17,11 +15,7 @@ export default function LibraryPage() {
       </div>
       <div className={styles.wrapLibDeck}>
         <BookForm />
-        <div className={styles.wrapAllList}>
-          <ListBooksEnd />
-          <ListBooksInit />
-          <ListBooksStart />
-        </div>
+        <BookCategories />
       </div>
     </>
   );

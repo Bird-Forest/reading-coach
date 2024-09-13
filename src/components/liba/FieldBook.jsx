@@ -20,7 +20,9 @@ export default function FieldBook({ label, ...props }) {
       <div className={styles.wrapError}>
         {meta.touched && meta.error ? (
           <p className={styles.textError}>{meta.error}</p>
-        ) : null}
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
