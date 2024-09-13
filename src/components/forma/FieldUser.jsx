@@ -4,7 +4,7 @@ import { useField } from "formik";
 import React from "react";
 import styles from "./Form.module.css";
 
-export default function FieldInput({ label, ...props }) {
+export default function FieldUser({ label, ...props }) {
   const [field, meta] = useField(props);
   return (
     <div className={styles.wrapField}>

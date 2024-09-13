@@ -1,15 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import styles from "./Form.module.css";
 import ButtonSubmit from "../button/ButtonSubmit";
 import Link from "next/link";
 import ButtonGoogl from "../button/ButtonGoogl";
-import FieldInput from "./FieldInput";
-import { signIn } from "@/configs/auth";
+// import FieldInput from "./FieldUser";
 import { useRouter } from "next/navigation";
+import Spinner from "../helper/Spinner";
+import { loginUser } from "@/services/users";
+import FieldUser from "./FieldUser";
+import Notif from "../helper/Notif";
 
 const initialValues = {
   email: "",
@@ -17,8 +20,13 @@ const initialValues = {
 };
 
 export default function FormaSignIn() {
-  const [message, setMessage] = useState(" ");
+  const [notif, setNotif] = useState("");
+  const [token, setToken] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    window.localStorage.setItem("authToken", token);
+  }, [token]);
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -39,22 +47,25 @@ export default function FormaSignIn() {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
-              const data = await signIn("credentials", values);
-              //   setSubmitting(true);
-              setMessage(data);
-              resetForm();
-              router.push("/library");
+              const res = await loginUser(values);
+              setSubmitting(true);
+              setNotif(res.message);
+              setToken(res.token);
+              if (res.message === "Success") {
+                resetForm();
+                router.push("/training");
+              }
             }}
           >
             {(props) => (
               <Form className={styles.form}>
-                <FieldInput
+                <FieldUser
                   label="Електронна адреса"
                   name="email"
                   type="text"
                   placeholder="your@email.com"
                 />
-                <FieldInput
+                <FieldUser
                   label="Пароль"
                   name="pwd"
                   type="pwd"
@@ -62,11 +73,13 @@ export default function FormaSignIn() {
                 />
                 <div className={styles.wrapFieldBtn}>
                   <div className={styles.wrapTextMess}>
-                    {message && (
-                      <p className={styles.textMess}>{message.data}</p>
+                    {notif !== "Success" && (
+                      <Notif message={notif} onClose={() => setNotif(false)} />
                     )}
                   </div>
-                  <ButtonSubmit>Увійти</ButtonSubmit>
+                  <ButtonSubmit>
+                    {props.isSubmitting ? <Spinner /> : "Увійти"}
+                  </ButtonSubmit>
                 </div>
               </Form>
             )}

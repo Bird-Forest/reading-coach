@@ -18,28 +18,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       },
       async authorize(credentials) {
         console.log(credentials);
-
-        // const validatedFields = signInSchema.safeParse({
-        //   email: formData.get("email"),
-        //   pwd: formData.get("pwd"),
-        // });
-        // if (!validatedFields.success) {
-        //   return {
-        //     errors: validatedFields.error.flatten().fieldErrors,
-        //   };
-        // }
-
-        // if (!credentials?.email || !credentials.pwd) return null;
-
-        // const currentUser = await User.findOne({ email: credentials.email });
-        // console.log(currentUser);
-        // return currentUser;
-
-        // if (currentUser && currentUser.pwd === credentials.pwd) {
-        //   const { password, ...userWithoutPass } = currentUser;
-
-        //   return userWithoutPass as IUser;
-        // }
       },
     }),
   ],

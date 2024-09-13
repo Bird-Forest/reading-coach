@@ -1,33 +1,35 @@
 import mongoose, { Schema } from "mongoose";
-import { uri } from "@/lib/mongodb";
+import { connectDB } from "@/lib/mongodb";
 import { bookCategory } from "@/constants/bookCategory";
 
-// export const bookCategory = {
-//   start: "start",
-//   init: "init",
-//   end: "end",
-// };
-
-// minLengthи.maxLength;
-
-const bookShema = new mongoose.Schema(
+const bookSchema = new mongoose.Schema(
   {
-    title: { type: String, required: [true, "Set title"] },
-    author: { type: String, required: [true, "Set author"] },
-    pages: { type: Number, required: [true, "Set pages"] },
-    year: { type: String, minLength: [4, "Set four numbers"] },
+    title: String,
+    author: String,
+    pages: Number,
+    year: String,
     rating: { type: [Boolean], default: [false, false, false, false, false] },
-    category: { type: String, enum: bookCategory, default: "start" },
+    category: { type: String, enum: bookCategory },
     resume: String,
-    // createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    owner: {
-      type: Schema.Types.ObjectId,
-      ref: "user",
-      requied: true,
-    },
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
   { versionKey: false, timestamps: true }
 );
 
-const connection = mongoose.createConnection(uri);
-export const Book = connection.model("Book", bookShema);
+let Book;
+const initializeBookModel = async () => {
+  await connectDB();
+  Book = mongoose.models.Book || mongoose.model("Book", bookSchema);
+};
+export { initializeBookModel, Book };
+
+// owner: {
+//   type: Schema.Types.ObjectId,
+//   ref: "User",
+//   requied: true,
+// },
+
+// const connection = mongoose.createConnection(uri);
+// export const Book = connection.model("Book", bookShema);
+
+// createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },

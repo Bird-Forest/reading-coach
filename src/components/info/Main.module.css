@@ -134,6 +134,7 @@
   font-weight: 500;
   line-height: 1.21;
   text-align: center;
+  text-decoration: none;
   background-color: rgb(255, 255, 255);
   cursor: pointer;
   padding: 0;
@@ -155,6 +156,7 @@
   font-weight: 500;
   line-height: 1.21;
   text-align: center;
+  text-decoration: none;
   background-color: rgb(255, 107, 8);
   cursor: pointer;
   padding: 0;

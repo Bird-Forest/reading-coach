@@ -119,7 +119,7 @@
 // export async function signIn(credentials: {
 //   email: string;
 //   pwd: string;
-// }): Promise<IUser | null> {
+// }): Promise<IUser | ""> {
 //   // Валидация данных
 //   const validationResult = signInSchema.safeParse(credentials);
 

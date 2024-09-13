@@ -1,70 +1,92 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
 import styles from "./Library.module.css";
 import { bookCategory } from "@/constants/bookCategory";
-// import { createBook } from "@/services/books";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import FieldBook from "./FieldBook";
+import { createBook } from "@/services/books";
+import Notif from "../helper/Notif";
+import SpinnerO from "../helper/SpinnerO";
+
+const initialValues = {
+  title: "",
+  author: "",
+  pages: "",
+  year: "",
+  category: bookCategory.start,
+  // owner: "",
+};
 
 export default function BookForm() {
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const newBook = {
-      title: formData.get("title"),
-      author: formData.get("author"),
-      year: formData.get("year"),
-      pages: Number(formData.get("pages")),
-      rating: [false, false, false, false, false],
-      category: bookCategory.start,
-    };
-    console.log(newBook);
-    // const notice = await createBook(newBook);
-    // console.log(notice);
-    event.currentTarget.reset();
-  };
+  const [notif, setNotif] = useState("");
+  const { id } = useLocalStorage("authToken");
+  console.log(id);
+  const validationSchema = Yup.object({
+    title: Yup.string().required("поле не може бути порожнім").trim(),
+    author: Yup.string().required("поле не може бути порожнім").trim(),
+    pages: Yup.number()
+      .min(2, "мінімальна кількість символів 2")
+      .required("поле не може бути порожнім"),
+    year: Yup.string()
+      .min(4, "мінімальна кількість символів 4")
+      .required("поле не може бути порожнім")
+      .trim(),
+    category: Yup.string()
+      .oneOf(Object.values(bookCategory))
+      .default(bookCategory.start),
+  });
+
   return (
-    <form onSubmit={handleSubmit} className={styles.createForm}>
-      <label htmlFor="title" className={styles.label}>
-        Назва книги
-        <input
-          name="title"
-          placeholder="..."
-          required
-          className={styles.input}
-        />
-      </label>
-      <label htmlFor="author" className={styles.label}>
-        Автор книги
-        <input
-          name="author"
-          placeholder="..."
-          required
-          className={styles.input}
-        />
-      </label>
-      <label htmlFor="year" className={styles.label}>
-        Рік випуску
-        <input
-          name="year"
-          placeholder="..."
-          required
-          className={styles.input}
-        />
-      </label>
-      <label htmlFor="pages" className={styles.label}>
-        Кількість сторінок
-        <input
-          name="pages"
-          placeholder="..."
-          required
-          className={styles.input}
-        />
-      </label>
-      <div className={styles.wrapBtnAdd}>
-        <button type="submit" className={styles.btnCreate}>
-          Додати
-        </button>
-      </div>
-    </form>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={async (values, { setSubmitting, resetForm }) => {
+        const res = await createBook(values, id);
+        setSubmitting(true);
+        setNotif(res.message);
+        resetForm();
+      }}
+    >
+      {(props) => (
+        <Form className={styles.createForm}>
+          <FieldBook label=" Назва книги" name="title" placeholder="..." />
+          <FieldBook label="Автор книги" name="author" placeholder="..." />
+          <FieldBook label="Рік випуску" name="year" placeholder="..." />
+          <FieldBook
+            label="Кількість сторінок"
+            name="pages"
+            placeholder="..."
+          />
+          <div className={styles.wrapBtnAdd}>
+            <div className={styles.wrapTextMess}>
+              {notif && (
+                <Notif message={notif} onClose={() => setNotif(false)} />
+              )}
+            </div>
+            <button type="submit" className={styles.btnCreate}>
+              {props.isSubmitting ? <SpinnerO /> : "Додати"}
+            </button>
+          </div>
+        </Form>
+      )}
+    </Formik>
   );
 }
+
+// const handleSubmit = async (event) => {
+//   event.preventDefault();
+//   const formData = new FormData(event.currentTarget);
+//   const newBook = {
+//     title: formData.get("title"),
+//     author: formData.get("author"),
+//     year: formData.get("year"),
+//     pages: Number(formData.get("pages")),
+//     rating: [false, false, false, false, false],
+//     category: bookCategory.start,
+//   };
+//   console.log(newBook);
+//   event.currentTarget.reset();
+// };

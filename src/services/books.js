@@ -1,23 +1,38 @@
 "use server";
-// import Book from "../services/books";
 
-// export const createBook = async (newBook) => {
-//   console.log(newBook);
-//   try {
-//     const book = await Book.create(newBook);
-//     console.log(book);
-//     return {
-//       message: "Успішно додано",
-//     };
-//   } catch (e) {
-//     console.log(e);
-//     return {
-//       message: "Відбулася помилка",
-//     };
-//   }
-// };
+import mongoose from "mongoose";
+import { Book, initializeBookModel } from "@/models/book";
 
+// import { Book, initializeBookModel } from "@/models/book";
 
+export const createBook = async (values, id) => {
+  console.log(values);
+  // console.log(userId);
+  // const _id = userId.owner;
+  console.log("ID", id);
+
+  try {
+    await initializeBookModel();
+    const book = await Book.create({
+      ...values,
+      // owner: new mongoose.Types.ObjectId(_id),
+      owner: mongoose.Types.ObjectId.createFromHexString(id),
+      // owner: mongoose.Types.ObjectId(id),
+    });
+    console.log(book);
+    return {
+      message: "Успішно додано",
+    };
+  } catch (e) {
+    console.log(e);
+    return {
+      message: "Відбулася помилка",
+    };
+  }
+};
+
+// Преобразуйте строку в ObjectId
+// const book = await Book.create(values);
 // import { NextApiRequest, NextApiResponse } from "next";
 // import dbConnect from "../../lib/dbConnect";
 // // import Book from "../../models/Book";

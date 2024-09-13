@@ -1,16 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import styles from "./Form.module.css";
 import ButtonSubmit from "../button/ButtonSubmit";
 import Link from "next/link";
 import ButtonGoogl from "../button/ButtonGoogl";
-import FieldInput from "./FieldInput";
+// import FieldInput from "./FieldUser";
 import { useRouter } from "next/navigation";
 import { registerUser } from "@/services/users";
 import Spinner from "../helper/Spinner";
+import FieldUser from "./FieldUser";
+import Notif from "../helper/Notif";
 
 const initialValues = {
   name: "",
@@ -20,9 +22,18 @@ const initialValues = {
 };
 
 export default function FormaSignUp() {
-  const [message, setMessage] = useState(null);
+  const [notif, setNotif] = useState("");
+  const [token, setToken] = useState("");
   const router = useRouter();
-  console.log(message);
+  // console.log(notif);
+  // console.log(token);
+  useEffect(() => {
+    window.localStorage.setItem("authToken", token);
+  }, [token]);
+
+  // function saveToken(token) {
+  //   localStorage.setItem("authToken", token);
+  // }
 
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -38,7 +49,7 @@ export default function FormaSignUp() {
       .required("поле не може бути порожнім")
       .trim(),
     confirmPwd: Yup.string()
-      .oneOf([Yup.ref("pwd"), null], "паролі не співпадають")
+      .oneOf([Yup.ref("pwd"), ""], "паролі не співпадають")
       .required("поле не може бути порожнім")
       .trim(),
   });
@@ -51,34 +62,37 @@ export default function FormaSignUp() {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
-              const data = await registerUser(values);
-              //   setSubmitting(true);
-              setMessage(data);
-              resetForm();
-              router.push("/library");
+              const res = await registerUser(values);
+              setSubmitting(true);
+              setNotif(res.message);
+              setToken(res.token);
+              if (res.message === "Success") {
+                resetForm();
+                router.push("/library");
+              }
             }}
           >
             {(props) => (
               <Form className={styles.form}>
-                <FieldInput
+                <FieldUser
                   label="Ім’я"
                   name="name"
                   type="name"
                   placeholder="..."
                 />
-                <FieldInput
+                <FieldUser
                   label="Електронна адреса"
                   name="email"
                   type="text"
                   placeholder="your@email.com"
                 />
-                <FieldInput
+                <FieldUser
                   label="Пароль"
                   name="pwd"
                   type="pwd"
                   placeholder="..."
                 />
-                <FieldInput
+                <FieldUser
                   label="Підтвердити пароль"
                   name="confirmPwd"
                   type="confirmPwd"
@@ -86,12 +100,12 @@ export default function FormaSignUp() {
                 />
                 <div className={styles.wrapFieldBtn}>
                   <div className={styles.wrapTextMess}>
-                    {!message == null && (
-                      <p className={styles.textMess}>{message.message}</p>
+                    {notif !== "Success" && (
+                      <Notif message={notif} onClose={() => setNotif(false)} />
                     )}
                   </div>
                   <ButtonSubmit>
-                    {props.isSubmitting ? <Spinner /> : "Увійти"}
+                    {props.isSubmitting ? <Spinner /> : "Зареєструватися"}
                   </ButtonSubmit>
                 </div>
               </Form>

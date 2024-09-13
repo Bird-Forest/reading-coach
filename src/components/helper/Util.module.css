@@ -81,3 +81,12 @@
   width: 60px;
   height: 20px;
 }
+/* *** NOTIF */
+.textMess {
+  display: flex;
+  color: rgb(255, 107, 8);
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.15;
+}

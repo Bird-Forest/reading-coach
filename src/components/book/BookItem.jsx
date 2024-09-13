@@ -2,18 +2,6 @@ import React from "react";
 import { MdMenuBook } from "react-icons/md";
 import styles from "./Book.module.css";
 
-// export interface BookItemProps {
-//   id: number;
-//   title: string;
-//   author: string;
-//   pages: number;
-//   year: string;
-//   rating?: boolean[];
-//   category?: string;
-//   resume?: string;
-//   statistics?: any[];
-// }
-
 export default function BookItem(item) {
   return (
     <div key={item._id} className={styles.wrapBox}>
