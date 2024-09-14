@@ -1,17 +1,11 @@
 import React from "react";
-// import { HiArrowLongLeft } from "react-icons/hi2";
 import { RxCalendar } from "react-icons/rx";
-import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import { IoMdArrowDropdown } from "react-icons/io";
 import styles from "./Train.module.css";
 
 export default function FormTrain() {
   return (
-    // <div className={styles.visiblTrain}>
     <div className={styles.wrapFormTrain}>
-      {/* <div className={styles.wrapIconLeft}>
-          <HiArrowLongLeft className={styles.iconLeft} />
-        </div> */}
-      {/* <div className={styles.wrapChooseBook}> */}
       <h2 className={styles.titleTrain}>Моє тренування</h2>
       <form className={styles.formAddBook}>
         <label className={styles.labelDate}>
@@ -57,9 +51,7 @@ export default function FormTrain() {
           </button>
         </div>
       </form>
-      {/* </div> */}
     </div>
-    // </div>
   );
 }
 

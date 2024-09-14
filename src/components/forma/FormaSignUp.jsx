@@ -68,7 +68,8 @@ export default function FormaSignUp() {
               setToken(res.token);
               if (res.message === "Success") {
                 resetForm();
-                router.push("/library");
+                const id = res.id;
+                router.push(`/user/${id}/library`);
               }
             }}
           >

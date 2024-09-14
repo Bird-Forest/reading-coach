@@ -1,18 +1,9 @@
 import React from "react";
 import styles from "./Library.module.css";
-// import { BsPlusLg } from "react-icons/bs";
 import TableHeaders from "./TableHeaders";
-import books from "@/books.json";
 import BookItem from "../book/BookItem";
-import { bookCategory } from "@/constants/bookCategory";
-// import { BookCategory, BookItemProps } from "@/types/book";
 
-// const typedBooks: BookItemProps[] = books as BookItemProps[];
-
-export default function ListBooksStart() {
-  // const arrStart = books.filter((item) => item.category === "start");
-  // // console.log(arr);
-  const arrStart = books.filter((item) => item.category === bookCategory.start);
+export default function ListBooksStart({ arrStart }) {
   return (
     <div className={styles.wrapListAny}>
       <h5 className={styles.titleList}>Маю намір прочитати</h5>
@@ -22,7 +13,6 @@ export default function ListBooksStart() {
           {arrStart.map((item, i) => (
             <li key={i} className={`${styles.wrapBook} ${styles.bgBook}`}>
               <BookItem
-                // id={item._id}
                 title={item.title}
                 author={item.author}
                 pages={item.pages}

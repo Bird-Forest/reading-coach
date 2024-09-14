@@ -1,13 +1,12 @@
 import React from "react";
 import styles from "@/components/train/Train.module.css";
-// import MyTraining from "@/components/train/MyTraining";
-// import MyGoalRead from "@/components/train/MyGoalRead";
-// import MyListBooks from "@/components/train/MyListBooks";
 import TrainPanel from "@/components/train/TrainPanel";
 import NavigateTrain from "@/components/info/NavigateTrain";
 import FormTrain from "@/components/train/FormTrain";
+import { getBooksInit } from "@/services/books";
 
-export default function TrainPage() {
+export default async function TrainPage({ params: { id } }) {
+  const booksInit = await getBooksInit(id);
   return (
     <>
       <div className={styles.wrapTrainMob}>
@@ -15,7 +14,7 @@ export default function TrainPage() {
         <FormTrain />
       </div>
       <div className={styles.wrapTrainDeck}>
-        <TrainPanel />
+        <TrainPanel booksInit={booksInit} />
       </div>
     </>
   );

@@ -7,7 +7,6 @@ import jwt from "jsonwebtoken";
 const secretKey = process.env.SEKRET_KEY;
 
 export async function registerUser(values) {
-  // console.log("registerUser", values);
   try {
     await initializeUserModel();
     const user = await User.findOne({ email: values.email }).exec();
@@ -33,9 +32,13 @@ export async function registerUser(values) {
     };
     const token = jwt.sign(payload, secretKey, { expiresIn: "23h" });
     await User.findByIdAndUpdate(res._id, { token });
+    const userToken = JSON.parse(JSON.stringify(token));
+    const id = res._id;
+    const userId = JSON.parse(JSON.stringify(id));
 
     return {
-      token,
+      id: userId,
+      token: userToken,
       message: "Success",
     };
   } catch (e) {
@@ -57,24 +60,28 @@ export async function loginUser(values) {
       };
     }
     let pwd = values.pwd;
-    console.log(pwd);
-    const pwdCompare = bcrypt.compare(pwd, user.pwd);
+
+    const pwdCompare = await bcrypt.compare(pwd, user.pwd);
+
     if (!pwdCompare) {
       throw new Error("409");
     }
 
     const payload = {
-      id: res._id,
-      username: res.name,
+      id: user._id,
+      username: user.name,
     };
     const token = jwt.sign(payload, secretKey, { expiresIn: "23h" });
-    await User.findByIdAndUpdate(res._id, { token });
+    await User.findByIdAndUpdate(user._id, { token });
+    const id = user._id;
+    const userToken = JSON.parse(JSON.stringify(token));
+    const userId = JSON.parse(JSON.stringify(id));
 
     return {
-      token,
+      id: userId,
+      token: userToken,
       message: "Success",
     };
-    // const data = JSON.parse(JSON.stringify(user));
   } catch (e) {
     console.log("Action", e);
     return {

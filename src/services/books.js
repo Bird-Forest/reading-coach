@@ -32,17 +32,49 @@ export const createBook = async (values, id) => {
 };
 
 export const getBooksStart = async (id) => {
-  console.log(id);
+  // console.log("Server", id);
 
   try {
     await initializeBookModel();
-    const books = await Book.find({ category: "start" })
-      .populate({ owner: id })
-      .exec();
+    const books = await Book.find({ category: "start", owner: id }).exec();
 
     const booksStart = JSON.parse(JSON.stringify(books));
 
     return booksStart;
+  } catch (e) {
+    console.log(e);
+    return {
+      message: "Відбулася помилка",
+    };
+  }
+};
+export const getBooksInit = async (id) => {
+  // console.log("Server", id);
+
+  try {
+    await initializeBookModel();
+    const books = await Book.find({ category: "init", owner: id }).exec();
+
+    const booksInit = JSON.parse(JSON.stringify(books));
+
+    return booksInit;
+  } catch (e) {
+    console.log(e);
+    return {
+      message: "Відбулася помилка",
+    };
+  }
+};
+export const getBooksEnd = async (id) => {
+  // console.log("Server", id);
+
+  try {
+    await initializeBookModel();
+    const books = await Book.find({ category: "end", owner: id }).exec();
+
+    const booksEnd = JSON.parse(JSON.stringify(books));
+
+    return booksEnd;
   } catch (e) {
     console.log(e);
     return {

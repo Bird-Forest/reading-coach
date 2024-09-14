@@ -7,7 +7,6 @@ import styles from "./Form.module.css";
 import ButtonSubmit from "../button/ButtonSubmit";
 import Link from "next/link";
 import ButtonGoogl from "../button/ButtonGoogl";
-// import FieldInput from "./FieldUser";
 import { useRouter } from "next/navigation";
 import Spinner from "../helper/Spinner";
 import { loginUser } from "@/services/users";
@@ -53,7 +52,7 @@ export default function FormaSignIn() {
               setToken(res.token);
               if (res.message === "Success") {
                 resetForm();
-                router.push("/training");
+                router.push(`/users/${res.id}`);
               }
             }}
           >
