@@ -6,11 +6,6 @@ import { Book, initializeBookModel } from "@/models/book";
 // import { Book, initializeBookModel } from "@/models/book";
 
 export const createBook = async (values, id) => {
-  // console.log(values);
-  // console.log(userId);
-  // const _id = userId.owner;
-  // console.log("ID", id);
-
   try {
     await initializeBookModel();
     const book = await Book.create({
@@ -23,6 +18,69 @@ export const createBook = async (values, id) => {
     return {
       message: "Успішно додано",
     };
+  } catch (e) {
+    console.log(e);
+    return {
+      message: "Відбулася помилка",
+    };
+  }
+};
+
+export const getBook = async (id) => {
+  try {
+    await initializeBookModel();
+    const book = await Book.findById({ _id: id }).lean();
+    if (!book) {
+      throw new Error("is absent");
+    }
+    const data = JSON.parse(JSON.stringify(book));
+    return data;
+  } catch (e) {
+    console.log(e);
+    return {
+      message: "Відбулася помилка",
+    };
+  }
+};
+export const updateBook = async (id) => {
+  try {
+    await initializeBookModel();
+    const book = await Book.findByIdAndUpdate({ _id: id }).lean();
+    if (!book) {
+      throw new Error("is absent");
+    }
+    const data = JSON.parse(JSON.stringify(book));
+    return data;
+  } catch (e) {
+    console.log(e);
+    return {
+      message: "Відбулася помилка",
+    };
+  }
+};
+export const deleteBook = async (id) => {
+  try {
+    await initializeBookModel();
+    const book = await Book.findOneAndDelete({ _id: id }).lean();
+    if (!book) {
+      throw new Error("is absent");
+    }
+  } catch (e) {
+    console.log(e);
+    return {
+      message: "Відбулася помилка",
+    };
+  }
+};
+
+export const getAllBooks = async (id) => {
+  try {
+    await initializeBookModel();
+    const books = await Book.find({ owner: id }).lean();
+
+    // const booksStart = JSON.parse(JSON.stringify(books));
+
+    return books;
   } catch (e) {
     console.log(e);
     return {
@@ -82,6 +140,7 @@ export const getBooksEnd = async (id) => {
     };
   }
 };
+
 // Преобразуйте строку в ObjectId
 // const book = await Book.create(values);
 // import { NextApiRequest, NextApiResponse } from "next";

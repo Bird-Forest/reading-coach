@@ -1,13 +1,16 @@
 import mongoose from "mongoose";
 import { connectDB } from "@/lib/mongodb";
 import { bookSchema } from "./book";
+import { bookCategory } from "@/constants/bookCategory";
 
 const coachSchema = new mongoose.Schema(
   {
     start: Date,
     finish: Date,
     books: [bookSchema],
+    totalDay: Number,
     totalPage: Number,
+    category: { type: String, enum: bookCategory },
     progress: [{ date: Date, pagesRead: Number }],
     owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },

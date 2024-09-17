@@ -5,8 +5,9 @@ import BookItem from "../book/BookItem";
 import { BiSolidTrash } from "react-icons/bi";
 import { MdMenuBook } from "react-icons/md";
 
-export default function TrainListBooks({ booksInit }) {
-  const Arr = Array.isArray(booksInit) && booksInit.length > 0;
+export default function TrainListBooks({ books }) {
+  console.log(books);
+  const Arr = Array.isArray(books) && books.length > 0;
   return (
     <div className={styles.wrapListBook}>
       <div className={styles.wrapTitleTable}>
@@ -15,7 +16,7 @@ export default function TrainListBooks({ booksInit }) {
       <div className={styles.wrapListCase}>
         {Arr && (
           <ul className={styles.listBook}>
-            {booksInit.map((item, i) => (
+            {books.map((item, i) => (
               <li key={i} className={styles.wrapItemTrain}>
                 <BookItem
                   title={item.title}

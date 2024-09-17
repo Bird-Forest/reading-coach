@@ -6,7 +6,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import styles from "./FormTrain.module.css";
 import GetPeriod from "../calendar/GetPeriod";
 
-export default function FormDate({ id }) {
+export default function FormDate({ trainingStart, trainingEnd }) {
   const [startDay, setStartDay] = useState("");
   const [endDay, setEndDay] = useState("");
   const [openStart, setOpenStart] = useState(false);
@@ -14,12 +14,14 @@ export default function FormDate({ id }) {
 
   const getStartDay = (event) => {
     setStartDay(event.target.value);
+    trainingStart(event.target.value);
   };
-  // console.log(startDay);
-  const gatEndDay = (event) => {
+  console.log(startDay);
+  const getEndDay = (event) => {
     setEndDay(event.target.value);
+    trainingEnd(event.target.value);
   };
-  // console.log(endDay);
+  console.log(endDay);
   return (
     <div className={styles.formDate}>
       <div className={styles.wrapDate}>
@@ -81,7 +83,7 @@ export default function FormDate({ id }) {
             display: !openEnd ? "none" : "block",
           }}
         >
-          <GetPeriod getValue={gatEndDay} />
+          <GetPeriod getValue={getEndDay} />
         </div>
       </div>
     </div>

@@ -2,19 +2,77 @@
 
 import mongoose from "mongoose";
 import { Coach, initializeCoachModel } from "@/models/coach";
-// import { Book, initializeBookModel } from "@/models/book";
 
-export const createCoach = async (train, id) => {
+export const createCoach = async (train, userId) => {
   try {
     await initializeCoachModel();
     const newTrain = await Coach.create({
-      train,
-      owner: id,
+      ...train,
+      owner: mongoose.Types.ObjectId.createFromHexString(userId),
     }).lean();
     const date = JSON.parse(JSON.stringify(newTrain));
     return date;
   } catch (e) {
     console.log(e);
+  }
+};
+
+export const getCoach = async (id) => {
+  try {
+    await initializeCoachModel();
+    const coach = await Coach.findById(id).lean();
+    return JSON.parse(JSON.stringify(coach));
+  } catch (e) {
+    console.log(e);
+    return { message: "Відбулася помилка" };
+  }
+};
+
+export const getAllCoaches = async (userId) => {
+  try {
+    await initializeCoachModel();
+    const coaches = await Coach.find({ owner: userId }).lean();
+    return JSON.parse(JSON.stringify(coaches));
+  } catch (e) {
+    console.log(e);
+    return { message: "Відбулася помилка" };
+  }
+};
+
+// export const createCoach = async (train, userId) => {
+//   try {
+//     await initializeCoachModel();
+//     const newTrain = await Coach.create({
+//       ...train,
+//       owner: mongoose.Types.ObjectId(userId),
+//     });
+//     return JSON.parse(JSON.stringify(newTrain));
+//   } catch (e) {
+//     console.log(e);
+//     return { message: "Відбулася помилка" };
+//   }
+// };
+
+export const updateCoach = async (id, data) => {
+  try {
+    await initializeCoachModel();
+    const updatedCoach = await Coach.findByIdAndUpdate(id, data, {
+      new: true,
+    }).lean();
+    return JSON.parse(JSON.stringify(updatedCoach));
+  } catch (e) {
+    console.log(e);
+    return { message: "Відбулася помилка" };
+  }
+};
+
+export const deleteCoach = async (id) => {
+  try {
+    await initializeCoachModel();
+    await Coach.findByIdAndDelete(id);
+  } catch (e) {
+    console.log(e);
+    return { message: "Відбулася помилка" };
   }
 };
 
