@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 import { connectDB } from "@/lib/mongodb";
 import { bookCategory } from "@/constants/bookCategory";
 
-const bookSchema = new mongoose.Schema(
+export const bookSchema = new mongoose.Schema(
   {
     title: String,
     author: String,

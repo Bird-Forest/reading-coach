@@ -5,13 +5,15 @@ import MyChart from "./MyChart";
 import TrainListBooks from "./TrainListBooks";
 import FormTrain from "./FormTrain";
 
-export default function TrainPanel({ booksInit }) {
+export default function TrainPanel({ id, arrStart, arrInit }) {
   return (
     <div className={styles.caseTrain}>
-      <MyGoalRead />
+      <div className={styles.caseForm}>
+        <MyGoalRead />
+        <FormTrain id={id} arrStart={arrStart} />
+      </div>
       <div className={styles.wrapBlock}>
-        <FormTrain />
-        <TrainListBooks booksInit={booksInit} />
+        <TrainListBooks id={id} arrInit={arrInit} />
         <MyChart />
       </div>
     </div>

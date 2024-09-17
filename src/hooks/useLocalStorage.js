@@ -20,12 +20,8 @@ export default function useLocalStorage(key) {
       }
     }
   }, [key]);
-  // const token = window.localStorage.getItem(key);
-  // const decodeToken = jwt.decode(token);
-  // const { id, username, iat, exp } = decodeToken;
-  return tokenData;
 
-  // return { id, username, iat, exp };
+  return tokenData;
 }
 
 // export default function useLocalStorage(key, defaultValue) {

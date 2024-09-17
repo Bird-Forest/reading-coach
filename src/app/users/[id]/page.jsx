@@ -1,5 +1,6 @@
+import GetPeriod from "@/components/calendar/GetPeriod";
 import React from "react";
 
 export default function page() {
-  return <div> Statistic UserID</div>;
+  return <div>{/* <GetPeriod /> */}</div>;
 }

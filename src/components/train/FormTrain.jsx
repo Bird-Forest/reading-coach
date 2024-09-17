@@ -1,56 +1,24 @@
 import React from "react";
-import { RxCalendar } from "react-icons/rx";
-import { IoMdArrowDropdown } from "react-icons/io";
 import styles from "./Train.module.css";
+import FormDate from "./FormDate";
+import FormSelect from "./FormSelect";
+import { createCoach } from "@/services/coaches";
 
-export default function FormTrain() {
+export default async function FormTrain({ id, arrStart }) {
+  const train = {
+    start: "",
+    finish: "",
+    books: [],
+    totalPage: 0,
+  };
+  const data = await createCoach(train, id);
+  console.log(data);
+
   return (
     <div className={styles.wrapFormTrain}>
       <h2 className={styles.titleTrain}>Моє тренування</h2>
-      <form className={styles.formAddBook}>
-        <label className={styles.labelDate}>
-          <input
-            type="text"
-            className={styles.inputDate}
-            placeholder="Початок"
-          />
-          <div className={styles.wrapIconCldr}>
-            <RxCalendar className={styles.iconCldr} />
-          </div>
-
-          <button type="button" className={styles.btnOpen}>
-            <IoMdArrowDropdown className={styles.iconOpen} />
-          </button>
-        </label>
-        <label className={styles.labelDate}>
-          <input
-            type="text"
-            className={styles.inputDate}
-            placeholder="Завершення"
-          />
-          <div className={styles.wrapIconCldr}>
-            <RxCalendar className={styles.iconCldr} />
-          </div>
-          <button type="button" className={styles.btnOpen}>
-            <IoMdArrowDropdown className={styles.iconOpen} />
-          </button>
-        </label>
-        <label className={styles.labelSelect}>
-          <input
-            type="text"
-            className={styles.inputSelect}
-            placeholder="Обрати книги з бібліотеки"
-          />
-          <button type="button" className={styles.btnOpen}>
-            <IoMdArrowDropdown className={styles.iconOpen} />
-          </button>
-        </label>
-        <div className={styles.wrapBtnAdd}>
-          <button type="submit" className={styles.btnCreate}>
-            Додати
-          </button>
-        </div>
-      </form>
+      <FormDate id={id} />
+      <FormSelect id={id} arrStart={arrStart} />
     </div>
   );
 }

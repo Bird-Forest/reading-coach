@@ -3,10 +3,12 @@ import styles from "@/components/train/Train.module.css";
 import TrainPanel from "@/components/train/TrainPanel";
 import NavigateTrain from "@/components/info/NavigateTrain";
 import FormTrain from "@/components/train/FormTrain";
-import { getBooksInit } from "@/services/books";
+import { getBooksInit, getBooksStart } from "@/services/books";
 
 export default async function TrainPage({ params: { id } }) {
-  const booksInit = await getBooksInit(id);
+  const booksStart = getBooksStart(id);
+  const booksInit = getBooksInit(id);
+  const [arrStart, arrInit] = await Promise.all([booksStart, booksInit]);
   return (
     <>
       <div className={styles.wrapTrainMob}>
@@ -14,7 +16,7 @@ export default async function TrainPage({ params: { id } }) {
         <FormTrain />
       </div>
       <div className={styles.wrapTrainDeck}>
-        <TrainPanel booksInit={booksInit} />
+        <TrainPanel id={id} arrStart={arrStart} arrInit={arrInit} />
       </div>
     </>
   );
