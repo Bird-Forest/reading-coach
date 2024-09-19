@@ -3,15 +3,18 @@
 import mongoose from "mongoose";
 import { Coach, initializeCoachModel } from "@/models/coach";
 
-export const createCoach = async (train, userId) => {
+export const createCoach = async (item, userId) => {
   try {
     await initializeCoachModel();
     const newTrain = await Coach.create({
-      ...train,
+      ...item,
       owner: mongoose.Types.ObjectId.createFromHexString(userId),
-    }).lean();
+    }).exec();
     const date = JSON.parse(JSON.stringify(newTrain));
-    return date;
+    console.log(date);
+    return {
+      message: "Успішно додано",
+    };
   } catch (e) {
     console.log(e);
   }

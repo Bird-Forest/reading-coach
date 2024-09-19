@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Library.module.css";
 import books from "@/books.json";
 import BookItem from "../book/BookItem";
-import TableHeaders from "./TableHeaders";
+import TableHeaders from "../table/TableHeaders";
 import { bookCategory } from "@/constants/bookCategory";
 // import { BookCategory, BookItemProps } from "@/types/book";
 

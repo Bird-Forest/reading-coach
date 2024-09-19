@@ -42,10 +42,15 @@ export const getBook = async (id) => {
     };
   }
 };
-export const updateBook = async (id) => {
+export const updateBook = async (update) => {
+  console.log("UPDATE", update);
+  // const { id, category } = req.body;
   try {
     await initializeBookModel();
-    const book = await Book.findByIdAndUpdate({ _id: id }).lean();
+    const book = await Book.findByIdAndUpdate({
+      _id: update.id,
+      category: update.category,
+    }).lean();
     if (!book) {
       throw new Error("is absent");
     }

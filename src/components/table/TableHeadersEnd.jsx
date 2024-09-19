@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./Library.module.css";
+import styles from "./Table.module.css";
 export default function TableHeadersEnd() {
   return (
-    <div className={styles.wrapTitleTable}>
+    <div className={styles.wrapTable}>
       <p className={styles.textTabEnd}>Назва книги</p>
       <p className={styles.textTabEnd}>Автор</p>
       <p className={styles.textTabEnd}>Рік</p>

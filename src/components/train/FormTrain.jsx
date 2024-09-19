@@ -9,8 +9,10 @@ import { bookCategory } from "@/constants/bookCategory";
 
 // const fetcher = (url) => fetch(url).then((res) => res.json());
 
+// **** ПРИСУЕНІЙ В МОБІЛЬНІЙ ВЕРСІЇ В ДЕСКТОП НЕМА
+
 export default function FormTrain({ userId, arrStart }) {
-  console.log(userId);
+  // console.log(userId);
   const [begin, setBegin] = useState("");
   const [end, setEnd] = useState("");
   const [books, setBooks] = useState([]);
@@ -20,12 +22,12 @@ export default function FormTrain({ userId, arrStart }) {
   const trainingStart = (value) => {
     setBegin(value);
   };
-  console.log(begin);
+  // console.log(begin);
 
   const trainingEnd = (value) => {
     setEnd(value);
   };
-  console.log(end);
+  // console.log(end);
 
   // const [newTrain, setNewTrain] = useState({
   //   start: Date,

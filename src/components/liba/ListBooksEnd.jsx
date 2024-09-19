@@ -11,7 +11,7 @@ import { IoStarOutline, IoStar } from "react-icons/io5";
 import { createPortal } from "react-dom";
 import OverlayModal from "@/components/modal/OverlayModal";
 import ResumeModal from "@/components/modal/ResumeModal";
-import TableHeaders from "./TableHeaders";
+import TableHeaders from "../table/TableHeaders";
 import { bookCategory } from "@/constants/bookCategory";
 
 // const typedBooks: BookItemProps[] = books;

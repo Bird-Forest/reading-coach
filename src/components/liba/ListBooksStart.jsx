@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Library.module.css";
-import TableHeaders from "./TableHeaders";
+import TableHeaders from "../table/TableHeaders";
 import BookItem from "../book/BookItem";
 
 export default function ListBooksStart({ arrStart }) {

@@ -10,8 +10,6 @@ export default function FormSelect({ arrStart, choosedBook }) {
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState({});
 
-  console.log(option);
-
   const Arr = Array.isArray(arrStart) && arrStart.length > 0;
 
   return (
@@ -36,7 +34,7 @@ export default function FormSelect({ arrStart, choosedBook }) {
       </div>
       <div
         style={{
-          top: "44px",
+          top: "62px",
           position: "absolute",
           zIndex: "1",
           display: !open ? "none" : "block",

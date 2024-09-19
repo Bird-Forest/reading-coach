@@ -5,31 +5,51 @@ import { RxCalendar } from "react-icons/rx";
 import { IoMdArrowDropdown } from "react-icons/io";
 import styles from "./FormTrain.module.css";
 import GetPeriod from "../calendar/GetPeriod";
+import { formatISO, isBefore, format, isPast, endOfYesterday } from "date-fns";
 
 export default function FormDate({ trainingStart, trainingEnd }) {
   const [startDay, setStartDay] = useState("");
   const [endDay, setEndDay] = useState("");
   const [openStart, setOpenStart] = useState(false);
   const [openEnd, setOpenEnd] = useState(false);
+  // const nowDate = startOfDay(new Date());
 
   const getStartDay = (event) => {
     setStartDay(event.target.value);
-    trainingStart(event.target.value);
+    let value = formatISO(new Date(event.target.value));
+    trainingStart(value);
   };
-  console.log(startDay);
+
   const getEndDay = (event) => {
     setEndDay(event.target.value);
-    trainingEnd(event.target.value);
+    let value = formatISO(new Date(event.target.value));
+    trainingEnd(value);
   };
-  console.log(endDay);
+
+  const yesterday = endOfYesterday();
+  // console.log(yesterday);
+  // const start = endOfDay(new Date(startDay));
+  // console.log(start);
+
+  const before = isBefore(new Date(startDay), new Date(yesterday));
+  // console.log("BEFORE", before, yesterday, startDay);
+  const past = isPast(new Date(endDay));
+  // console.log(past);
+  // const after = isAfter(new Date(start), new Date(endDay));
+  // console.log("AFTER", after, start, endDay);
+
+  let valueStart = startDay && format(new Date(startDay), "dd-MM-yyyy");
+  let valueEnd = endDay && format(new Date(endDay), "dd-MM-yyyy");
+
   return (
     <div className={styles.formDate}>
       <div className={styles.wrapDate}>
+        {before && <p className={styles.wrapError}>Помилкова дата</p>}
         <label className={styles.labelDate}>
           <input
             type="text"
-            defaultValue={startDay}
-            readOnly={startDay}
+            defaultValue={valueStart}
+            readOnly={valueStart}
             className={styles.inputDate}
             placeholder="Початок"
           />
@@ -46,7 +66,7 @@ export default function FormDate({ trainingStart, trainingEnd }) {
         </label>
         <div
           style={{
-            top: "42px",
+            top: "60px",
             position: "absolute",
             zIndex: "1",
             display: !openStart ? "none" : "block",
@@ -55,12 +75,14 @@ export default function FormDate({ trainingStart, trainingEnd }) {
           <GetPeriod getValue={getStartDay} />
         </div>
       </div>
+
       <div className={styles.wrapDate}>
+        {past && <p className={styles.wrapError}>Помилкова дата</p>}
         <label className={styles.labelDate}>
           <input
             type="text"
-            defaultValue={endDay}
-            readOnly={endDay}
+            defaultValue={valueEnd}
+            readOnly={valueEnd}
             className={styles.inputDate}
             placeholder="Завершення"
           />
@@ -77,7 +99,7 @@ export default function FormDate({ trainingStart, trainingEnd }) {
         </label>
         <div
           style={{
-            top: "42px",
+            top: "60px",
             position: "absolute",
             zIndex: "1",
             display: !openEnd ? "none" : "block",
@@ -85,6 +107,7 @@ export default function FormDate({ trainingStart, trainingEnd }) {
         >
           <GetPeriod getValue={getEndDay} />
         </div>
+        {/* {past && <p >Дата закінчення не може бути менше початкової дати</p>} */}
       </div>
     </div>
   );

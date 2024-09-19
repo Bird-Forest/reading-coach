@@ -2,36 +2,53 @@
 
 import React, { useState } from "react";
 import styles from "./Train.module.css";
+import { differenceInCalendarDays } from "date-fns";
 import MyGoalRead from "./MyGoalRead";
 import MyChart from "./MyChart";
 import TrainListBooks from "./TrainListBooks";
 import FormSelect from "./FormSelect";
 import FormDate from "./FormDate";
+import ButtonAction from "../button/ButtonAction";
+import { bookCategory } from "@/constants/bookCategory";
+import { createCoach } from "@/services/coaches";
 
 export default function TrainPanel({ arrStart }) {
   const [begin, setBegin] = useState("");
   const [end, setEnd] = useState("");
   const [books, setBooks] = useState([]);
 
+  const totalDays = differenceInCalendarDays(new Date(end), new Date(begin));
+  const totalBooks = books.length;
+
   const trainingStart = (value) => {
     setBegin(value);
   };
-  console.log(begin);
 
   const trainingEnd = (value) => {
     setEnd(value);
   };
-  console.log(end);
 
   const choosedBook = (option) => {
     setBooks((prevState) => [...prevState, option]);
   };
 
-  console.log(books);
+  const deleteBook = (id) => {
+    const newBooks = books.filter((item) => item._id !== id);
+    setBooks(newBooks);
+  };
+  const train = {
+    start: begin,
+    finish: end,
+    books: books,
+    totalDay: totalDays,
+    totalPage: totalBooks,
+    category: bookCategory.init,
+  };
+  const isBooks = totalBooks > 0;
   return (
     <div className={styles.caseTrain}>
       <div className={styles.caseForm}>
-        <MyGoalRead />
+        <MyGoalRead totalDays={totalDays} totalBooks={totalBooks} />
         <div className={styles.wrapFormTrain}>
           <h2 className={styles.titleTrain}>Моє тренування</h2>
           <FormDate trainingStart={trainingStart} trainingEnd={trainingEnd} />
@@ -39,7 +56,12 @@ export default function TrainPanel({ arrStart }) {
         </div>
       </div>
       <div className={styles.wrapBlock}>
-        <TrainListBooks books={books} />
+        <TrainListBooks books={books} deleteBook={deleteBook} />
+        {isBooks && (
+          <ButtonAction formAction={createCoach} item={train}>
+            Почати тренування
+          </ButtonAction>
+        )}
         <MyChart />
       </div>
     </div>

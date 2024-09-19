@@ -11,7 +11,7 @@
   .formDate {
     flex-direction: row;
     width: 704px;
-    height: 42px;
+    height: 60px;
     gap: 24px;
   }
 }
@@ -25,8 +25,21 @@
 .wrapDate {
   position: relative;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
-
+.wrapError {
+  display: flex;
+  justify-content: center;
+  width: 250px;
+  height: 18px;
+  color: rgb(242, 81, 55);
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.21;
+  text-align: left;
+}
 .labelDate {
   position: relative;
   display: flex;
@@ -104,9 +117,10 @@
   .formSelect {
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-end;
     /* flex-wrap: wrap; */
     width: 704px;
-    height: 42px;
+    height: 60px;
     /* gap: 50px; */
   }
 }
