@@ -1,5 +1,3 @@
-/* *** FORM TRAIN */
-
 /* *** FORM DATE */
 .formDate {
   display: flex;
@@ -118,19 +116,13 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
-    /* flex-wrap: wrap; */
     width: 704px;
     height: 60px;
-    /* gap: 50px; */
   }
 }
 @media screen and (min-width: 1280px) {
   .formSelect {
-    /* flex-direction: row;
-    flex-wrap: wrap; */
-    /* justify-content: space-around; */
     width: 928px;
-    /* height: 42px; */
   }
 }
 .wrapSelet {
@@ -198,18 +190,17 @@
 @media screen and (min-width: 768px) {
   .wrapOptions {
     width: 484px;
-    height: 120px;
-    padding: 16px;
+    /* height: 120px; */
+    padding: 20px;
   }
 }
 @media screen and (min-width: 1280px) {
   .wrapOptions {
     width: 716px;
-    height: 140px;
-    padding: 32px;
+    /* height: 140px; */
+    /* padding: 16px; */
   }
 }
-
 .options {
   display: flex;
   width: 100%;
@@ -264,24 +255,23 @@
   border: 1px solid rgb(242, 81, 55);
   background: rgb(246, 247, 251);
 }
-.wrapOptions::-webkit-scrollbar {
-  right: 8px;
-  width: 16px;
-  margin: 16px 8px;
-  background-color: transparent;
-}
-.wrapOptions::-webkit-scrollbar-track {
-  width: 16px;
-  background-color: #fffde7;
-  margin: 14px 8px 14px 0;
-}
-.wrapOptions::-webkit-scrollbar-thumb {
-  width: 16px;
-  height: 66px;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 10px;
-  border-right: 8px solid #fffde7;
-  background-color: #fff59d;
+/* *** SCROLL */
+@media screen and (min-width: 768px) {
+  .wrapOptions::-webkit-scrollbar {
+    width: 5px;
+    height: 140px;
+    background: transparent;
+  }
+  .wrapOptions::-webkit-scrollbar-track {
+    width: 5px;
+    height: 140px;
+    background: rgba(177, 181, 194, 0.25);
+    padding: 20px 0;
+  }
+  .wrapOptions::-webkit-scrollbar-thumb {
+    width: 3px;
+    height: 25%;
+    background-color: rgb(177, 181, 194);
+    cursor: pointer;
+  }
 }

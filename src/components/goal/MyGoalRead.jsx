@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Train.module.css";
+import styles from "./Goal.module.css";
 import { open_sans } from "@/app/fonts";
 
 export default function MyGoalRead({ totalDays, totalBooks }) {

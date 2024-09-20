@@ -23,7 +23,7 @@ const initialValues = {
 export default function BookForm() {
   const [notif, setNotif] = useState("");
   const { id } = useLocalStorage("authToken");
-  console.log(id);
+  // console.log(id);
   const validationSchema = Yup.object({
     title: Yup.string().required("поле не може бути порожнім").trim(),
     author: Yup.string().required("поле не може бути порожнім").trim(),

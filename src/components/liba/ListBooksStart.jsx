@@ -1,3 +1,5 @@
+// "use client";
+
 import React from "react";
 import styles from "./Library.module.css";
 import TableHeaders from "../table/TableHeaders";
@@ -23,20 +25,6 @@ export default function ListBooksStart({ arrStart }) {
           ))}
         </ul>
       </div>
-
-      {/* <div className={styles.wrapListStart}> */}
-      {/* <div className={styles.wrapBtnTrain}>
-        <button type="button" className={styles.btnMyTrain}>
-          Моє тренування
-        </button>
-      </div> */}
-      {/* </div> */}
-
-      {/* <div className={styles.wrapBtnMore}>
-        <button type="button" className={styles.btnMore}>
-          <BsPlusLg className={styles.iconMore} />
-        </button>
-      </div> */}
     </div>
   );
 }

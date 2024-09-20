@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import styles from "./Train.module.css";
 import { differenceInCalendarDays } from "date-fns";
-import MyGoalRead from "./MyGoalRead";
-import MyChart from "./MyChart";
+import MyGoalRead from "../goal/MyGoalRead";
+import MyChart from "../chart/MyChart";
 import TrainListBooks from "./TrainListBooks";
 import FormSelect from "./FormSelect";
 import FormDate from "./FormDate";

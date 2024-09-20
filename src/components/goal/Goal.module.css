@@ -1,0 +1,278 @@
+/* *** MY GOAL READ */
+.wrapTarget {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: 236px;
+  box-shadow: 0px 2px 3px 0px rgba(9, 30, 63, 0.1);
+  background-color: rgb(255, 255, 255);
+}
+@media screen and (min-width: 768px) {
+  .wrapTarget {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 704px;
+    height: 105px;
+    padding: 0 52px 0 28px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .wrapTarget {
+    flex-direction: column;
+    width: 288px;
+    height: 304px;
+    padding: 0;
+  }
+}
+.titleGoal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 60px;
+  color: rgb(255, 255, 255);
+  font-family: var(--font-montserrat);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  box-shadow: 0px 2px 3px 0px rgba(9, 30, 63, 0.1);
+  background: rgb(177, 181, 194);
+}
+@media screen and (min-width: 1280px) {
+  .titleGoal {
+    width: 288px;
+  }
+}
+.countTarget {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 236px;
+  gap: 20px;
+}
+@media screen and (min-width: 768px) {
+  .countTarget {
+    height: 78px;
+    gap: 40px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .countTarget {
+    height: 236px;
+    gap: 20px;
+  }
+}
+.wrapCount {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  height: 148px;
+  gap: 14px;
+}
+@media screen and (min-width: 768px) {
+  .wrapCount {
+    width: 120px;
+    height: 78px;
+    gap: 4px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .wrapCount {
+    width: 100px;
+    height: 148px;
+    gap: 14px;
+  }
+}
+.counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  color: rgb(9, 30, 63);
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 0.8;
+  text-align: center;
+  box-shadow: 4px 4px 8px 0px rgba(36, 42, 55, 0.15);
+  background-color: rgb(245, 247, 250);
+}
+.textCounter {
+  display: flex;
+  width: 66px;
+  height: 34px;
+  color: rgb(137, 143, 159);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.21;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .counter {
+    width: 120px;
+    height: 60px;
+    gap: 4px;
+  }
+  .textCounter {
+    justify-content: center;
+    width: 120px;
+    height: 14px;
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .counter {
+    width: 100px;
+    height: 100px;
+    gap: 0;
+  }
+  .textCounter {
+    justify-content: center;
+    width: 66px;
+    height: 34px;
+    font-size: 14px;
+  }
+}
+/* *** STATISTICS */
+.wrapGoalStat {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: 220px;
+  box-shadow: 0px 2px 3px 0px rgba(9, 30, 63, 0.1);
+  background-color: rgb(255, 255, 255);
+}
+@media screen and (min-width: 768px) {
+  .wrapGoalStat {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 704px;
+    height: 125px;
+    gap: 20px;
+    padding: 20px 40px 0 40px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .wrapGoalStat {
+    flex-direction: column;
+    width: 288px;
+    height: 329px;
+    gap: 0;
+    padding: 0;
+  }
+}
+.boxCountStat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  gap: 16px;
+}
+@media screen and (min-width: 768px) {
+  .boxCountStat {
+    width: 324px;
+    gap: 12px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .boxCountStat {
+    align-items: flex-start;
+    width: 288px;
+    height: 269px;
+    gap: 20px;
+    padding: 80px 18px 0 18px;
+  }
+}
+
+.countGoalStat {
+  display: flex;
+  flex-direction: column;
+  width: 64px;
+  height: 98px;
+  gap: 8px;
+}
+@media screen and (min-width: 768px) {
+  .countGoalStat {
+    width: 100px;
+    height: 90px;
+    gap: 4px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .countGoalStat {
+    width: 66px;
+    height: 110px;
+    gap: 14px;
+  }
+}
+.countStat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 63px;
+  height: 63px;
+  color: rgb(9, 30, 63);
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 1.08;
+  box-shadow: 4px 4px 8px 0px rgba(36, 42, 55, 0.15);
+  background-color: rgb(245, 247, 250);
+}
+@media screen and (min-width: 768px) {
+  .countStat {
+    width: 100px;
+    height: 60px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .countStat {
+    width: 66px;
+    height: 66px;
+  }
+}
+.textStat {
+  display: flex;
+  height: 25px;
+  justify-content: center;
+  color: rgb(137, 143, 159);
+  font-family: var(--font-montserrat);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.18;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .textStat {
+    font-size: 12px;
+  }
+}
+.countOrang {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 63px;
+  height: 63px;
+  color: rgb(255, 107, 8);
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 1.08;
+  box-shadow: 4px 4px 8px 0px rgba(36, 42, 55, 0.15);
+  background-color: rgb(245, 247, 250);
+}
+@media screen and (min-width: 768px) {
+  .countOrang {
+    width: 100px;
+    height: 60px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .countOrang {
+    width: 66px;
+    height: 66px;
+  }
+}

@@ -4,12 +4,8 @@ import books from "@/books.json";
 import BookItem from "../book/BookItem";
 import TableHeaders from "../table/TableHeaders";
 import { bookCategory } from "@/constants/bookCategory";
-// import { BookCategory, BookItemProps } from "@/types/book";
-
-// const typedBooks: BookItemProps[] = books as BookItemProps[];
 
 export default function ListBooksInit() {
-  // const arrInit = books.filter((item) => item.category === "init");
   const arrInit = books.filter((item) => item.category === bookCategory.init);
   return (
     <div className={styles.wrapListAny}>
@@ -20,7 +16,6 @@ export default function ListBooksInit() {
           {arrInit.map((item, i) => (
             <li key={i} className={`${styles.wrapBook} ${styles.bgBook}`}>
               <BookItem
-                // id={item._id}
                 title={item.title}
                 author={item.author}
                 pages={item.pages}

@@ -106,145 +106,6 @@
     gap: 60px;
   }
 }
-/* *** MY GOAL READ */
-.wrapTarget {
-  display: flex;
-  flex-direction: column;
-  width: 280px;
-  height: 236px;
-  box-shadow: 0px 2px 3px 0px rgba(9, 30, 63, 0.1);
-  background-color: rgb(255, 255, 255);
-}
-@media screen and (min-width: 768px) {
-  .wrapTarget {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 704px;
-    height: 105px;
-    padding: 0 52px 0 28px;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .wrapTarget {
-    flex-direction: column;
-    width: 288px;
-    height: 304px;
-    padding: 0;
-  }
-}
-.titleGoal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 280px;
-  height: 60px;
-  color: rgb(255, 255, 255);
-  font-family: var(--font-montserrat);
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.2;
-  text-align: center;
-  box-shadow: 0px 2px 3px 0px rgba(9, 30, 63, 0.1);
-  background: rgb(177, 181, 194);
-}
-@media screen and (min-width: 1280px) {
-  .titleGoal {
-    width: 288px;
-  }
-}
-.countTarget {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 280px;
-  height: 236px;
-  gap: 20px;
-}
-@media screen and (min-width: 768px) {
-  .countTarget {
-    height: 78px;
-    gap: 40px;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .countTarget {
-    height: 236px;
-    gap: 20px;
-  }
-}
-.wrapCount {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100px;
-  height: 148px;
-  gap: 14px;
-}
-@media screen and (min-width: 768px) {
-  .wrapCount {
-    width: 120px;
-    height: 78px;
-    gap: 4px;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .wrapCount {
-    width: 100px;
-    height: 148px;
-    gap: 14px;
-  }
-}
-.counter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 100px;
-  color: rgb(9, 30, 63);
-  font-size: 45px;
-  font-weight: 700;
-  line-height: 0.8;
-  text-align: center;
-  box-shadow: 4px 4px 8px 0px rgba(36, 42, 55, 0.15);
-  background-color: rgb(245, 247, 250);
-}
-.textCounter {
-  display: flex;
-  width: 66px;
-  height: 34px;
-  color: rgb(137, 143, 159);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.21;
-  text-align: center;
-}
-@media screen and (min-width: 768px) {
-  .counter {
-    width: 120px;
-    height: 60px;
-    gap: 4px;
-  }
-  .textCounter {
-    justify-content: center;
-    width: 120px;
-    height: 14px;
-    font-size: 12px;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .counter {
-    width: 100px;
-    height: 100px;
-    gap: 0;
-  }
-  .textCounter {
-    justify-content: center;
-    width: 66px;
-    height: 34px;
-    font-size: 14px;
-  }
-}
 /* *** FORM TRAIN */
 .wrapFormTrain {
   display: flex;
@@ -257,15 +118,12 @@
 @media screen and (min-width: 768px) {
   .wrapFormTrain {
     width: 704px;
-    /* gap: 28px; */
     gap: 10px;
   }
 }
 @media screen and (min-width: 1280px) {
   .wrapFormTrain {
     width: 928px;
-    /* height: 192px; */
-    /* gap: 24px; */
     padding: 0;
   }
 }
@@ -294,7 +152,6 @@
     width: 928px;
   }
 }
-
 /* *** MY LIST BOOK */
 .wrapListBook {
   display: flex;
@@ -332,7 +189,6 @@
   .listBook {
     width: 928px;
     max-height: 170px;
-    /* gap: 14px; */
     padding: 20px 0;
   }
 }
@@ -356,13 +212,11 @@
     cursor: pointer;
   }
 }
-
 /* *** ITEM  TRAIN LIST BOOK*/
 .wrapItemTrain {
   display: flex;
   width: 280px;
   height: 170px;
-  /* border-bottom: 1px solid rgb(224, 229, 235); */
   padding: 20px 0;
 }
 @media screen and (min-width: 768px) {
@@ -413,7 +267,6 @@
     align-items: center;
     gap: 14px;
     padding: 12px 20px 12px 0;
-    /* border-top: 1px solid rgb(224, 229, 235); */
   }
 }
 @media screen and (min-width: 1280px) {
@@ -436,192 +289,5 @@
   display: flex;
   font-size: 14px;
   color: rgb(137, 143, 159);
-  /* flex-direction: column;
-  gap: 8px; */
   padding: 0 0 0 36px;
-}
-/* *** TITLE TABLE */
-/* .wrapTitleTable {
-  display: none;
-}
-@media screen and (min-width: 768px) {
-  .wrapTitleTable {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 704px;
-    height: 40px;
-    border-top: 1px solid rgb(224, 229, 235);
-    border-bottom: 1px solid rgb(224, 229, 235);
-  }
-}
-@media screen and (min-width: 1280px) {
-  .wrapTitleTable {
-    width: 928px;
-  }
-}
-.textTab {
-  display: flex;
-  color: rgb(137, 143, 159);
-  font-family: var(--font-montserrat);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.21;
-  text-align: left;
-}
-.textTab:first-child {
-  width: 300px;
-}
-.textTab:nth-child(2) {
-  width: 200px;
-}
-.textTab:nth-child(3) {
-  width: 80px;
-}
-.textTab:nth-child(4) {
-  width: 80px;
-}
-@media screen and (min-width: 1280px) {
-  .textTab:first-child {
-    width: 396px;
-  }
-  .textTab:nth-child(2) {
-    width: 264px;
-  }
-  .textTab:nth-child(3) {
-    width: 132px;
-  }
-  .textTab:nth-child(4) {
-    width: 136px;
-  }
-} */
-
-/* *** BUTTON LINK */
-.wrapBtnLink {
-  display: flex;
-  width: 100%;
-  height: auto;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 0;
-}
-
-/* @media screen and (min-width: 768px) {
-  .wrapEmpty {
-    justify-content: center;
-    width: 704px;
-    height: 62px;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .wrapEmpty {
-    width: 928px;
-  }
-} */
-/* .wrapBook {
-  display: flex;
-  flex-direction: column;
-  width: 280px;
-  height: 168px;
-  gap: 8px;
-  border-top: 1px solid rgb(224, 229, 235);
-  border-bottom: 1px solid rgb(224, 229, 235);
-  padding: 32px 0 32px 0;
-}
-@media screen and (min-width: 768px) {
-  .wrapBook {
-    justify-content: center;
-    width: 704px;
-    height: 62px;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .wrapBook {
-    width: 928px;
-  }
-}
-.wrapTitleBook {
-  display: flex;
-}
-.wrapIcon {
-  display: flex;
-  width: 22px;
-  height: 22px;
-}
-.iconBook {
-  width: 22px;
-  height: 22px;
-  fill: rgb(166, 171, 185);
-}
-.wrapText {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-@media screen and (min-width: 768px) {
-  .wrapText {
-    display: none;
-  }
-}
-.textBook {
-  display: flex;
-  height: 22px;
-  color: rgb(137, 143, 159);
-  font-family: var(--font-montserrat);
-  text-indent: 28px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.25;
-  text-align: left;
-} */
-/* *** MY CHART */
-.wrapChart {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 280px;
-  height: 290px;
-  box-shadow: 0px 2px 3px 0px rgba(9, 30, 63, 0.25);
-  background-color: rgb(255, 255, 255);
-  padding: 24px 20px 40px 20px;
-}
-@media screen and (min-width: 768px) {
-  .wrapChart {
-    width: 704px;
-    height: 340px;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .wrapChart {
-    width: 928px;
-  }
-}
-.wrapTitleChart {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 236px;
-}
-.textChart {
-  display: flex;
-  color: rgb(36, 42, 55);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.25;
-  text-align: left;
-  text-transform: uppercase;
-}
-.countChart {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 25px;
-  height: 25px;
-  background-color: rgb(245, 247, 250);
-  color: rgb(36, 42, 55);
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 3.16;
-  text-align: left;
-  text-transform: uppercase;
 }

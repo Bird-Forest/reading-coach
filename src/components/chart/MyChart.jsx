@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Train.module.css";
+import styles from "./Chart.module.css";
 
 export default function MyChart() {
   return (

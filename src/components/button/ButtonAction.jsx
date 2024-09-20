@@ -12,7 +12,7 @@ export default function ButtonAction({ item, id, formAction, children }) {
   const path = usePathname();
   const segments = path.split("/");
   const userId = segments[2];
-  console.log("BTN ACTION", userId);
+  // console.log("BTN ACTION", userId);
 
   return (
     <div className={styles.wrapBtnAction}>

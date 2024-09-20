@@ -3,7 +3,37 @@
 import mongoose from "mongoose";
 import { Book, initializeBookModel } from "@/models/book";
 
-// import { Book, initializeBookModel } from "@/models/book";
+export const getBooksByCategory = async (category, userId) => {
+  // console.log("ACTION", category, userId);
+  try {
+    await initializeBookModel();
+    const books = await Book.find({
+      category: category,
+      owner: userId,
+    }).lean();
+    // console.log(books);
+    //  const books = JSON.parse(JSON.stringify(booksStart));
+    return books;
+  } catch (e) {
+    console.log(e);
+    return {
+      message: "Відбулася помилка",
+    };
+  }
+};
+
+export const getAllBooks = async () => {
+  try {
+    await initializeBookModel();
+    const books = await Book.find().lean();
+    return books;
+  } catch (e) {
+    console.log(e);
+    return {
+      message: "Відбулася помилка",
+    };
+  }
+};
 
 export const createBook = async (values, id) => {
   try {
@@ -78,32 +108,15 @@ export const deleteBook = async (id) => {
   }
 };
 
-export const getAllBooks = async (id) => {
+export const getBooksStart = async (userId) => {
   try {
     await initializeBookModel();
-    const books = await Book.find({ owner: id }).lean();
-
-    // const booksStart = JSON.parse(JSON.stringify(books));
-
+    const booksStart = await Book.find({
+      category: "start",
+      owner: userId,
+    }).lean();
+    const books = JSON.parse(JSON.stringify(booksStart));
     return books;
-  } catch (e) {
-    console.log(e);
-    return {
-      message: "Відбулася помилка",
-    };
-  }
-};
-
-export const getBooksStart = async (id) => {
-  // console.log("Server", id);
-
-  try {
-    await initializeBookModel();
-    const books = await Book.find({ category: "start", owner: id }).exec();
-
-    const booksStart = JSON.parse(JSON.stringify(books));
-
-    return booksStart;
   } catch (e) {
     console.log(e);
     return {
@@ -116,7 +129,7 @@ export const getBooksInit = async (id) => {
 
   try {
     await initializeBookModel();
-    const books = await Book.find({ category: "init", owner: id }).exec();
+    const books = await Book.find({ category: "init", owner: id }).lean();
 
     const booksInit = JSON.parse(JSON.stringify(books));
 
@@ -133,7 +146,7 @@ export const getBooksEnd = async (id) => {
 
   try {
     await initializeBookModel();
-    const books = await Book.find({ category: "end", owner: id }).exec();
+    const books = await Book.find({ category: "end", owner: id }).lean();
 
     const booksEnd = JSON.parse(JSON.stringify(books));
 

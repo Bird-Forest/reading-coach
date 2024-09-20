@@ -12,7 +12,6 @@ export default function FormDate({ trainingStart, trainingEnd }) {
   const [endDay, setEndDay] = useState("");
   const [openStart, setOpenStart] = useState(false);
   const [openEnd, setOpenEnd] = useState(false);
-  // const nowDate = startOfDay(new Date());
 
   const getStartDay = (event) => {
     setStartDay(event.target.value);
@@ -27,16 +26,8 @@ export default function FormDate({ trainingStart, trainingEnd }) {
   };
 
   const yesterday = endOfYesterday();
-  // console.log(yesterday);
-  // const start = endOfDay(new Date(startDay));
-  // console.log(start);
-
   const before = isBefore(new Date(startDay), new Date(yesterday));
-  // console.log("BEFORE", before, yesterday, startDay);
   const past = isPast(new Date(endDay));
-  // console.log(past);
-  // const after = isAfter(new Date(start), new Date(endDay));
-  // console.log("AFTER", after, start, endDay);
 
   let valueStart = startDay && format(new Date(startDay), "dd-MM-yyyy");
   let valueEnd = endDay && format(new Date(endDay), "dd-MM-yyyy");
@@ -107,7 +98,6 @@ export default function FormDate({ trainingStart, trainingEnd }) {
         >
           <GetPeriod getValue={getEndDay} />
         </div>
-        {/* {past && <p >Дата закінчення не може бути менше початкової дати</p>} */}
       </div>
     </div>
   );

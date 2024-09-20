@@ -17,6 +17,18 @@ const coachSchema = new mongoose.Schema(
   { versionKey: false, timestamps: true }
 );
 
+coachSchema.pre("save", async function (next) {
+  const coach = this;
+  if (coach.isModified("books")) {
+    for (let book of coach.books) {
+      await mongoose
+        .model("Book")
+        .findByIdAndUpdate(book._id, { category: "init" });
+    }
+  }
+  next();
+});
+
 let Coach;
 const initializeCoachModel = async () => {
   await connectDB();

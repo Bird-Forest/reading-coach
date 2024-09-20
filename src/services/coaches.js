@@ -9,9 +9,14 @@ export const createCoach = async (item, userId) => {
     const newTrain = await Coach.create({
       ...item,
       owner: mongoose.Types.ObjectId.createFromHexString(userId),
-    }).exec();
-    const date = JSON.parse(JSON.stringify(newTrain));
-    console.log(date);
+    });
+    newTrain.books.forEach((book) => {
+      book.category = "init";
+    });
+
+    await newTrain.save();
+    // const date = JSON.parse(JSON.stringify(newTrain));
+    // console.log(date);
     return {
       message: "Успішно додано",
     };

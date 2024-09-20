@@ -4,10 +4,9 @@ import BookForm from "@/components/liba/BookForm";
 import NavigateLibrary from "@/components/info/NavigateLibrary";
 import BookCategories from "@/components/liba/BookCategories";
 import { getBooksEnd, getBooksInit, getBooksStart } from "@/services/books";
+import { revalidatePath } from "next/cache";
 
 export default async function LibraryPage({ params: { id } }) {
-  // console.log(id);
-
   const booksStart = getBooksStart(id);
   const booksInit = getBooksInit(id);
   const booksEnd = getBooksEnd(id);
@@ -16,8 +15,8 @@ export default async function LibraryPage({ params: { id } }) {
     booksInit,
     booksEnd,
   ]);
+  revalidatePath(`/users//${id}/library`, "page");
 
-  // console.log(arrStart);
   return (
     <>
       <div className={styles.wrapLibMob}>
@@ -27,7 +26,7 @@ export default async function LibraryPage({ params: { id } }) {
       <div className={styles.wrapLibDeck}>
         <BookForm />
         <BookCategories
-          id={id}
+          userId={id}
           arrStart={arrStart}
           arrInit={arrInit}
           arrEnd={arrEnd}
