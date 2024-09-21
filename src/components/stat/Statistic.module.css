@@ -1,0 +1,118 @@
+.statPage {
+  display: flex;
+  width: 100vw;
+  height: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: rgb(246, 247, 251);
+  padding: 20px 0 32px 0;
+}
+@media screen and (min-width: 768px) {
+  .statPage {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 40px 0 52px 0;
+  }
+}
+.wrapMobile {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  gap: 40px;
+  padding: 0;
+}
+@media screen and (min-width: 768px) {
+  .wrapMobile {
+    display: none;
+  }
+}
+.wrapDesck {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .wrapDesck {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 36px;
+  }
+  .panelStatistic {
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    gap: 40px;
+  }
+}
+/* *** LIST BOOK STATISTIC */
+.wrapListBook {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: auto;
+}
+@media screen and (min-width: 768px) {
+  .wrapListBook {
+    width: 704px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .wrapListBook {
+    width: 928px;
+  }
+}
+.wrapList {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  border-bottom: 1px solid rgb(224, 229, 235);
+}
+@media screen and (min-width: 768px) {
+  .wrapList {
+    width: 704px;
+    height: 186px;
+  }
+  .wrapList::-webkit-scrollbar {
+    width: 5px;
+    height: 186px;
+    background: transparent;
+  }
+  .wrapList::-webkit-scrollbar-track {
+    width: 5px;
+    height: 186px;
+    background: rgba(177, 181, 194, 0.25);
+    padding: 20px 0;
+  }
+  .wrapList::-webkit-scrollbar-thumb {
+    width: 3px;
+    height: 25%;
+    background-color: rgb(177, 181, 194);
+    cursor: pointer;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .wrapList {
+    width: 928px;
+  }
+}
+.wrapItem {
+  display: flex;
+  width: 280px;
+  height: 170px;
+  border-top: 1px solid rgb(224, 229, 235);
+  padding: 20px 0;
+}
+@media screen and (min-width: 768px) {
+  .wrapItem {
+    width: 704px;
+    height: 62px;
+    padding: 0 60px 0 0;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .wrapItem {
+    width: 928px;
+    padding: 0 60px 0 0;
+  }
+}

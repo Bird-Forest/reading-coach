@@ -11,8 +11,9 @@ import FormDate from "./FormDate";
 import ButtonAction from "../button/ButtonAction";
 import { bookCategory } from "@/constants/bookCategory";
 import { createCoach } from "@/services/coaches";
+import FormTrain from "./FormTrain";
 
-export default function TrainPanel({ arrStart }) {
+export default function TrainPanel() {
   const [begin, setBegin] = useState("");
   const [end, setEnd] = useState("");
   const [books, setBooks] = useState([]);
@@ -52,7 +53,7 @@ export default function TrainPanel({ arrStart }) {
         <div className={styles.wrapFormTrain}>
           <h2 className={styles.titleTrain}>Моє тренування</h2>
           <FormDate trainingStart={trainingStart} trainingEnd={trainingEnd} />
-          <FormSelect choosedBook={choosedBook} arrStart={arrStart} />
+          <FormSelect choosedBook={choosedBook} />
         </div>
       </div>
       <div className={styles.wrapBlock}>

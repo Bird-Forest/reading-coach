@@ -22,18 +22,18 @@ export const getBooksByCategory = async (category, userId) => {
   }
 };
 
-export const getAllBooks = async () => {
-  try {
-    await initializeBookModel();
-    const books = await Book.find().lean();
-    return books;
-  } catch (e) {
-    console.log(e);
-    return {
-      message: "Відбулася помилка",
-    };
-  }
-};
+// export const getAllBooks = async () => {
+//   try {
+//     await initializeBookModel();
+//     const books = await Book.find().lean();
+//     return books;
+//   } catch (e) {
+//     console.log(e);
+//     return {
+//       message: "Відбулася помилка",
+//     };
+//   }
+// };
 
 export const createBook = async (values, id) => {
   try {
@@ -108,12 +108,12 @@ export const deleteBook = async (id) => {
   }
 };
 
-export const getBooksStart = async (userId) => {
+export const getBooksStart = async (id) => {
   try {
     await initializeBookModel();
     const booksStart = await Book.find({
       category: "start",
-      owner: userId,
+      owner: id,
     }).lean();
     const books = JSON.parse(JSON.stringify(booksStart));
     return books;
@@ -124,16 +124,14 @@ export const getBooksStart = async (userId) => {
     };
   }
 };
-export const getBooksInit = async (id) => {
-  // console.log("Server", id);
 
+export const getBooksInit = async (id) => {
   try {
     await initializeBookModel();
     const books = await Book.find({ category: "init", owner: id }).lean();
+    const data = JSON.parse(JSON.stringify(books));
 
-    const booksInit = JSON.parse(JSON.stringify(books));
-
-    return booksInit;
+    return data;
   } catch (e) {
     console.log(e);
     return {
@@ -142,12 +140,9 @@ export const getBooksInit = async (id) => {
   }
 };
 export const getBooksEnd = async (id) => {
-  // console.log("Server", id);
-
   try {
     await initializeBookModel();
     const books = await Book.find({ category: "end", owner: id }).lean();
-
     const booksEnd = JSON.parse(JSON.stringify(books));
 
     return booksEnd;

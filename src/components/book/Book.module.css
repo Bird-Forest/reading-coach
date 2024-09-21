@@ -29,6 +29,8 @@
 }
 .wrapIcon {
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 22px;
   height: 22px;
 }
@@ -184,7 +186,6 @@
     width: 10%;
   }
 }
-
 .keyBook {
   display: flex;
   width: 42px;

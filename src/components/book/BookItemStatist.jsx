@@ -1,25 +1,32 @@
 import React from "react";
-import { MdMenuBook } from "react-icons/md";
-import { BsSquare } from "react-icons/bs";
 import styles from "./Book.module.css";
 import { bookCategory } from "@/constants/bookCategory";
 import { LuSquare, LuCheckSquare } from "react-icons/lu";
 
-export default function BookItemStatist(item) {
+export default function BookItemStatist({ item }) {
   return (
     <div key={item._id} className={styles.wrapBox}>
       <div className={styles.wrapTitleBook}>
         <div className={styles.wrapIcon}>
-          <LuSquare className={styles.iconBook} />
-          <LuCheckSquare className={styles.iconBook} />
-          <BsSquare className={styles.iconBook} />
-          <MdMenuBook
-            className={
-              item.category === bookCategory.init
-                ? styles.iconBookOrang
-                : styles.iconBook
-            }
-          />
+          {item.category === bookCategory.end ? (
+            <LuCheckSquare
+              style={{
+                width: "20px",
+                height: "20px",
+                stroke: "rgb(255, 107, 8)",
+              }}
+              // className={styles.iconBook}
+            />
+          ) : (
+            <LuSquare
+              style={{
+                width: "20px",
+                height: "20px",
+                stroke: "rgb(166, 171, 185)",
+              }}
+              // className={styles.iconBook}
+            />
+          )}
         </div>
         <h6 className={styles.titleBook}>{item.title}</h6>
       </div>

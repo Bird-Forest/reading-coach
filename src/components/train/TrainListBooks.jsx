@@ -14,8 +14,8 @@ export default function TrainListBooks({ books, deleteBook }) {
       <TableHeaderTrain />
       <ul className={styles.listBook}>
         {Arr &&
-          books.map((item, i) => (
-            <li key={i} className={styles.wrapItemTrain}>
+          books.map((item) => (
+            <li key={item._id} className={styles.wrapItemTrain}>
               <BookItem
                 title={item.title}
                 author={item.author}

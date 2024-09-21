@@ -1,7 +1,7 @@
 // import UserNavigate from "@/components/header/UserNavigate";
 import React from "react";
-import styles from "@/components/liba/Library.module.css";
+import styles from "@/components/stat/Statistic.module.css";
 
 export default function UserLayout({ children }) {
-  return <div className={styles.libPage}>{children}</div>;
+  return <div className={styles.statPage}>{children}</div>;
 }

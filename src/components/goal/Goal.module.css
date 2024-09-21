@@ -171,11 +171,13 @@
   justify-content: center;
   align-items: center;
   width: 280px;
+  height: 160px;
   gap: 16px;
 }
 @media screen and (min-width: 768px) {
   .boxCountStat {
     width: 324px;
+    height: 90px;
     gap: 12px;
   }
 }
