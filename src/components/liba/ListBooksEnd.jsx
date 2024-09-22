@@ -3,18 +3,13 @@
 import React, { useState } from "react";
 import styles from "./Library.module.css";
 import books from "@/books.json";
-// import BookItemEnd from "../book/BookItemEnd";
-// import TableHeadersEnd from "./TableHeadersEnd";
-
 import BookItem from "@/components/book/BookItem";
 import { IoStarOutline, IoStar } from "react-icons/io5";
 import { createPortal } from "react-dom";
 import OverlayModal from "@/components/modal/OverlayModal";
 import ResumeModal from "@/components/modal/ResumeModal";
-import TableHeaders from "../table/TableHeaders";
 import { bookCategory } from "@/constants/bookCategory";
-
-// const typedBooks: BookItemProps[] = books;
+import TableHeaderEnd from "../table/TableHeaderEnd";
 
 export default function ListBooksEnd() {
   const [showModal, setShowModal] = useState(false);
@@ -33,17 +28,16 @@ export default function ListBooksEnd() {
       <div className={styles.wrapTabList}>
         <div className={styles.wrapTabHead}>
           <div className={styles.wrapTabEnd}>
-            <TableHeaders />
+            <TableHeaderEnd />
           </div>
           <div className={styles.wrapTabRating}>
             <p className={styles.textRating}>Рейтинг книги</p>
           </div>
         </div>
         <ul className={styles.listStart}>
-          {arrEnd.map((item, i) => (
-            <li key={i} className={styles.wrapBookEnd}>
+          {arrEnd.map((item) => (
+            <li key={item._id} className={styles.wrapBookEnd}>
               <BookItem
-                // id={item._id}
                 title={item.title}
                 author={item.author}
                 pages={item.pages}

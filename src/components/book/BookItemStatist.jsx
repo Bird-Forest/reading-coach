@@ -15,7 +15,6 @@ export default function BookItemStatist({ item }) {
                 height: "20px",
                 stroke: "rgb(255, 107, 8)",
               }}
-              // className={styles.iconBook}
             />
           ) : (
             <LuSquare
@@ -24,7 +23,6 @@ export default function BookItemStatist({ item }) {
                 height: "20px",
                 stroke: "rgb(166, 171, 185)",
               }}
-              // className={styles.iconBook}
             />
           )}
         </div>

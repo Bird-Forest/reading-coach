@@ -1,6 +1,8 @@
+"use client";
+
 import React from "react";
 import styles from "./Table.module.css";
-export default function TableHeadersEnd() {
+export default function TableHeaderEnd() {
   return (
     <div className={styles.wrapTable}>
       <p className={styles.textTabEnd}>Назва книги</p>

@@ -12,39 +12,91 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 40px 0 52px 0;
+    padding: 40px 0 60px 0;
   }
 }
-.wrapMobile {
+.caseStatist {
+  display: grid;
+  grid-template-columns: 280px;
+  justify-items: center;
+  align-items: start;
+  gap: 40px;
+  grid-template-areas:
+    "counter"
+    "goal"
+    "books"
+    "chart"
+    "result";
+}
+@media screen and (min-width: 768px) {
+  .caseStatist {
+    grid-template-columns: 704px;
+    gap: 36px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .caseStatist {
+    grid-template-columns: 928px 288px;
+    grid-auto-rows: auto;
+    column-gap: 32px;
+    row-gap: 40px;
+    grid-template-areas:
+      "counter goal"
+      "books goal"
+      "chart result";
+  }
+}
+.counter {
+  display: grid;
+  grid-area: counter;
+}
+.goal {
+  display: grid;
+  grid-area: goal;
+}
+.books {
+  display: grid;
+  grid-area: books;
+}
+.chart {
+  display: grid;
+  grid-area: chart;
+}
+.result {
+  display: grid;
+  grid-area: result;
+}
+/* .caseStatMob {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   width: 280px;
   gap: 40px;
   padding: 0;
-}
-@media screen and (min-width: 768px) {
-  .wrapMobile {
-    display: none;
-  }
-}
-.wrapDesck {
-  display: none;
-}
-@media screen and (min-width: 768px) {
-  .wrapDesck {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+} */
+
+/* @media screen and (min-width: 768px) {
+  .caseStatMob {
     gap: 36px;
   }
-  .panelStatistic {
-    display: flex;
-    flex-direction: column;
-    width: 280px;
-    gap: 40px;
+} */
+/* .caseStatDesck {
+  display: none;
+} */
+/* @media screen and (min-width: 1280px) {
+  .caseStatMob {
+    display: none;
   }
-}
+  .caseStatDesck {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 40px;
+    column-gap: 32px;
+    width: 1264px;
+    height: 790px;
+  }
+} */
 /* *** LIST BOOK STATISTIC */
 .wrapListBook {
   display: flex;
@@ -60,6 +112,7 @@
 @media screen and (min-width: 1280px) {
   .wrapListBook {
     width: 928px;
+    height: 204px;
   }
 }
 .wrapList {
@@ -72,6 +125,8 @@
   .wrapList {
     width: 704px;
     height: 186px;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
   .wrapList::-webkit-scrollbar {
     width: 5px;

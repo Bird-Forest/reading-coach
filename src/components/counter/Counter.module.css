@@ -17,7 +17,8 @@
 }
 @media screen and (min-width: 1280px) {
   .wrapCounter {
-    width: 654px;
+    justify-content: center;
+    width: 928px;
     gap: 74px;
     padding: 0;
   }

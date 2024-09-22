@@ -11,21 +11,22 @@ export default async function StatisticPage({ params: { id } }) {
   const data = await getBooksInit(id);
   // console.log(data);
   return (
-    <>
-      <div className={styles.wrapMobile}>
+    <div className={styles.caseStatist}>
+      <div className={styles.counter}>
         <Counter />
+      </div>
+      <div className={styles.goal}>
         <GoalStatistics />
+      </div>
+      <div className={styles.books}>
         <StatListBooks arrInit={data} />
+      </div>
+      <div className={styles.chart}>
         <MyChart />
+      </div>
+      <div className={styles.result}>
         <ResultPanel />
       </div>
-      <div className={styles.wrapDesck}>
-        <Counter />
-        <GoalStatistics />
-        <StatListBooks arrInit={data} />
-        <MyChart />
-        <ResultPanel />
-      </div>
-    </>
+    </div>
   );
 }

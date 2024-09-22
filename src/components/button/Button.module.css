@@ -66,39 +66,6 @@
     box-shadow: 0px 2px 2px 0px rgba(9, 30, 63, 0.15);
   }
 }
-/* *** BUTTON MORE */
-.wrapBtnMore {
-  bottom: 0;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 280px;
-  height: 62px;
-  padding: 0 0 12px 0;
-}
-.btnMore {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  border: none;
-  background-color: rgb(255, 107, 8);
-  outline: transparent;
-  cursor: pointer;
-}
-.iconMore {
-  width: 18px;
-  height: 18px;
-  fill: rgb(255, 255, 255);
-}
-@media screen and (min-width: 768px) {
-  .wrapBtnMore {
-    display: none;
-  }
-}
 /* *** BUTTON LINK  */
 .wrapBtnLink {
   display: flex;

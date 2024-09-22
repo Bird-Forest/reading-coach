@@ -57,7 +57,7 @@ export default function FormDate({ trainingStart, trainingEnd }) {
         </label>
         <div
           style={{
-            top: "60px",
+            top: "42px",
             position: "absolute",
             zIndex: "1",
             display: !openStart ? "none" : "block",
@@ -90,7 +90,7 @@ export default function FormDate({ trainingStart, trainingEnd }) {
         </label>
         <div
           style={{
-            top: "60px",
+            top: "42px",
             position: "absolute",
             zIndex: "1",
             display: !openEnd ? "none" : "block",

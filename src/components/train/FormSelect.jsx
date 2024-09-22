@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import SpinnerO from "../helper/SpinnerO";
 import useSWR from "swr";
 import { usePathname } from "next/navigation";
+import { bookCategory } from "@/constants/bookCategory";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -14,15 +15,17 @@ export default function FormSelect({ choosedBook }) {
   const path = usePathname();
   const segments = path.split("/");
   const userId = segments[2];
+  const category = bookCategory.start;
 
-  const category = "start";
-  const { data: arrStart, isLoading } = useSWR(
+  const { data: arrStart } = useSWR(
     `/api/books?category=${category}&id=${userId}`,
     fetcher
   );
 
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState({});
+
+  const Arr = Array.isArray(arrStart) && arrStart.length > 0;
 
   return (
     <div className={styles.formSelect}>
@@ -46,19 +49,17 @@ export default function FormSelect({ choosedBook }) {
       </div>
       <div
         style={{
-          top: "62px",
+          top: "42px",
           position: "absolute",
           zIndex: "1",
           display: !open ? "none" : "block",
         }}
       >
         <ul className={styles.wrapOptions}>
-          {isLoading ? (
-            <SpinnerO />
-          ) : (
+          {Arr ? (
             arrStart.map(
               (item) => (
-                (item.category = "init"),
+                item.category === bookCategory.init,
                 (
                   <li
                     key={uuidv4()}
@@ -70,6 +71,8 @@ export default function FormSelect({ choosedBook }) {
                 )
               )
             )
+          ) : (
+            <p className={styles.options}>Нажаль тут поки ще нічого не має</p>
           )}
         </ul>
       </div>

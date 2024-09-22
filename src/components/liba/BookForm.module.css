@@ -1,0 +1,143 @@
+/* *** FORM ADD BOOK */
+.createForm {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  gap: 10px;
+}
+@media screen and (min-width: 768px) {
+  .createForm {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 704px;
+    gap: 10px;
+  }
+  .fieldbook:first-child {
+    width: 704px;
+  }
+  .fieldbook:nth-child(2) {
+    width: 340px;
+  }
+  .fieldbook:nth-child(3) {
+    width: 160px;
+  }
+  .fieldbook:nth-child(4) {
+    width: 160px;
+  }
+  .wrapBtnAdd:last-child {
+    width: 704px;
+  }
+  .input {
+    width: inherit;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .createForm {
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 1240px;
+    gap: 20px;
+  }
+  .fieldbook:first-child {
+    width: 348px;
+  }
+  .fieldbook:nth-child(2) {
+    width: 240px;
+  }
+  .wrapBtnAdd:last-child {
+    width: 170px;
+  }
+  .input {
+    width: inherit;
+  }
+}
+.fieldbook {
+  display: flex;
+  flex-direction: column;
+}
+.label {
+  display: flex;
+  flex-direction: column;
+  color: rgb(137, 143, 159);
+  width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.21;
+  text-align: left;
+  gap: 4px;
+}
+.input {
+  display: flex;
+  width: inherit;
+  height: 42px;
+  border: 1px solid rgb(166, 171, 185);
+  background-color: rgb(246, 247, 251);
+  padding: 0 16px;
+  outline: none;
+}
+.input:focus {
+  border: none;
+  box-shadow: inset 0px 1px 2px 0px rgba(29, 29, 27, 0.15);
+  background-color: rgb(255, 255, 255);
+}
+.wrapError {
+  display: flex;
+  width: 100%;
+  height: 14px;
+}
+.textError {
+  display: grid;
+  width: 100%;
+  height: 14px;
+  justify-content: flex-start;
+  justify-items: center;
+  color: rgb(242, 81, 55);
+  font-family: var(--font-montserrat);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+.wrapBtnAdd {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+}
+@media screen and (min-width: 1280px) {
+  .wrapBtnAdd {
+    width: 170px;
+    padding: 0 0 14px 0;
+  }
+}
+.wrapTextMess {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 20px;
+  padding: 0;
+}
+.btnCreate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 170px;
+  height: 42px;
+  color: rgb(0, 0, 0);
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.21;
+  text-align: center;
+  border: 1px solid rgb(36, 42, 55);
+  background-color: rgb(246, 247, 251);
+  cursor: pointer;
+  padding: 0;
+}
+.btnCreate:hover {
+  border: 1px solid rgb(242, 81, 55);
+  background: rgb(246, 247, 251);
+}

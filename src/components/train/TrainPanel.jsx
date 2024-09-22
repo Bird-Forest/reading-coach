@@ -11,7 +11,6 @@ import FormDate from "./FormDate";
 import ButtonAction from "../button/ButtonAction";
 import { bookCategory } from "@/constants/bookCategory";
 import { createCoach } from "@/services/coaches";
-import FormTrain from "./FormTrain";
 
 export default function TrainPanel() {
   const [begin, setBegin] = useState("");

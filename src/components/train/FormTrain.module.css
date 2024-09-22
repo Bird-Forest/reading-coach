@@ -190,15 +190,12 @@
 @media screen and (min-width: 768px) {
   .wrapOptions {
     width: 484px;
-    /* height: 120px; */
     padding: 20px;
   }
 }
 @media screen and (min-width: 1280px) {
   .wrapOptions {
     width: 716px;
-    /* height: 140px; */
-    /* padding: 16px; */
   }
 }
 .options {

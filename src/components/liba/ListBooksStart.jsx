@@ -12,8 +12,11 @@ export default function ListBooksStart({ arrStart }) {
       <div className={styles.wrapTabList}>
         <TableHeaders />
         <ul className={styles.listStart}>
-          {arrStart.map((item, i) => (
-            <li key={i} className={`${styles.wrapBook} ${styles.bgBook}`}>
+          {arrStart.map((item) => (
+            <li
+              key={item._id}
+              className={`${styles.wrapBook} ${styles.bgBook}`}
+            >
               <BookItem
                 title={item.title}
                 author={item.author}

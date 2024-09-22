@@ -1,6 +1,8 @@
 /* *** LOADING */
 .bg1 {
-  /* z-index: 2; */
+  top: 0;
+  left: 0;
+  z-index: 1;
   position: fixed;
   display: flex;
   width: 100vw;
@@ -10,6 +12,8 @@
   background-size: cover;
 }
 .bg2 {
+  top: 0;
+  left: 0;
   position: absolute;
   justify-content: center;
   align-items: center;
@@ -20,7 +24,10 @@
 }
 /* *** ERROR PAGE */
 .bg3 {
-  /* position: fixed; */
+  top: 0;
+  left: 0;
+  z-index: 1;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
