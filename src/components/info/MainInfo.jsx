@@ -8,7 +8,7 @@ import useLocalStorage from "@/hooks/useLocalStorage";
 
 export default function MainInfo() {
   const { id } = useLocalStorage("authToken");
-  console.log(id);
+  // console.log(id);
   return (
     <div className={styles.wrapMainInfo}>
       <Information />

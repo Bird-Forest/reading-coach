@@ -2,17 +2,19 @@ import React from "react";
 import styles from "@/components/train/Train.module.css";
 import TrainPanel from "@/components/train/TrainPanel";
 import { revalidatePath } from "next/cache";
-import TrainMobaile from "@/components/train/TrainMobaile";
+import TrainMobile from "@/components/train/TrainMobile";
+import MyChart from "@/components/chart/MyChart";
 
 export default async function TrainPage({ params: { id } }) {
   revalidatePath(`/users/${id}/training`, "page");
   return (
     <>
       <div className={styles.wrapTrainMob}>
-        <TrainMobaile />
+        <TrainMobile />
       </div>
       <div className={styles.wrapTrainDeck}>
         <TrainPanel />
+        <MyChart />
       </div>
     </>
   );

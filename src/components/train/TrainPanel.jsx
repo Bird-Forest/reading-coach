@@ -47,22 +47,23 @@ export default function TrainPanel() {
   const isBooks = totalBooks > 0;
   return (
     <div className={styles.caseTrain}>
-      <div className={styles.caseForm}>
+      <div className={styles.caseGoal}>
         <MyGoalRead totalDays={totalDays} totalBooks={totalBooks} />
+      </div>
+      <div className={styles.caseForm}>
         <div className={styles.wrapFormTrain}>
           <h2 className={styles.titleTrain}>Моє тренування</h2>
           <FormDate trainingStart={trainingStart} trainingEnd={trainingEnd} />
           <FormSelect choosedBook={choosedBook} />
         </div>
       </div>
-      <div className={styles.wrapBlock}>
+      <div className={styles.caseList}>
         <TrainListBooks books={books} deleteBook={deleteBook} />
         {isBooks && (
           <ButtonAction formAction={createCoach} item={train}>
             Почати тренування
           </ButtonAction>
         )}
-        <MyChart />
       </div>
     </div>
   );

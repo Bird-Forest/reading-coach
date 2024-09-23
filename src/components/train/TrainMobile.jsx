@@ -15,7 +15,7 @@ import { differenceInCalendarDays } from "date-fns";
 import { createCoach } from "@/services/coaches";
 import BookItemEmpty from "../book/BookItemEmpty";
 
-export default function TrainMobaile() {
+export default function TrainMobile() {
   const [isForm, setIsForm] = useState(true);
 
   const [begin, setBegin] = useState("");
