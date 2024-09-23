@@ -9,7 +9,7 @@ import StatListBooks from "@/components/stat/StatListBooks";
 
 export default async function StatisticPage({ params: { id } }) {
   const data = await getBooksInit(id);
-  // console.log(data);
+
   return (
     <div className={styles.caseStatist}>
       <div className={styles.counter}>
