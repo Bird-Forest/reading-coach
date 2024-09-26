@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import styles from "./FormTrain.module.css";
 import { v4 as uuidv4 } from "uuid";
-import SpinnerO from "../helper/SpinnerO";
 import useSWR from "swr";
 import { usePathname } from "next/navigation";
 import { bookCategory } from "@/constants/bookCategory";
@@ -17,13 +16,15 @@ export default function FormSelect({ choosedBook }) {
   const userId = segments[2];
   const category = bookCategory.start;
 
-  const { data: arrStart } = useSWR(
+  const { data } = useSWR(
     `/api/books?category=${category}&id=${userId}`,
-    fetcher
+    fetcher,
+    { refreshInterval: 3600 }
   );
-
+  // console.log(data);
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState({});
+  const arrStart = data;
 
   const Arr = Array.isArray(arrStart) && arrStart.length > 0;
 

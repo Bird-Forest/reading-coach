@@ -6,7 +6,7 @@ import { useFormStatus } from "react-dom";
 import { usePathname, useRouter } from "next/navigation";
 import Spinner from "../helper/Spinner";
 
-export default function ButtonAction({ item, id, formAction, children }) {
+export default function ButtonAction({ formAction, item, children }) {
   const { pending } = useFormStatus();
   const router = useRouter();
   const path = usePathname();

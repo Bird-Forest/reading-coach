@@ -128,7 +128,7 @@
   color: rgb(242, 81, 55);
   line-height: 2.71;
 }
-/* *** FBUTTON ACTION */
+/* *** BUTTON ACTION */
 .wrapBtnAction {
   display: flex;
   justify-content: center;
@@ -151,6 +151,7 @@
   text-decoration: none;
   background-color: rgb(255, 107, 8);
   border: none;
+  outline: none;
   cursor: pointer;
 }
 @media screen and (min-width: 768px) {

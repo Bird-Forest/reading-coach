@@ -1,9 +1,30 @@
 "use server";
 
 import mongoose from "mongoose";
-import { Coach, initializeCoachModel } from "@/models/coach";
+import {
+  Coach,
+  initializeCoachModel,
+  updateBooksCategory,
+} from "@/models/coach";
+import { bookCategory } from "@/constants/bookCategory";
+import { bookSchema } from "@/models/book";
+
+// async function updateBooksCategory(coach) {
+//   for (let book of coach.books) {
+//     if (book.category === bookCategory.start) {
+//       await mongoose
+//         .model("Book", bookSchema)
+//         .findByIdAndUpdate(book._id, { category: bookCategory.init });
+//     } else if (book.category === bookCategory.init) {
+//       await mongoose
+//         .model("Book", bookSchema)
+//         .findByIdAndUpdate(book._id, { category: bookCategory.end });
+//     }
+//   }
+// }
 
 export const createCoach = async (item, userId) => {
+  // console.log("SWRVER", item, userId);
   try {
     await initializeCoachModel();
     const newTrain = await Coach.create({
@@ -11,12 +32,11 @@ export const createCoach = async (item, userId) => {
       owner: mongoose.Types.ObjectId.createFromHexString(userId),
     });
     newTrain.books.forEach((book) => {
-      book.category = "init";
+      book.category = bookCategory.init;
     });
 
     await newTrain.save();
-    // const date = JSON.parse(JSON.stringify(newTrain));
-    // console.log(date);
+
     return {
       message: "Успішно додано",
     };
@@ -25,11 +45,87 @@ export const createCoach = async (item, userId) => {
   }
 };
 
-export const getCoach = async (id) => {
+export const getLastCoach = async (id) => {
   try {
     await initializeCoachModel();
-    const coach = await Coach.findById(id).lean();
-    return JSON.parse(JSON.stringify(coach));
+    const latestCoach = await Coach.findOne({ owner: id })
+      .sort({
+        createdAt: -1,
+      })
+      .lean();
+
+    if (!latestCoach) {
+      return { message: "No coach found" };
+    }
+    const data = JSON.parse(JSON.stringify(latestCoach));
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    // res.status(500).json({ message: "Server error", error });
+  }
+};
+
+export const getCoachById = async (id) => {
+  try {
+    await initializeCoachModel();
+    const coach = await Coach.findById({ _id: id }).lean();
+    // return JSON.parse(JSON.stringify(coach));
+    return coach;
+  } catch (e) {
+    console.log(e);
+    return { message: "Відбулася помилка" };
+  }
+};
+
+export const updateReportCoach = async (id, item) => {
+  try {
+    await initializeCoachModel();
+    const coach = await Coach.findById(id);
+    if (!coach) {
+      return { message: "Відбулася помилка" };
+    }
+
+    const today = new Date().setHours(0, 0, 0, 0);
+    const existingReport = coach.progress.find(
+      (entry) => new Date(entry.date).setHours(0, 0, 0, 0) === today
+    );
+
+    if (existingReport) {
+      existingReport.pagesRead += item.pagesRead;
+    } else {
+      coach.progress.push(item);
+    }
+
+    await coach.save();
+
+    return {
+      message: "Успішно додано",
+    };
+  } catch (e) {
+    console.log(e);
+    return { message: "Відбулася помилка" };
+  }
+};
+
+export const updateBooksCoach = async (id, update) => {
+  try {
+    await initializeCoachModel();
+    const coach = await Coach.findByIdAndUpdate(id, update, {
+      new: true,
+    }).lean();
+    if (!coach) {
+      return { message: "Відбулася помилка" };
+    }
+    for (let book of update.books) {
+      if (book.category === bookCategory.end)
+        await mongoose
+          .model("Book")
+          .findByIdAndUpdate(book._id, { category: book.category });
+    }
+    return {
+      message: "Успішно додано",
+    };
   } catch (e) {
     console.log(e);
     return { message: "Відбулася помилка" };
@@ -61,28 +157,28 @@ export const getAllCoaches = async (userId) => {
 //   }
 // };
 
-export const updateCoach = async (id, data) => {
-  try {
-    await initializeCoachModel();
-    const updatedCoach = await Coach.findByIdAndUpdate(id, data, {
-      new: true,
-    }).lean();
-    return JSON.parse(JSON.stringify(updatedCoach));
-  } catch (e) {
-    console.log(e);
-    return { message: "Відбулася помилка" };
-  }
-};
+// export const updateCoach = async (id, data) => {
+//   try {
+//     await initializeCoachModel();
+//     const updatedCoach = await Coach.findByIdAndUpdate(id, data, {
+//       new: true,
+//     }).lean();
+//     return JSON.parse(JSON.stringify(updatedCoach));
+//   } catch (e) {
+//     console.log(e);
+//     return { message: "Відбулася помилка" };
+//   }
+// };
 
-export const deleteCoach = async (id) => {
-  try {
-    await initializeCoachModel();
-    await Coach.findByIdAndDelete(id);
-  } catch (e) {
-    console.log(e);
-    return { message: "Відбулася помилка" };
-  }
-};
+// export const deleteCoach = async (id) => {
+//   try {
+//     await initializeCoachModel();
+//     await Coach.findByIdAndDelete(id);
+//   } catch (e) {
+//     console.log(e);
+//     return { message: "Відбулася помилка" };
+//   }
+// };
 
 // export const addStartDate = async (value, id) => {
 //   try {

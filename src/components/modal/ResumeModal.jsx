@@ -3,38 +3,25 @@
 import React, { useState } from "react";
 import styles from "./Modal.module.css";
 import { IoStarOutline, IoStar } from "react-icons/io5";
-// import { formAction } from "@/services/books";
-// import { BookItemProps } from "@/types/book";
 
-export default function ResumeModal({ item, closeModal }) {
-  const [book, setBook] = useState(item);
+export default function ResumeModal({ item, closeModal, getResume }) {
   const [checkboxStates, setCheckboxStates] = useState(
     item.rating ?? [false, false, false, false, false]
   );
-  // const { pending } = useFormStatus();
-
-  const handleSubmit = (formData) => {
-    const newItem = {
-      ...book,
+  const [message, setMessage] = useState("");
+  const handleResume = () => {
+    const book = {
+      ...item,
       rating: checkboxStates,
-      resume: formData.get("resume"),
+      resume: message,
     };
-    setBook(newItem);
+    getResume(book);
   };
-  // console.log(book);
 
   return (
     <div className={styles.wrapResume} onClick={(e) => e.stopPropagation()}>
       <h4 className={styles.titleResume}>Обрати рейтинг книги</h4>
-      <form
-        // action={handleSubmit}
-        className={styles.wrapEorm}
-        onSubmit={(e) => {
-          e.preventDefault();
-          const formData = new FormData(e.currentTarget);
-          handleSubmit(formData);
-        }}
-      >
+      <div className={styles.wrapEorm}>
         <ul className={styles.wrapStars}>
           {item.rating?.map((el, i) => (
             <li key={i} className={styles.wrapStar}>
@@ -63,6 +50,7 @@ export default function ResumeModal({ item, closeModal }) {
             name="resume"
             placeholder="..."
             autoFocus
+            onChange={(e) => setMessage(e.target.value)}
             className={styles.textarResume}
           />
         </label>
@@ -74,25 +62,15 @@ export default function ResumeModal({ item, closeModal }) {
           >
             Назад
           </button>
-          <button type="submit" className={styles.btnResOrang}>
+          <button
+            type="button"
+            onClick={handleResume}
+            className={styles.btnResOrang}
+          >
             Зберегти
           </button>
         </div>
-      </form>
-      {/* <div className={styles.wrapBtnResume}>
-        <button type="button" className={styles.btnResWhite}>
-          Назад
-        </button>
-        <form
-          action={async () => {
-            await formAction(book);
-          }}
-        >
-          <button type="submit" className={styles.btnResOrang}>
-            {pending ? "Loading..." : "Зберегти"}
-          </button>
-        </form>
-      </div> */}
+      </div>
     </div>
   );
 }

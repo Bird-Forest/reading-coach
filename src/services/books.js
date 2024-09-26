@@ -1,18 +1,92 @@
 "use server";
 
 import mongoose from "mongoose";
+
+import { bookCategory } from "@/constants/bookCategory";
 import { Book, initializeBookModel } from "@/models/book";
 
+//  *** FOR API/books
 export const getBooksByCategory = async (category, userId) => {
-  // console.log("ACTION", category, userId);
+  // console.log("S", category, userId);
   try {
     await initializeBookModel();
     const books = await Book.find({
-      category: category,
+      category,
       owner: userId,
+    }).exec();
+    // console.log("SERVER", books);
+    return books;
+    // const data = JSON.parse(JSON.stringify(books));
+    // return data;
+  } catch (e) {
+    console.log(e);
+    return {
+      message: "Відбулася помилка",
+    };
+  }
+};
+
+export const createBook = async (values, id) => {
+  try {
+    await initializeBookModel();
+    const book = await Book.create({
+      ...values,
+      owner: mongoose.Types.ObjectId.createFromHexString(id),
+      // owner: mongoose.Types.ObjectId(id),
+    });
+    return {
+      message: "Успішно додано",
+    };
+  } catch (e) {
+    console.log(e);
+    return {
+      message: "Відбулася помилка",
+    };
+  }
+};
+
+export const updateBook = async (id, book) => {
+  // console.log("ID", id);
+  // console.log("BOOK", book);
+  // const session = await mongoose.startSession();
+  // session.startTransaction();
+  try {
+    await initializeBookModel();
+    const bookId = await Book.findByIdAndUpdate(id, book, { new: true }).lean();
+    if (!bookId) {
+      // throw new Error("is absent");
+      return {
+        message: "Відбулася помилка",
+      };
+    }
+    // await Coach.findOneAndUpdate(
+    //   { "books._id": id },
+    //   { $set: { "books.$": book } },
+    //   { session }
+    // );
+
+    // await session.commitTransaction();
+    // session.endSession();
+
+    const data = JSON.parse(JSON.stringify(book));
+    return data;
+  } catch (e) {
+    console.log(e);
+    return {
+      message: "Відбулася помилка",
+    };
+  }
+};
+
+export const getBooksStart = async (id) => {
+  try {
+    await initializeBookModel();
+    const booksStart = await Book.find({
+      category: bookCategory.start,
+      owner: id,
     }).lean();
-    // console.log(books);
-    //  const books = JSON.parse(JSON.stringify(booksStart));
+    const books = JSON.parse(JSON.stringify(booksStart));
+
     return books;
   } catch (e) {
     console.log(e);
@@ -22,32 +96,34 @@ export const getBooksByCategory = async (category, userId) => {
   }
 };
 
-// export const getAllBooks = async () => {
-//   try {
-//     await initializeBookModel();
-//     const books = await Book.find().lean();
-//     return books;
-//   } catch (e) {
-//     console.log(e);
-//     return {
-//       message: "Відбулася помилка",
-//     };
-//   }
-// };
-
-export const createBook = async (values, id) => {
+export const getBooksInit = async (id) => {
   try {
     await initializeBookModel();
-    const book = await Book.create({
-      ...values,
-      // owner: new mongoose.Types.ObjectId(_id),
-      owner: mongoose.Types.ObjectId.createFromHexString(id),
-      // owner: mongoose.Types.ObjectId(id),
-    });
-    // console.log(book);
+    const booksInit = await Book.find({
+      category: bookCategory.init,
+      owner: id,
+    }).lean();
+    const books = JSON.parse(JSON.stringify(booksInit));
+
+    return books;
+  } catch (e) {
+    console.log(e);
     return {
-      message: "Успішно додано",
+      message: "Відбулася помилка",
     };
+  }
+};
+
+export const getBooksEnd = async (id) => {
+  try {
+    await initializeBookModel();
+    const booksEnd = await Book.find({
+      category: bookCategory.end,
+      owner: id,
+    }).lean();
+    const books = JSON.parse(JSON.stringify(booksEnd));
+
+    return books;
   } catch (e) {
     console.log(e);
     return {
@@ -72,87 +148,33 @@ export const getBook = async (id) => {
     };
   }
 };
-export const updateBook = async (update) => {
-  console.log("UPDATE", update);
-  // const { id, category } = req.body;
-  try {
-    await initializeBookModel();
-    const book = await Book.findByIdAndUpdate({
-      _id: update.id,
-      category: update.category,
-    }).lean();
-    if (!book) {
-      throw new Error("is absent");
-    }
-    const data = JSON.parse(JSON.stringify(book));
-    return data;
-  } catch (e) {
-    console.log(e);
-    return {
-      message: "Відбулася помилка",
-    };
-  }
-};
-export const deleteBook = async (id) => {
-  try {
-    await initializeBookModel();
-    const book = await Book.findOneAndDelete({ _id: id }).lean();
-    if (!book) {
-      throw new Error("is absent");
-    }
-  } catch (e) {
-    console.log(e);
-    return {
-      message: "Відбулася помилка",
-    };
-  }
-};
+// export const getAllBooks = async () => {
+//   try {
+//     await initializeBookModel();
+//     const books = await Book.find().lean();
+//     return books;
+//   } catch (e) {
+//     console.log(e);
+//     return {
+//       message: "Відбулася помилка",
+//     };
+//   }
+// };
 
-export const getBooksStart = async (id) => {
-  try {
-    await initializeBookModel();
-    const booksStart = await Book.find({
-      category: "start",
-      owner: id,
-    }).lean();
-    const books = JSON.parse(JSON.stringify(booksStart));
-    return books;
-  } catch (e) {
-    console.log(e);
-    return {
-      message: "Відбулася помилка",
-    };
-  }
-};
-
-export const getBooksInit = async (id) => {
-  try {
-    await initializeBookModel();
-    const books = await Book.find({ category: "init", owner: id }).lean();
-    const data = JSON.parse(JSON.stringify(books));
-
-    return data;
-  } catch (e) {
-    console.log(e);
-    return {
-      message: "Відбулася помилка",
-    };
-  }
-};
-export const getBooksEnd = async (id) => {
-  try {
-    await initializeBookModel();
-    const books = await Book.find({ category: "end", owner: id }).lean();
-    const booksEnd = JSON.parse(JSON.stringify(books));
-
-    return booksEnd;
-  } catch (e) {
-    console.log(e);
-    return {
-      message: "Відбулася помилка",
-    };
-  }
-};
+// export const deleteBook = async (id) => {
+//   try {
+//     await initializeBookModel();
+//     const book = await Book.findOneAndDelete({ _id: id }).lean();
+//     if (!book) {
+//       throw new Error("is absent");
+//     }
+//   } catch (e) {
+//     console.log(e);
+//     return {
+//       message: "Відбулася помилка",
+//     };
+//   }
+// };
 
 // Преобразуйте строку в ObjectId
 // const book = await Book.create(values);

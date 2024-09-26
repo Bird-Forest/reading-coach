@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getBooksByCategory } from "@/services/books";
+
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
   const category = searchParams.get("category");
@@ -11,9 +12,9 @@ export async function GET(req) {
       { status: 400 }
     );
   }
-
   try {
     const books = await getBooksByCategory(category, userId);
+    // console.log("ROUTER", books);
     return NextResponse.json(books, { status: 200 });
   } catch (error) {
     console.error(error);

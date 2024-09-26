@@ -117,9 +117,10 @@
   text-align: left;
   border: 1px solid rgb(166, 171, 185);
   background-color: rgb(246, 247, 251);
+  outline: none;
   padding: 12px;
 }
-.btnOpen {
+/* .btnOpen {
   top: 18px;
   right: 0;
   position: absolute;
@@ -132,13 +133,13 @@
   outline: transparent;
   cursor: pointer;
   padding: 0;
-}
-.iconOpen {
+} */
+/* .iconOpen {
   width: 22px;
   height: 22px;
   fill: rgb(36, 42, 55);
-}
-.btnResult {
+} */
+/* .btnResult {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -153,7 +154,7 @@
   border: none;
   outline: none;
   cursor: pointer;
-}
+} */
 /* *** LIST RESULT */
 .wrapListResult {
   display: flex;
@@ -268,4 +269,27 @@
   color: rgb(137, 143, 159);
   text-transform: none;
   padding: 0 0 0 4px;
+}
+/* *** BUTTON RESULT */
+.wrapBtnResult {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.btnResult {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 240px;
+  height: 42px;
+  color: rgb(255, 255, 255);
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  background-color: rgb(255, 107, 8);
+  border: none;
+  outline: none;
+  cursor: pointer;
 }

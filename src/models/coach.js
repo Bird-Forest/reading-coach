@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { connectDB } from "@/lib/mongodb";
-import { bookSchema } from "./book";
 import { bookCategory } from "@/constants/bookCategory";
+import { bookSchema } from "./book";
 
 const coachSchema = new mongoose.Schema(
   {
@@ -16,16 +16,26 @@ const coachSchema = new mongoose.Schema(
   },
   { versionKey: false, timestamps: true }
 );
-
-coachSchema.pre("save", async function (next) {
-  const coach = this;
+// Функция для обновления категории книг в зависимости от текущего состояния
+export async function updateBooksCategory(coach) {
   if (coach.isModified("books")) {
     for (let book of coach.books) {
-      await mongoose
-        .model("Book")
-        .findByIdAndUpdate(book._id, { category: "init" });
+      if (book.category === bookCategory.start) {
+        await mongoose
+          .model("Book")
+          .findByIdAndUpdate(book._id, { category: bookCategory.init });
+      } else if (book.category === bookCategory.init) {
+        await mongoose
+          .model("Book")
+          .findByIdAndUpdate(book._id, { category: bookCategory.end });
+      }
     }
   }
+}
+// Использование функции для обновления категории перед сохранением
+coachSchema.pre("save", async function (next) {
+  const coach = this;
+  await updateBooksCategory(coach);
   next();
 });
 
@@ -35,6 +45,19 @@ const initializeCoachModel = async () => {
   Coach = mongoose.models.Coach || mongoose.model("Coach", coachSchema);
 };
 export { initializeCoachModel, Coach };
+
+// ***************************************************8
+// coachSchema.pre("save", async function (next) {
+//   const coach = this;
+//   if (coach.isModified("books")) {
+//     for (let book of coach.books) {
+//       await mongoose
+//         .model("Book")
+//         .findByIdAndUpdate(book._id, { category: "init" });
+//     }
+//   }
+//   next();
+// });
 
 // interface IReadingGoal extends Document {
 //   user: mongoose.Types.ObjectId;

@@ -130,6 +130,7 @@
     flex-direction: row;
     width: 704px;
     height: 62px;
+
     padding: 14px 20px;
   }
 }
@@ -152,7 +153,7 @@
     flex-direction: row;
     width: 200px;
     height: auto;
-    gap: 22px;
+    gap: 14px;
   }
 }
 @media screen and (min-width: 1280px) {

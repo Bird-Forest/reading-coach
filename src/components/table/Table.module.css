@@ -63,41 +63,48 @@
   line-height: 1.21;
   text-align: left;
 }
-.wrapTabHead {
-  display: none;
-}
 .wrapTabEnd {
   display: none;
 }
-.wrapTabRating {
-  display: none;
-}
 @media screen and (min-width: 768px) {
-  .wrapTabHead {
+  .wrapTabEnd {
     display: flex;
     width: 704px;
   }
-  .wrapTabEnd {
-    display: flex;
-    width: 480px;
+  .textTabEnd:nth-child(1) {
+    width: 35%;
   }
-  .wrapTabRating {
-    display: flex;
-    width: 200px;
-    padding-left: 8px;
+  .textTabEnd:nth-child(2) {
+    width: 20%;
+  }
+  .textTabEnd:nth-child(3) {
+    width: 8%;
+  }
+  .textTabEnd:nth-child(4) {
+    width: 10%;
+  }
+  .textTabEnd:nth-child(5) {
+    width: 27%;
   }
 }
 @media screen and (min-width: 1280px) {
-  .wrapTabHead {
-    display: flex;
+  .wrapTabEnd {
     width: 1248px;
   }
-  .wrapTabEnd {
-    width: 988px;
+  .textTabEnd:nth-child(1) {
+    width: 40%;
   }
-  .wrapTabRating {
-    width: 260px;
-    padding: 0;
+  .textTabEnd:nth-child(2) {
+    width: 23%;
+  }
+  .textTabEnd:nth-child(3) {
+    width: 8%;
+  }
+  .textTabEnd:nth-child(4) {
+    width: 8%;
+  }
+  .textTabEnd:nth-child(5) {
+    width: 21%;
   }
 }
 /* *** TABLE TRAIN */

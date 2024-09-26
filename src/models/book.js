@@ -10,11 +10,22 @@ export const bookSchema = new mongoose.Schema(
     year: String,
     rating: { type: [Boolean], default: [false, false, false, false, false] },
     category: { type: String, enum: bookCategory },
-    resume: String,
+    resume: { type: String },
     owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
   { versionKey: false, timestamps: true }
 );
+
+// bookSchema.pre("save", async function (next) {
+//   const book = this;
+//   if (book.isModified("category")) {
+//     await Coach.findOneAndUpdate(
+//       { "books._id": book._id },
+//       { $set: { "books.$.category": book.category } }
+//     );
+//   }
+//   next();
+// });
 
 let Book;
 const initializeBookModel = async () => {

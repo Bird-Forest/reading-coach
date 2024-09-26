@@ -15,7 +15,7 @@ export default async function LibraryPage({ params: { id } }) {
     booksInit,
     booksEnd,
   ]);
-  revalidatePath(`/users//${id}/library`, "page");
+  revalidatePath(`/users/${id}/library`, "page");
 
   return (
     <>
