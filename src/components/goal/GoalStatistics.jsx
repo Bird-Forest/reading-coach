@@ -1,16 +1,18 @@
+"use client";
+
 import { open_sans } from "@/app/fonts";
 import React from "react";
 import styles from "./Goal.module.css";
 import { bookCategory } from "@/constants/bookCategory";
 
 export default function GoalStatistics({ coach }) {
-  // console.log(coach);
   const goalBooks = coach ? coach.books.length : 0;
   const days = coach ? coach.totalDay : 0;
 
   const leftBooks =
-    coach && coach.books.filter((book) => book.category === bookCategory.init);
-  const rest = coach ? leftBooks.length : 0;
+    coach && coach.books.filter((book) => book.category === bookCategory.end);
+  const rest = coach ? goalBooks - leftBooks.length : 0;
+
   return (
     <div className={styles.wrapGoalStat}>
       <h2 className={styles.titleGoal}>Моя мета прочитати</h2>

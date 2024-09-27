@@ -10,9 +10,9 @@ import { revalidatePath } from "next/cache";
 
 export default async function StatisticPage({ params: { id } }) {
   const coach = await getLastCoach(id);
-  const idCoach = coach._id;
-  // console.log(coach);
-  revalidatePath(`/users//${id}`, "page");
+  const idCoach = coach._id || "";
+
+  revalidatePath(`/users/${id}`, "page");
 
   return (
     <div className={styles.caseStatist}>

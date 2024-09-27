@@ -6,12 +6,6 @@ import { differenceInMilliseconds } from "date-fns";
 import styles from "./Counter.module.css";
 
 export default function CounterGoal({ coach }) {
-  // const [endDay, setEndDay] = useState({
-  //   days: 0,
-  //   hours: 0,
-  //   minutes: 0,
-  //   seconds: 0,
-  // });
   const [endDay, setEndDay] = useState({});
   const getTimer = useCallback(() => {
     if (!coach) return { days: 0, hours: 0, minutes: 0, seconds: 0 };

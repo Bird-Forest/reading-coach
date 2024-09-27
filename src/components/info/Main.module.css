@@ -54,7 +54,6 @@
 @media screen and (min-width: 768px) {
   .caseInfo {
     width: 488px;
-    /* height: 128px; */
     gap: 32px;
   }
 }
@@ -121,54 +120,36 @@
   gap: 20px;
   padding: 0;
 }
-.btnLogin {
+.btnLink {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 130px;
   height: 40px;
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.21;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0;
+}
+.btnLogin {
   border: 1px solid rgb(0, 0, 0);
   color: rgb(36, 42, 55);
-  font-family: var(--font-montserrat);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.21;
-  text-align: center;
-  text-decoration: none;
   background-color: rgb(255, 255, 255);
-  cursor: pointer;
-  padding: 0;
 }
-.btnLogin:hover,
-.btnLogin:focus {
-  border: 1px solid rgb(242, 81, 55);
+.btnLogin:hover {
+  border: 1px solid rgb(255, 107, 8);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .btnAuth {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 130px;
-  height: 40px;
   border: 1px solid rgb(255, 107, 8);
   color: rgb(255, 255, 255);
-  font-family: var(--font-montserrat);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.21;
-  text-align: center;
-  text-decoration: none;
   background-color: rgb(255, 107, 8);
-  cursor: pointer;
-  padding: 0;
 }
-.btnAuth:hover,
-.btnAuth:focus {
+.btnAuth:hover {
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-  background: rgb(209, 88, 7);
+  background-color: rgb(209, 88, 7);
 }
-/* *** REGISTER INFORMATION */
-/* .wrapSignInfo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */

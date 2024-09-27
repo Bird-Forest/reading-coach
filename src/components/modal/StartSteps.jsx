@@ -22,7 +22,7 @@ export default function StartSteps() {
         <div className={styles.step}>
           <h5 className={styles.titleStep}>Крок 1.</h5>
           <div className={styles.wrapSubTitleStep}>
-            <div className={styles.wrapIcon}>
+            <div className={styles.wrapIconStep}>
               <MdMenuBook className={styles.iconBook} />
             </div>
             <h6 className={styles.subtitleStep}>
@@ -30,7 +30,7 @@ export default function StartSteps() {
             </h6>
           </div>
           <div className={styles.wrapTextStep}>
-            <div className={styles.wrapIcon}>
+            <div className={styles.wrapIconStep}>
               <PiArrowElbowDownRightBold className={styles.iconStep} />
             </div>
             <p className={styles.textStep}>
@@ -41,7 +41,7 @@ export default function StartSteps() {
         <div className={styles.step}>
           <h5 className={styles.titleStep}>Крок 2.</h5>
           <div className={styles.wrapSubTitleStep}>
-            <div className={styles.wrapIcon}>
+            <div className={styles.wrapIconStep}>
               <RiFlagLine className={styles.iconBook} />
             </div>
             <h6 className={styles.subtitleStep}>
@@ -49,7 +49,7 @@ export default function StartSteps() {
             </h6>
           </div>
           <div className={styles.wrapTextStep}>
-            <div className={styles.wrapIcon}>
+            <div className={styles.wrapIconStep}>
               <PiArrowElbowDownRightBold className={styles.iconStep} />
             </div>
             <p className={styles.textStep}>
