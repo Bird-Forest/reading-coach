@@ -6,7 +6,13 @@ import { differenceInMilliseconds } from "date-fns";
 import styles from "./Counter.module.css";
 
 export default function CounterGoal({ coach }) {
-  const [endDay, setEndDay] = useState({});
+  const [endDay, setEndDay] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
   const getTimer = useCallback(() => {
     if (!coach) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
@@ -19,41 +25,20 @@ export default function CounterGoal({ coach }) {
         minutes: Math.floor((result / 1000 / 60) % 60),
         seconds: Math.floor((result / 1000) % 60),
       };
+    } else {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
     }
   }, [coach]);
-  // const getTimer = () => {
-  //   const result = differenceInMilliseconds(
-  //     new Date(2024, 8, 27, 0, 0, 0, 0),
-  //     new Date()
-  //   );
-  //   let count = {};
-  //   if (result > 0) {
-  //     count = {
-  //       days: Math.floor(result / (1000 * 60 * 60 * 24)),
-  //       hours: Math.floor((result / (1000 * 60 * 60)) % 24),
-  //       minutes: Math.floor((result / 1000 / 60) % 60),
-  //       seconds: Math.floor((result / 1000) % 60),
-  //     };
-  //     return count;
-  //   }
-  //   return (count = {
-  //     days: 0,
-  //     hours: 0,
-  //     minutes: 0,
-  //     seconds: 0,
-  //   });
-  // };
 
   useEffect(() => {
+    if (!coach) return;
     setEndDay(getTimer());
     const timer = setInterval(() => {
       setEndDay(getTimer());
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [getTimer]);
-
-  // console.log(endDay);
+  }, [getTimer, coach]);
 
   return (
     <div className={styles.wrapCountBox}>
@@ -102,3 +87,26 @@ export default function CounterGoal({ coach }) {
     </div>
   );
 }
+
+// const getTimer = () => {
+//   const result = differenceInMilliseconds(
+//     new Date(2024, 8, 27, 0, 0, 0, 0),
+//     new Date()
+//   );
+//   let count = {};
+//   if (result > 0) {
+//     count = {
+//       days: Math.floor(result / (1000 * 60 * 60 * 24)),
+//       hours: Math.floor((result / (1000 * 60 * 60)) % 24),
+//       minutes: Math.floor((result / 1000 / 60) % 60),
+//       seconds: Math.floor((result / 1000) % 60),
+//     };
+//     return count;
+//   }
+//   return (count = {
+//     days: 0,
+//     hours: 0,
+//     minutes: 0,
+//     seconds: 0,
+//   });
+// };

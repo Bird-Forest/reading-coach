@@ -10,7 +10,7 @@ import { revalidatePath } from "next/cache";
 
 export default async function StatisticPage({ params: { id } }) {
   const coach = await getLastCoach(id);
-  const idCoach = coach._id || "";
+  const idCoach = coach._id;
 
   revalidatePath(`/users/${id}`, "page");
 

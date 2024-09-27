@@ -21,7 +21,7 @@ export default function FormSelect({ choosedBook }) {
     fetcher,
     { refreshInterval: 3600 }
   );
-  // console.log(data);
+
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState({});
   const arrStart = data;
@@ -48,14 +48,7 @@ export default function FormSelect({ choosedBook }) {
           </button>
         </label>
       </div>
-      <div
-        style={{
-          top: "42px",
-          position: "absolute",
-          zIndex: "1",
-          display: !open ? "none" : "block",
-        }}
-      >
+      <div className={!open ? styles.noneSelect : styles.blockSelect}>
         <ul className={styles.wrapOptions}>
           {Arr ? (
             arrStart.map(

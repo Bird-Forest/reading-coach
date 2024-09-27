@@ -10,13 +10,6 @@ export default function StartSteps() {
   const [isShow, setIsShow] = useState(true);
 
   return (
-    // <div
-    //   style={{
-    //     display: isShow ? "block" : "none",
-    //     top: "94px",
-    //     position: "absolute",
-    //   }}
-    // >
     <div className={styles.wrapStart}>
       <div className={styles.wrapSteps}>
         <div className={styles.step}>

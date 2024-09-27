@@ -56,12 +56,7 @@ export default function FormDate({ trainingStart, trainingEnd }) {
           </button>
         </label>
         <div
-          style={{
-            top: "42px",
-            position: "absolute",
-            zIndex: "1",
-            display: !openStart ? "none" : "block",
-          }}
+          className={!openStart ? styles.noneCalendar : styles.blockCalendar}
         >
           <GetPeriod getValue={getStartDay} />
         </div>
@@ -88,14 +83,7 @@ export default function FormDate({ trainingStart, trainingEnd }) {
             <IoMdArrowDropdown className={styles.iconOpen} />
           </button>
         </label>
-        <div
-          style={{
-            top: "42px",
-            position: "absolute",
-            zIndex: "1",
-            display: !openEnd ? "none" : "block",
-          }}
-        >
+        <div className={!openEnd ? styles.noneCalendar : styles.blockCalendar}>
           <GetPeriod getValue={getEndDay} />
         </div>
       </div>

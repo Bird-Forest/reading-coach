@@ -7,13 +7,15 @@ import { MdMenuBook } from "react-icons/md";
 import ButtonOut from "../button/ButtonOut";
 import { usePathname } from "next/navigation";
 import styles from "./Header.module.css";
+import useLocalStorage from "@/hooks/useLocalStorage";
 
 export default function UserNavigate() {
   const pathname = usePathname();
   const segments = pathname.split("/");
   const id = segments[2];
   const page = segments[3];
-  // console.log("USER", segments);
+  // const { username } = useLocalStorage("authToken");
+  // console.log("USER", username);
   return (
     <div className={styles.wrapSideList}>
       <div className={styles.wrapLinkName}>

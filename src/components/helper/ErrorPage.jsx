@@ -32,8 +32,3 @@ export default function ErrorPage({ error, reset }) {
     </div>
   );
 }
-
-//  {
-//    /* <FaCogs className={styles.errorIcon} /> */
-//    // import { FaCogs } from "react-icons/fa";
-//  }

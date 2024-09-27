@@ -103,6 +103,20 @@
   height: 22px;
   fill: rgb(36, 42, 55);
 }
+.noneCalendar {
+  display: none;
+}
+.blockCalendar {
+  position: absolute;
+  top: 42px;
+  z-index: 1;
+  display: block;
+}
+@media screen and (min-width: 768px) {
+  .blockCalendar {
+    top: 62px;
+  }
+}
 /* *** FORM SELECT */
 .formSelect {
   position: relative;
@@ -174,6 +188,20 @@
   }
   .inputSelect {
     width: 716px;
+  }
+}
+.noneSelect {
+  display: none;
+}
+.blockSelect {
+  position: absolute;
+  top: 42px;
+  z-index: 1;
+  display: block;
+}
+@media screen and (min-width: 768px) {
+  .blockSelect {
+    top: 62px;
   }
 }
 .wrapOptions {

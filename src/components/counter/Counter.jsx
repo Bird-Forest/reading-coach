@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Counter.module.css";
 import CounterYear from "./CounterYear";
 import CounterGoal from "./CounterGoal";
@@ -12,13 +12,21 @@ import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 
 export default function Counter({ coach }) {
-  const pastDay = isPast(new Date(coach.finish));
-  const unreadBook = coach.books.includes(
-    (book) => book.category === bookCategory.init
-  );
-  const execution = pastDay && unreadBook;
+  const [isModal, setIsModal] = useState(false);
 
-  const [isModal, setIsModal] = useState(execution);
+  useEffect(() => {
+    if (!coach) return;
+    const selectedBooks = coach.books;
+    if (!selectedBooks) return;
+    const pastDay = isPast(new Date(coach.finish));
+    const unreadBook = selectedBooks.includes(
+      (book) => book.category === bookCategory.init
+    );
+    const execution = pastDay && unreadBook;
+    console.log(execution);
+    setIsModal(execution);
+  }, [coach]);
+
   const path = usePathname();
   const segment = path.split("/");
   const id = segment[2];

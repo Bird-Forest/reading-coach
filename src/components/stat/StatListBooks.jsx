@@ -16,9 +16,14 @@ import ReadyModal from "../modal/ReadyModal";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function StatListBooks({ id }) {
-  const { data, isLoading } = useSWR(`/api/coaches?id=${id}`, fetcher, {
-    refreshInterval: 3600,
-  });
+  const shouldFetch = !!id;
+  const { data, isLoading } = useSWR(
+    shouldFetch ? `/api/coaches?id=${id}` : null,
+    fetcher,
+    {
+      refreshInterval: 3600,
+    }
+  );
   const coach = data;
   const arrBooks = coach && coach.books;
 

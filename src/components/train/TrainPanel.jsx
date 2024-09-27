@@ -4,12 +4,10 @@ import React, { useState } from "react";
 import styles from "./Train.module.css";
 import { differenceInCalendarDays } from "date-fns";
 import MyGoalRead from "../goal/MyGoalRead";
-// import MyChart from "../chart/MyChart";
 import TrainListBooks from "./TrainListBooks";
 import FormSelect from "./FormSelect";
 import FormDate from "./FormDate";
 import ButtonAction from "../button/ButtonAction";
-// import { bookCategory } from "@/constants/bookCategory";
 import { createCoach } from "@/services/coaches";
 
 export default function TrainPanel() {
@@ -17,15 +15,22 @@ export default function TrainPanel() {
   const [end, setEnd] = useState();
   const [books, setBooks] = useState([]);
 
+  const choosedBook = (option) => {
+    setBooks((prevState) => {
+      // Проверяем, есть ли уже такой элемент в массиве
+      if (!prevState.includes(option)) {
+        return [...prevState, option];
+      }
+      return prevState;
+    });
+    // setBooks((prevState) => [...prevState, option]);
+  };
+
   const totalDays = differenceInCalendarDays(new Date(end), new Date(begin));
-  console.log(begin, end);
-  console.log(totalDays);
   const totalBooks = books.length;
   const totalPages = books.reduce((acc, book) => {
     return acc + book.pages;
   }, 0);
-  // console.log(totalPages);
-  // console.log(books);
 
   const trainingStart = (value) => {
     setBegin(value);
@@ -33,10 +38,6 @@ export default function TrainPanel() {
 
   const trainingEnd = (value) => {
     setEnd(value);
-  };
-
-  const choosedBook = (option) => {
-    setBooks((prevState) => [...prevState, option]);
   };
 
   const deleteBook = (id) => {
@@ -50,7 +51,7 @@ export default function TrainPanel() {
     totalDay: totalDays,
     totalPage: totalPages,
   };
-  console.log(train);
+
   const isBooks = totalBooks > 0;
   return (
     <div className={styles.caseTrain}>
