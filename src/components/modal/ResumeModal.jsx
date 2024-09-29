@@ -58,14 +58,16 @@ export default function ResumeModal({ item, closeModal, getResume }) {
           <button
             type="button"
             onClick={closeModal}
-            className={styles.btnResWhite}
+            // className={styles.btnResWhite}
+            className={`${styles.btnResume} ${styles.btnWhite}`}
           >
             Назад
           </button>
           <button
             type="button"
             onClick={handleResume}
-            className={styles.btnResOrang}
+            // className={styles.btnResOrang}
+            className={`${styles.btnResume} ${styles.btnOrang}`}
           >
             Зберегти
           </button>

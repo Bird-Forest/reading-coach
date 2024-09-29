@@ -11,23 +11,27 @@ export default function ErrorPage({ error, reset }) {
   }, [error]);
 
   return (
-    <div className={styles.bg3}>
-      <h2 className={styles.titleBg3}>
-        Ми працюємо над усуненням незручностей!
-      </h2>
-      <div className={styles.wrapIcon}>
-        <GiSpellBook className={styles.iconErr} />
-      </div>
-      <div className={styles.wrapBtn}>
-        <button
-          onClick={
-            // Attempt to recover by trying to re-render the segment
-            () => reset()
-          }
-          className={styles.btnAuth}
-        >
-          Спробуй ще раз
-        </button>
+    <div className={styles.bg1}>
+      <div className={styles.bg2}>
+        <div className={styles.bg3}>
+          <h2 className={styles.titleBg3}>
+            Ми працюємо над усуненням незручностей!
+          </h2>
+          <div className={styles.wrapIcon}>
+            <GiSpellBook className={styles.iconErr} />
+          </div>
+          <div className={styles.wrapBtn}>
+            <button
+              onClick={
+                // Attempt to recover by trying to re-render the segment
+                () => reset()
+              }
+              className={styles.btnAuth}
+            >
+              Спробуй ще раз
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

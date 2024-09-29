@@ -103,7 +103,7 @@
   align-items: center;
   width: 60px;
   height: 34px;
-  border-left: 2px solid rgb(224, 229, 235);
+  /* border-left: 2px solid rgb(224, 229, 235); */
 }
 .btnOut {
   display: flex;

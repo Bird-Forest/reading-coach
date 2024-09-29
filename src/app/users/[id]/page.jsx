@@ -10,7 +10,10 @@ import { revalidatePath } from "next/cache";
 
 export default async function StatisticPage({ params: { id } }) {
   const coach = await getLastCoach(id);
-  const idCoach = coach._id;
+  if (!id) {
+    notFound();
+  }
+  // const idCoach = coach._id;
 
   revalidatePath(`/users/${id}`, "page");
 
@@ -23,7 +26,7 @@ export default async function StatisticPage({ params: { id } }) {
         <GoalStatistics coach={coach} />
       </div>
       <div className={styles.books}>
-        <StatListBooks id={idCoach} coach={coach} />
+        <StatListBooks />
       </div>
       <div className={styles.chart}>
         <MyChart coach={coach} />

@@ -85,7 +85,7 @@ export default function ListBooksEnd({ userId }) {
                         currentItem._id === item._id &&
                         createPortal(
                           <OverlayModal
-                            closeModal={closeModal}
+                            // closeModal={closeModal}
                             item={currentItem}
                             content={
                               <ResumeModal

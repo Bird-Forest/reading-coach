@@ -20,14 +20,14 @@ export default function SupportModal({ pathTrain, closeModal }) {
       <div className={styles.wrapBtnSupport}>
         <Link
           href={pathTrain}
-          className={`${styles.btnSupport} ${styles.btnTrain}`}
+          className={`${styles.btnSupport} ${styles.btnOrang}`}
         >
           Нове тренування
         </Link>
         <button
           type="button"
           onClick={closeModal}
-          className={`${styles.btnSupport} ${styles.btnBack}`}
+          className={`${styles.btnSupport} ${styles.btnWhite}`}
         >
           Назад
         </button>

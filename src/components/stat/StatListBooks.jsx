@@ -12,10 +12,14 @@ import Loading from "../helper/Loading";
 import { createPortal } from "react-dom";
 import OverlayModal from "../modal/OverlayModal";
 import ReadyModal from "../modal/ReadyModal";
+import { usePathname } from "next/navigation";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function StatListBooks({ id }) {
+export default function StatListBooks() {
+  const pathname = usePathname();
+  const segments = pathname.split("/");
+  const id = segments[2];
   const shouldFetch = !!id;
   const { data, isLoading } = useSWR(
     shouldFetch ? `/api/coaches?id=${id}` : null,
