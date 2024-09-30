@@ -2,61 +2,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  /* width: 100%; */
+  width: 320px;
   height: 60px;
+  gap: 8px;
   padding: 0 8px;
   margin: 0 auto;
 }
 @media screen and (min-width: 768px) {
   .header {
-    justify-content: flex-start;
-    align-items: center;
+    width: 768px;
+    /* justify-content: space-around; */
+    gap: 32px;
     padding: 0 16px;
   }
 }
 @media screen and (min-width: 1280px) {
   .header {
     width: 1280px;
+    gap: 40px;
     padding: 0 32px;
-  }
-}
-
-/* *** SIDEBAR */
-.wrapSidebar {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 14px;
-  width: 100%;
-  height: 60px;
-}
-/* @media screen and (min-width: 768px) {
-  .wrapSidebar {
-    width: 768px;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .wrapSidebar {
-    width: 1280px;
-  }
-} */
-.wrapSideMobile {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.wrapSideDesk {
-  display: none;
-}
-@media screen and (min-width: 768px) {
-  .wrapSideMobile {
-    display: none;
-  }
-  .wrapSideDesk {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
   }
 }
 .logo {
@@ -65,44 +30,85 @@
   line-height: 1.35;
   text-align: left;
 }
+.wrapUserNav {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 36px;
+}
+/* *** SIDEBAR */
 
-.wrapLinkName {
+.wrapSidebar {
+  display: grid;
+  gap: 20px;
+  grid-template-areas: "pages line user button";
+}
+.user {
+  display: grid;
+  grid-template-columns: 36px;
+  grid-area: user;
+}
+.wrapUser {
   display: flex;
   width: 36px;
+  height: 36px;
 }
-.wrapLinkPage {
+.pages {
+  display: grid;
+  grid-template-columns: 86px;
+  grid-area: pages;
+}
+.wrapPages {
   display: flex;
-  gap: 8px;
+  width: 86px;
+  height: 36px;
+  gap: 14px;
+}
+.line {
+  display: grid;
+  grid-template-columns: 2px;
+  grid-area: line;
+}
+.wrapLine {
+  display: flex;
+  width: 2px;
+  height: 36px;
+  background-color: rgb(224, 229, 235);
+}
+.button {
+  display: grid;
+  grid-template-columns: 40px;
+  grid-area: button;
 }
 @media screen and (min-width: 768px) {
-  /* .wrapSideList {
-    width: 768px;
-  } */
-  .wrapLinkName {
-    margin: auto;
+  .wrapUserNav {
+    justify-content: flex-end;
+  }
+  .wrapSidebar {
+    grid-template-areas: "user pages line button";
+  }
+  .user {
+    grid-template-columns: 200px;
   }
 }
 @media screen and (min-width: 1280px) {
-  /* .wrapSideList {
-    width: 1280px;
-  } */
-  .wrapLinkName {
-    margin-right: 534px;
+  .user {
+    grid-template-columns: 400px;
   }
 }
 .wrapSideItem {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
 }
 .wrapIcon {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   color: rgb(166, 171, 185);
   text-decoration: none;
@@ -111,28 +117,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   color: rgb(255, 107, 8);
   background-color: rgb(245, 247, 250);
   text-decoration: none;
 }
 .iconSide {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   fill: currentColor;
 }
 .letterName {
   display: flex;
-  /* width: 22px;
-  height: 22px; */
   font-size: 20px;
   color: currentColor;
-}
-.line {
-  display: flex;
-  width: 2px;
-  height: 32px;
-  background-color: rgb(224, 229, 235);
 }

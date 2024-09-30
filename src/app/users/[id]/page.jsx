@@ -13,8 +13,6 @@ export default async function StatisticPage({ params: { id } }) {
   if (!id) {
     notFound();
   }
-  // const idCoach = coach._id;
-
   revalidatePath(`/users/${id}`, "page");
 
   return (

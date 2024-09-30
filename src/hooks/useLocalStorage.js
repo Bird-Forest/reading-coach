@@ -14,6 +14,7 @@ export default function useLocalStorage(key) {
     const token = window.localStorage.getItem(key);
     if (token) {
       const decodeToken = jwt.decode(token);
+
       if (decodeToken) {
         const { id, username, iat, exp } = decodeToken;
         setTokenData({ id, username, iat, exp });

@@ -52,7 +52,7 @@ export default function FormaSignIn() {
               setToken(res.token);
               if (res.message === "Success") {
                 resetForm();
-                router.push(`/users/${res.id}`);
+                router.push(`/users/${res.id}/training`);
               }
             }}
           >

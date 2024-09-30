@@ -1,6 +1,7 @@
 "use server";
 
 import { initializeUserModel, User } from "@/models/user";
+import { add } from "date-fns";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -30,7 +31,14 @@ export async function registerUser(values) {
       id: res._id,
       username: res.name,
     };
-    const token = jwt.sign(payload, secretKey, { expiresIn: "23h" });
+    const result = add(new Date(), {
+      days: 1,
+      hours: 5,
+    });
+    const expirationDate = new Date(result);
+    const expirationTime = Math.floor(expirationDate.getTime() / 1000);
+
+    const token = jwt.sign(payload, secretKey, { expiresIn: expirationTime });
     await User.findByIdAndUpdate(res._id, { token });
     const userToken = JSON.parse(JSON.stringify(token));
     const id = res._id;
@@ -71,7 +79,15 @@ export async function loginUser(values) {
       id: user._id,
       username: user.name,
     };
-    const token = jwt.sign(payload, secretKey, { expiresIn: "23h" });
+    const result = add(new Date(), {
+      days: 1,
+      hours: 5,
+    });
+    const expirationDate = new Date(result);
+    // const expirationTime = Math.floor(expirationDate.getTime() / 1000);
+    const expirationTime = Math.floor(expirationDate.getTime());
+
+    const token = jwt.sign(payload, secretKey, { expiresIn: expirationTime });
     await User.findByIdAndUpdate(user._id, { token });
     const id = user._id;
     const userToken = JSON.parse(JSON.stringify(token));
