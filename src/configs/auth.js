@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
-// import Credentials from "next-auth/providers/credentials";
+import Credentials from "next-auth/providers/credentials";
+import { getSessionUser } from "@/services/users";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET,
@@ -9,16 +10,39 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       clientId: process.env.AUTH_GOOGLE_CLIENT_ID,
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
     }),
-    // Credentials({
-    //   credentials: {
-    //     email: {},
-    //     pwd: {},
-    //   },
-    //   async authorize(credentials) {
-    //     console.log(credentials);
-    //   },
-    // }),
+    Credentials({
+      credentials: {
+        email: {},
+        pwd: {},
+      },
+      authorize: async (credentials) => {
+        // console.log("PROVIDER", credentials);
+        if (!credentials.email || !credentials.pwd) return null;
+
+        let user = null;
+
+        user = await getSessionUser(credentials);
+        // console.log("USER", user);
+        return user;
+      },
+    }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.name = user.name;
+      }
+      // console.log("TOKEN", token);
+      return token;
+    },
+    async session({ session, token }) {
+      session.user.id = token.id;
+      session.user.name = token.name;
+      // console.log("SESS", session);
+      return session;
+    },
+  },
 });
 
 // **** npm install @auth/mongodb-adapter mongodb ***
@@ -80,3 +104,23 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
 //   session.user.id = user.id;
 //   return session;
 // }
+
+// callbacks: {
+//   async session({ session }) {
+//     // Добавьте индекс пользователя в объект сессии
+//     session.user._id = userId;
+//     session.user.name = userName;
+//     // session.user.index = token.index;
+//     console.log("SES", session);
+//     return session;
+//   },
+//   async jwt({ user }) {
+//     if (user) {
+//       id = user._id;
+//       console.log(id);
+//       // token.index = user.index;
+//     }
+//     console.log("TOKEN", user);
+//     return token;
+//   },
+// },

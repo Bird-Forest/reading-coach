@@ -7,14 +7,18 @@ import ResultPanel from "@/components/stat/ResultPanel";
 import StatListBooks from "@/components/stat/StatListBooks";
 import { getLastCoach } from "@/services/coaches";
 import { revalidatePath } from "next/cache";
+import { auth } from "@/configs/auth";
 
-export default async function StatisticPage({ params: { id } }) {
+export default async function StatisticPage() {
+  const session = await auth();
+  if (!session.user) return null;
+  // console.log("STAT", session);
+  const id = session.user.id;
+  // console.log("ID COACH", id);
   const coach = await getLastCoach(id);
-  console.log("STAT", coach);
-  if (!id) {
-    notFound();
-  }
-  revalidatePath(`/users/${id}`, "page");
+  // console.log(coach);
+
+  revalidatePath(`/user`, "page");
 
   return (
     <div className={styles.caseStatist}>

@@ -10,20 +10,15 @@ import { usePathname } from "next/navigation";
 export default function UserPage() {
   const pathname = usePathname();
   const segments = pathname.split("/");
-  const id = segments[2];
-  const page = segments[3];
+  // const id = segments[2];
+  const page = segments[2];
+
   return (
     <div className={styles.wrapPages}>
-      <SidebarItem
-        current={page === "training"}
-        pathname={`/users/${id}/training`}
-      >
+      <SidebarItem current={page === "training"} pathname={`/user/training`}>
         <MdMenuBook className={styles.iconSide} />
       </SidebarItem>
-      <SidebarItem
-        current={page === "library"}
-        pathname={`/users/${id}/library`}
-      >
+      <SidebarItem current={page === "library"} pathname={`/user/library`}>
         <VscHome className={styles.iconSide} />
       </SidebarItem>
     </div>

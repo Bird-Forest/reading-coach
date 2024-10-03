@@ -7,10 +7,15 @@ import BookItem from "../book/BookItem";
 import useSWR from "swr";
 import { bookCategory } from "@/constants/bookCategory";
 import Loading from "../helper/Loading";
+import { useSession } from "next-auth/react";
+
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function ListBooksStart({ userId }) {
+export default function ListBooksStart() {
+  const { data: session } = useSession();
+  const userId = session?.user.id;
   const category = bookCategory.start;
+
   const { data, isLoading } = useSWR(
     `/api/books?category=${category}&id=${userId}`,
     fetcher,

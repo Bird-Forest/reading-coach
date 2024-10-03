@@ -5,11 +5,11 @@ export default function findCurrentMonth(datePeriod) {
   for (const monthArray of datePeriod) {
     if (
       monthArray.some(
-        (dateString) =>
-          format(new Date(dateString), "yyyy-MM-dd") === currentDate
+        (date) => format(new Date(date), "yyyy-MM-dd") === currentDate
       )
     ) {
       const idMonth = datePeriod.indexOf(monthArray);
+
       return idMonth;
     }
   }

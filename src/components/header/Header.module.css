@@ -131,6 +131,9 @@
 }
 .letterName {
   display: flex;
-  font-size: 20px;
+  font-size: 24px;
+  font-family: var(--font-abril);
+  font-weight: 400;
+  line-height: 1.35;
   color: currentColor;
 }

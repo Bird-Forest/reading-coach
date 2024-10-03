@@ -5,8 +5,8 @@ import { revalidatePath } from "next/cache";
 import TrainMobile from "@/components/train/TrainMobile";
 import MyChart from "@/components/chart/MyChart";
 
-export default async function TrainPage({ params: { id } }) {
-  revalidatePath(`/users/${id}/training`, "page");
+export default async function TrainPage() {
+  revalidatePath(`/user/training`, "page");
   return (
     <>
       <div className={styles.wrapTrainMob}>

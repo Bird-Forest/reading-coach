@@ -31,14 +31,14 @@ export async function registerUser(values) {
       id: res._id,
       username: res.name,
     };
-    const result = add(new Date(), {
-      days: 1,
-      hours: 5,
-    });
-    const expirationDate = new Date(result);
-    const expirationTime = Math.floor(expirationDate.getTime() / 1000);
+    // const result = add(new Date(), {
+    //   days: 1,
+    //   hours: 5,
+    // });
+    // const expirationDate = new Date(result);
+    // const expirationTime = Math.floor(expirationDate.getTime() / 1000);
 
-    const token = jwt.sign(payload, secretKey, { expiresIn: expirationTime });
+    const token = jwt.sign(payload, secretKey, { expiresIn: "24h" });
     await User.findByIdAndUpdate(res._id, { token });
     const userToken = JSON.parse(JSON.stringify(token));
     const id = res._id;
@@ -84,7 +84,6 @@ export async function loginUser(values) {
       hours: 5,
     });
     const expirationDate = new Date(result);
-    // const expirationTime = Math.floor(expirationDate.getTime() / 1000);
     const expirationTime = Math.floor(expirationDate.getTime());
 
     const token = jwt.sign(payload, secretKey, { expiresIn: expirationTime });
@@ -98,6 +97,47 @@ export async function loginUser(values) {
       token: userToken,
       message: "Success",
     };
+  } catch (e) {
+    console.log("Action", e);
+    return {
+      message: "Email or password is wrong",
+    };
+  }
+}
+
+export async function getSessionUser(values) {
+  try {
+    await initializeUserModel();
+    const user = await User.findOne({ email: values.email }).exec();
+
+    if (!user) {
+      return {
+        message: "You are not registered",
+      };
+    }
+    let pwd = values.pwd;
+    const pwdCompare = await bcrypt.compare(pwd, user.pwd);
+
+    if (!pwdCompare) {
+      throw new Error("409");
+    }
+
+    // return JSON.parse(JSON.stringify(user));
+    // const data = JSON.parse(JSON.stringify(user));
+    const id = user._id;
+    const name = user.name;
+    const email = user.email;
+    const userId = JSON.parse(JSON.stringify(id));
+    const userName = JSON.parse(JSON.stringify(name));
+    const userEmail = JSON.parse(JSON.stringify(email));
+
+    return {
+      id: userId,
+      name: userName,
+      // email: userEmail,
+    };
+
+    // return data;
   } catch (e) {
     console.log("Action", e);
     return {

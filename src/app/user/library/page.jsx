@@ -5,8 +5,13 @@ import BookCategories from "@/components/liba/BookCategories";
 import { getBooksEnd, getBooksInit, getBooksStart } from "@/services/books";
 import { revalidatePath } from "next/cache";
 import LibraryMobile from "@/components/liba/LibraryMobile";
+import { auth } from "@/configs/auth";
 
-export default async function LibraryPage({ params: { id } }) {
+export default async function LibraryPage() {
+  const session = await auth();
+  if (!session.user) return null;
+
+  const id = session.user.id;
   const booksStart = getBooksStart(id);
   const booksInit = getBooksInit(id);
   const booksEnd = getBooksEnd(id);
@@ -15,7 +20,7 @@ export default async function LibraryPage({ params: { id } }) {
     booksInit,
     booksEnd,
   ]);
-  revalidatePath(`/users/${id}/library`, "page");
+  revalidatePath(`/user/library`, "page");
 
   return (
     <>

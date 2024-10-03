@@ -4,26 +4,30 @@ import React, { useEffect, useState } from "react";
 import styles from "./Result.module.css";
 import { format } from "date-fns";
 import useSWR from "swr";
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function ResultList() {
-  const pathname = usePathname();
-  const segments = pathname.split("/");
-  const id = segments[2];
-  // const shouldFetch = !!id;
-  // const { data } = useSWR(
-  //   shouldFetch ? `/api/coaches?id=${id}` : null,
-  //   fetcher,
-  //   {
-  //     refreshInterval: 3600,
-  //   }
-  // );
-  const { data } = useSWR(`/api/coaches?id=${id}`, fetcher, {
-    refreshInterval: 3600,
-  });
-  console.log(data);
+  const { data: session } = useSession();
+  const id = session?.user.id;
+  // console.log(id);
+  // const pathname = usePathname();
+  // const segments = pathname.split("/");
+  // const id = segments[2];
+  const shouldFetch = !!id;
+  const { data } = useSWR(
+    shouldFetch ? `/api/coaches?id=${id}` : null,
+    fetcher,
+    {
+      refreshInterval: 3600,
+    }
+  );
+  // const { data } = useSWR(`/api/coaches?id=${id}`, fetcher, {
+  //   refreshInterval: 3600,
+  // });
+  // console.log(data);
   const [results, setResults] = useState([]);
 
   useEffect(() => {

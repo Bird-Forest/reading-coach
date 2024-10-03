@@ -4,13 +4,13 @@ import ResultForm from "./ResultForm";
 import ResultList from "./ResultList";
 
 export default function ResultPanel({ coach }) {
-  const id = coach && coach._id;
+  // const id = coach && coach._id;
   return (
     <div className={styles.wrapResultPanel}>
       <p className={styles.titilePanel}>Результати</p>
       <div className={styles.wrapResult}>
         <ResultForm coach={coach} />
-        <ResultList id={id} coach={coach} />
+        <ResultList />
       </div>
     </div>
   );

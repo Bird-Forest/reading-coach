@@ -12,6 +12,9 @@ import Spinner from "../helper/Spinner";
 import { loginUser } from "@/services/users";
 import FieldUser from "./FieldUser";
 import Notif from "../helper/Notif";
+// import { signIn } from "@/configs/auth";
+import { signIn } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 
 const initialValues = {
   email: "",
@@ -20,12 +23,8 @@ const initialValues = {
 
 export default function FormaSignIn() {
   const [notif, setNotif] = useState("");
-  const [token, setToken] = useState("");
+  const [auth, setAuth] = useState(false);
   const router = useRouter();
-
-  useEffect(() => {
-    window.localStorage.setItem("authToken", token);
-  }, [token]);
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -46,13 +45,22 @@ export default function FormaSignIn() {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
-              const res = await loginUser(values);
+              const res = await signIn("credentials", {
+                email: values.email,
+                pwd: values.pwd,
+                redirect: false,
+              });
+              console.log(res);
               setSubmitting(true);
-              setNotif(res.message);
-              setToken(res.token);
-              if (res.message === "Success") {
+              if (res && !res.error) {
+                console.log(res);
+                setAuth(true);
                 resetForm();
-                router.push(`/users/${res.id}/training`);
+                setSubmitting(false);
+                router.push(`/user/training`);
+              } else {
+                setAuth(false);
+                setNotif("Помилка авторизації");
               }
             }}
           >
@@ -72,7 +80,7 @@ export default function FormaSignIn() {
                 />
                 <div className={styles.wrapFieldBtn}>
                   <div className={styles.wrapTextMess}>
-                    {notif !== "Success" && (
+                    {!auth && (
                       <Notif message={notif} onClose={() => setNotif(false)} />
                     )}
                   </div>
@@ -91,3 +99,8 @@ export default function FormaSignIn() {
     </div>
   );
 }
+
+// useEffect(() => {
+//   window.localStorage.setItem("authToken", token);
+// }, [token]);
+// const res = await loginUser(values);

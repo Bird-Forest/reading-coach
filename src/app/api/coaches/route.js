@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
   const id = searchParams.get("id");
-  console.log(id);
+  // console.log(id);
 
   try {
     const coach = await getLastCoach(id);

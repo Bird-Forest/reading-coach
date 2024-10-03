@@ -107,7 +107,44 @@ export const updateBooksCoach = async (coachId, update) => {
       if (book.category === bookCategory.end)
         await mongoose
           .model("Book")
-          .findByIdAndUpdate(book._id, { category: book.category });
+          .findByIdAndUpdate(book._id, { category: bookCategory.end });
+      // .findByIdAndUpdate(book._id, { category: book.category });
+    }
+    return {
+      message: "Успішно додано",
+    };
+  } catch (e) {
+    console.log(e);
+    return { message: "Відбулася помилка" };
+  }
+};
+
+export const deleteUnreadedBooks = async (coachId, update) => {
+  const readedBooks = update.books.filter(
+    (book) => book.category === bookCategory.end
+  );
+  console.log("DB", readedBooks);
+  try {
+    await initializeCoachModel();
+    const coach = await Coach.findByIdAndUpdate(
+      { _id: coachId, books: readedBooks },
+      {
+        new: true,
+      }
+    ).lean();
+
+    if (!coach) {
+      return { message: "Відбулася помилка" };
+    }
+
+    const unreadedBooks = update.books.filter(
+      (book) => book.category === bookCategory.init
+    );
+    console.log("COACH", unreadedBooks);
+    for (let book of unreadedBooks) {
+      await mongoose
+        .model("Book")
+        .findByIdAndUpdate(book._id, { category: bookCategory.start });
     }
     return {
       message: "Успішно додано",

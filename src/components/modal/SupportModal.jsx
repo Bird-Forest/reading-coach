@@ -5,8 +5,8 @@ import styles from "./Modal.module.css";
 import { MdOutlineThumbUp } from "react-icons/md";
 import Link from "next/link";
 
-export default function SupportModal({ pathTrain, closeModal }) {
-  console.log(pathTrain);
+export default function SupportModal({ removeBooks, closeModal }) {
+  // console.log(pathTrain);
   return (
     <div className={styles.wrapSupport}>
       <div className={styles.wrapIconSupport}>
@@ -18,12 +18,14 @@ export default function SupportModal({ pathTrain, closeModal }) {
         Наступного разу тобі все вдасться
       </p>
       <div className={styles.wrapBtnSupport}>
-        <Link
-          href={pathTrain}
+        <button
+          type="button"
+          onClick={removeBooks}
+          // href={pathTrain}
           className={`${styles.btnSupport} ${styles.btnOrang}`}
         >
           Нове тренування
-        </Link>
+        </button>
         <button
           type="button"
           onClick={closeModal}

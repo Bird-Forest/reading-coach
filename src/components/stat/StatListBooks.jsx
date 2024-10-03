@@ -8,19 +8,20 @@ import StartSteps from "../modal/StartSteps";
 import { bookCategory } from "@/constants/bookCategory";
 import { updateBooksCoach } from "@/services/coaches";
 import useSWR from "swr";
-import Loading from "../helper/Loading";
+// import Loading from "../helper/Loading";
 import { createPortal } from "react-dom";
 import OverlayModal from "../modal/OverlayModal";
 import ReadyModal from "../modal/ReadyModal";
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
 import SpinnerO from "../helper/SpinnerO";
+import { useSession } from "next-auth/react";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function StatListBooks() {
-  const pathname = usePathname();
-  const segments = pathname.split("/");
-  const id = segments[2];
+  const { data: session } = useSession();
+  const id = session?.user.id;
+  // console.log(id);
 
   const shouldFetch = !!id;
   const { data, isLoading } = useSWR(
@@ -30,9 +31,6 @@ export default function StatListBooks() {
       refreshInterval: 3600,
     }
   );
-
-  // const arrBooks = data?.books || [];
-  // const coachId = data?._id || " ";
 
   const [isModal, setIsModal] = useState(false);
   const [arrBooks, setArrBooks] = useState([]);

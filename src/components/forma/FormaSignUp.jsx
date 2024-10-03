@@ -24,15 +24,10 @@ export default function FormaSignUp() {
   const [notif, setNotif] = useState("");
   const [token, setToken] = useState("");
   const router = useRouter();
-  // console.log(notif);
-  // console.log(token);
+
   useEffect(() => {
     window.localStorage.setItem("authToken", token);
   }, [token]);
-
-  // function saveToken(token) {
-  //   localStorage.setItem("authToken", token);
-  // }
 
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -65,10 +60,9 @@ export default function FormaSignUp() {
               setSubmitting(true);
               setNotif(res.message);
               setToken(res.token);
-              if (res.message === "Success") {
+              if (notif === "Success") {
                 resetForm();
-                const id = res.id;
-                router.push(`/user/${id}/library`);
+                router.push(`/user/library`);
               }
             }}
           >

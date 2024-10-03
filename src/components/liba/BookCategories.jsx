@@ -17,13 +17,11 @@ export default function BookCategories({ userId, arrStart, arrInit, arrEnd }) {
 
   return (
     <div className={styles.wrapAllList}>
-      {booksEnd ? <ListBooksEnd userId={userId} /> : []}
+      {booksEnd ? <ListBooksEnd /> : []}
       {booksInit ? <ListBooksInit arrInit={arrInit} /> : []}
-      {booksStart ? <ListBooksStart userId={userId} /> : <StartSteps />}
+      {booksStart ? <ListBooksStart /> : <StartSteps />}
       {isBtnTrain && (
-        <ButtonLink path={`/users/${userId}/training`}>
-          Моє тренування
-        </ButtonLink>
+        <ButtonLink path={`/user/training`}>Моє тренування</ButtonLink>
       )}
     </div>
   );
