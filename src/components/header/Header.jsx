@@ -6,7 +6,7 @@ import Sidebar from "./Sidebar";
 import SideLogo from "./SideLogo";
 import SideLng from "./SideLng";
 import useLocalStorage from "@/hooks/useLocalStorage";
-import { format, fromUnixTime, getTime, isFuture } from "date-fns";
+import { getTime } from "date-fns";
 import { usePathname } from "next/navigation";
 
 export default function Header() {
@@ -20,12 +20,14 @@ export default function Header() {
   const [valid, setValid] = useState(false);
 
   useEffect(() => {
-    if (!id) return;
+    // if (!id) return;
+    // console.log(id);
 
-    if (id && exp > today) {
+    if (id !== " " && exp > today) {
       setValid(true);
     }
   }, [exp, id, today]);
+  // console.log(valid);
 
   return (
     <div className={styles.header}>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Statistic.module.css";
 import TableHeaderTrain from "../table/TableHeaderTrain";
 import BookItemStatist from "../book/BookItemStatist";
@@ -13,6 +13,7 @@ import { createPortal } from "react-dom";
 import OverlayModal from "../modal/OverlayModal";
 import ReadyModal from "../modal/ReadyModal";
 import { usePathname } from "next/navigation";
+import SpinnerO from "../helper/SpinnerO";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -20,6 +21,7 @@ export default function StatListBooks() {
   const pathname = usePathname();
   const segments = pathname.split("/");
   const id = segments[2];
+
   const shouldFetch = !!id;
   const { data, isLoading } = useSWR(
     shouldFetch ? `/api/coaches?id=${id}` : null,
@@ -28,35 +30,46 @@ export default function StatListBooks() {
       refreshInterval: 3600,
     }
   );
-  const coach = data;
-  const arrBooks = coach && coach.books;
+
+  // const arrBooks = data?.books || [];
+  // const coachId = data?._id || " ";
 
   const [isModal, setIsModal] = useState(false);
+  const [arrBooks, setArrBooks] = useState([]);
+  const [coachId, setCoachId] = useState("");
+
+  useEffect(() => {
+    if (data) {
+      setArrBooks(data.books);
+      setCoachId(data._id);
+    }
+  }, [data]);
 
   const closeModal = () => {
     setIsModal(false);
   };
 
   const updateProgress = async (item) => {
-    const newBooks = coach.books.map((el) => {
+    const newBooks = arrBooks.map((el) => {
       if (el._id === item._id) {
         el.category = bookCategory.end;
       }
       return el;
     });
     const update = {
-      ...coach,
+      ...data,
       books: newBooks,
     };
-    const res = await updateBooksCoach(id, update);
+    const res = await updateBooksCoach(coachId, update);
     setIsModal(true);
   };
 
   const Arr = Array.isArray(arrBooks) && arrBooks.length > 0;
+
   return (
     <>
       {isLoading ? (
-        <Loading />
+        <SpinnerO />
       ) : (
         <div className={styles.wrapListBook}>
           {Arr ? (

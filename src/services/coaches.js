@@ -9,20 +9,6 @@ import {
 import { bookCategory } from "@/constants/bookCategory";
 import { bookSchema } from "@/models/book";
 
-// async function updateBooksCategory(coach) {
-//   for (let book of coach.books) {
-//     if (book.category === bookCategory.start) {
-//       await mongoose
-//         .model("Book", bookSchema)
-//         .findByIdAndUpdate(book._id, { category: bookCategory.init });
-//     } else if (book.category === bookCategory.init) {
-//       await mongoose
-//         .model("Book", bookSchema)
-//         .findByIdAndUpdate(book._id, { category: bookCategory.end });
-//     }
-//   }
-// }
-
 export const createCoach = async (item, userId) => {
   // console.log("SWRVER", item, userId);
   try {
@@ -108,10 +94,10 @@ export const updateReportCoach = async (id, item) => {
   }
 };
 
-export const updateBooksCoach = async (id, update) => {
+export const updateBooksCoach = async (coachId, update) => {
   try {
     await initializeCoachModel();
-    const coach = await Coach.findByIdAndUpdate(id, update, {
+    const coach = await Coach.findByIdAndUpdate(coachId, update, {
       new: true,
     }).lean();
     if (!coach) {

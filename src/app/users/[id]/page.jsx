@@ -10,6 +10,7 @@ import { revalidatePath } from "next/cache";
 
 export default async function StatisticPage({ params: { id } }) {
   const coach = await getLastCoach(id);
+  console.log("STAT", coach);
   if (!id) {
     notFound();
   }
