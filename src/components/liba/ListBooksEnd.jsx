@@ -22,7 +22,7 @@ export default function ListBooksEnd() {
   const userId = session?.user.id;
   const category = bookCategory.end;
 
-  const shouldFetch = !!id;
+  const shouldFetch = !!userId;
   const { data, isLoading } = useSWR(
     shouldFetch ? `/api/books?category=${category}&id=${userId}` : null,
     fetcher,

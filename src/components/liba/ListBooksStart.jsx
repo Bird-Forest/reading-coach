@@ -8,6 +8,7 @@ import useSWR from "swr";
 import { bookCategory } from "@/constants/bookCategory";
 import Loading from "../helper/Loading";
 import { useSession } from "next-auth/react";
+import SpinnerO from "../helper/SpinnerO";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -16,17 +17,17 @@ export default function ListBooksStart() {
   const userId = session?.user.id;
   const category = bookCategory.start;
 
-  const shouldFetch = !!id;
+  const shouldFetch = !!userId;
   const { data, isLoading } = useSWR(
     shouldFetch ? `/api/books?category=${category}&id=${userId}` : null,
     fetcher,
     { refreshInterval: 3600 }
   );
-  // console.log(data);
+
   return (
     <>
       {isLoading ? (
-        <Loading />
+        <SpinnerO />
       ) : (
         <div className={styles.wrapListAny}>
           <h5 className={styles.titleList}>Маю намір прочитати</h5>
