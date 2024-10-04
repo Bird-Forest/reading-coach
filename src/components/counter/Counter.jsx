@@ -20,7 +20,7 @@ export default function Counter({ coach }) {
     if (!coach) return;
     const selectedBooks = coach.books;
     // console.log(selectedBooks);
-    // if (!selectedBooks) return;
+    if (!selectedBooks) return;
     const pastDay = isPast(new Date(coach.finish));
     // console.log(pastDay);
     const unreadBook = selectedBooks.some(

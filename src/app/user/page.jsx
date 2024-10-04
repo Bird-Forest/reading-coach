@@ -11,9 +11,9 @@ import { auth } from "@/configs/auth";
 
 export default async function StatisticPage() {
   const session = await auth();
-  if (!session.user) return null;
+  if (!session) return null;
   // console.log("STAT", session);
-  const id = session.user.id;
+  const id = session ? session.user.id : "";
   // console.log("ID COACH", id);
   const coach = await getLastCoach(id);
   // console.log(coach);

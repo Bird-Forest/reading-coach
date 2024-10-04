@@ -10,7 +10,6 @@ import { usePathname } from "next/navigation";
 export default function UserPage() {
   const pathname = usePathname();
   const segments = pathname.split("/");
-  // const id = segments[2];
   const page = segments[2];
 
   return (

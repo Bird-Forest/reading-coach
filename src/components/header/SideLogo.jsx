@@ -7,13 +7,12 @@ import styles from "./Header.module.css";
 import { abril } from "@/app/fonts";
 
 export default function SideLogo() {
-  const pathname = usePathname();
+  // const pathname = usePathname();
   // console.log(pathname);
-  const segments = pathname.split("/");
-  // console.log(segments);
-  const page = segments[1];
+  // const segments = pathname.split("/");
+  // const page = segments[0];
   return (
-    <SidebarItem current={page === "/"} pathname="/">
+    <SidebarItem pathname="/">
       <h4 className={`${abril.className} ${styles.logo}`}>BR</h4>
     </SidebarItem>
   );

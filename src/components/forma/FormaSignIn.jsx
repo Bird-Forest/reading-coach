@@ -50,10 +50,8 @@ export default function FormaSignIn() {
                 pwd: values.pwd,
                 redirect: false,
               });
-              console.log(res);
               setSubmitting(true);
               if (res && !res.error) {
-                console.log(res);
                 setAuth(true);
                 resetForm();
                 setSubmitting(false);

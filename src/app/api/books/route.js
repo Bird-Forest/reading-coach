@@ -8,13 +8,12 @@ export async function GET(req) {
 
   if (!category || !userId) {
     return NextResponse.json(
-      { message: "Missing parameters" },
+      // { message: "Missing parameters" },
       { status: 400 }
     );
   }
   try {
     const books = await getBooksByCategory(category, userId);
-    // console.log("ROUTER", books);
     return NextResponse.json(books, { status: 200 });
   } catch (error) {
     console.error(error);

@@ -16,8 +16,9 @@ export default function ListBooksStart() {
   const userId = session?.user.id;
   const category = bookCategory.start;
 
+  const shouldFetch = !!id;
   const { data, isLoading } = useSWR(
-    `/api/books?category=${category}&id=${userId}`,
+    shouldFetch ? `/api/books?category=${category}&id=${userId}` : null,
     fetcher,
     { refreshInterval: 3600 }
   );
