@@ -12,11 +12,20 @@ export const createCoach = async (item, userId) => {
       ...item,
       owner: mongoose.Types.ObjectId.createFromHexString(userId),
     });
-    newTrain.books.forEach((book) => {
-      book.category = bookCategory.init;
-    });
+    const data = JSON.parse(JSON.stringify(newTrain));
 
-    await newTrain.save();
+    // newTrain.books.forEach((book) => {
+    //   book.category = bookCategory.init;
+    // });
+
+    // await newTrain.save();
+
+    for (let book of newTrain.books) {
+      if (book.category === bookCategory.init)
+        await mongoose
+          .model("Book")
+          .findByIdAndUpdate(book._id, { category: bookCategory.init });
+    }
 
     return {
       message: "Успішно додано",
@@ -46,17 +55,17 @@ export const getLastCoach = async (id) => {
   }
 };
 
-export const getCoachById = async (id) => {
-  try {
-    await initializeCoachModel();
-    const coach = await Coach.findById({ _id: id }).lean();
-    // return JSON.parse(JSON.stringify(coach));
-    return coach;
-  } catch (e) {
-    console.log(e);
-    return { message: "Відбулася помилка" };
-  }
-};
+// export const getCoachById = async (id) => {
+//   try {
+//     await initializeCoachModel();
+//     const coach = await Coach.findById({ _id: id }).lean();
+//     // return JSON.parse(JSON.stringify(coach));
+//     return coach;
+//   } catch (e) {
+//     console.log(e);
+//     return { message: "Відбулася помилка" };
+//   }
+// };
 
 export const updateReportCoach = async (id, item) => {
   try {

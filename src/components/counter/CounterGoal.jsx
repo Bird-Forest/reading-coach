@@ -10,8 +10,8 @@ import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function CounterGoal({ train }) {
-  const [coach, setCoach] = useState(train);
+export default function CounterGoal() {
+  const [coach, setCoach] = useState();
 
   const { data: session } = useSession();
   const id = session?.user.id;
@@ -52,15 +52,16 @@ export default function CounterGoal({ train }) {
   }, [coach]);
 
   useEffect(() => {
+    // if (!coach) return;
+    if (!data) return;
     setCoach(data);
-    if (!coach) return;
     setEndDay(getTimer());
     const timer = setInterval(() => {
       setEndDay(getTimer());
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [getTimer, coach, data]);
+  }, [getTimer, data]);
 
   return (
     <div className={styles.wrapCountBox}>

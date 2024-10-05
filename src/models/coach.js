@@ -17,27 +17,27 @@ const coachSchema = new mongoose.Schema(
   { versionKey: false, timestamps: true }
 );
 // Функция для обновления категории книг в зависимости от текущего состояния
-export async function updateBooksCategory(coach) {
-  if (coach.isModified("books")) {
-    for (let book of coach.books) {
-      if (book.category === bookCategory.start) {
-        await mongoose
-          .model("Book")
-          .findByIdAndUpdate(book._id, { category: bookCategory.init });
-      } else if (book.category === bookCategory.init) {
-        await mongoose
-          .model("Book")
-          .findByIdAndUpdate(book._id, { category: bookCategory.end });
-      }
-    }
-  }
-}
+// export async function updateBooksCategory(coach) {
+//   if (coach.isModified("books")) {
+//     for (let book of coach.books) {
+//       if (book.category === bookCategory.start) {
+//         await mongoose
+//           .model("Book")
+//           .findByIdAndUpdate(book._id, { category: bookCategory.init });
+//       } else if (book.category === bookCategory.init) {
+//         await mongoose
+//           .model("Book")
+//           .findByIdAndUpdate(book._id, { category: bookCategory.end });
+//       }
+//     }
+//   }
+// }
 // Использование функции для обновления категории перед сохранением
-coachSchema.pre("save", async function (next) {
-  const coach = this;
-  await updateBooksCategory(coach);
-  next();
-});
+// coachSchema.pre("save", async function (next) {
+//   const coach = this;
+//   await updateBooksCategory(coach);
+//   next();
+// });
 
 let Coach;
 const initializeCoachModel = async () => {

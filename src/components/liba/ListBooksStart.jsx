@@ -8,14 +8,16 @@ import useSWR from "swr";
 import { bookCategory } from "@/constants/bookCategory";
 import { useSession } from "next-auth/react";
 import SpinnerO from "../helper/SpinnerO";
+import { constructNow } from "date-fns";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function ListBooksStart({ arrStart }) {
+export default function ListBooksStart({ userId, arrStart }) {
   const [books, setBooks] = useState(arrStart);
-  const { data: session } = useSession();
-  const userId = session?.user.id;
+  // const { data: session } = useSession();
+  // const userId = session.user.id;
   const category = bookCategory.start;
+  // console.log(session);
 
   const shouldFetch = !!userId;
   const { data, isLoading } = useSWR(
@@ -28,7 +30,7 @@ export default function ListBooksStart({ arrStart }) {
     if (!data) return;
     setBooks(data);
   }, [data]);
-
+  // console.log("START", books);
   return (
     <>
       {isLoading ? (

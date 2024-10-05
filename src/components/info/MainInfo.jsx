@@ -1,39 +1,38 @@
-"use client";
+// "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./Main.module.css";
 import Link from "next/link";
 import Information from "./Information";
-import { useSession } from "next-auth/react";
-import { getTime } from "date-fns";
+// import { useSession } from "next-auth/react";
+// import { getTime } from "date-fns";
+import { auth } from "@/configs/auth";
+import { redirect } from "next/navigation";
 
-export default function MainInfo() {
-  const [valid, setValid] = useState(false);
-  const { data: session } = useSession();
+export default async function MainInfo() {
+  const session = await auth();
+  // if (session !== null) redirect("/user");
+  // const [valid, setValid] = useState(false);
+  // const { data: session } = useSession();
   // console.log(session);
-  // console.log(expires);
-  useEffect(() => {
-    if (!session) return;
-    const today = getTime(new Date());
-    const exp = getTime(new Date(session.expires));
-    // console.log(today, exp);
+  // // console.log(expires);
+  // useEffect(() => {
+  //   if (!session) return;
+  //   const today = getTime(new Date());
+  //   const exp = getTime(new Date(session.expires));
+  //   // console.log(today, exp);
 
-    if (exp > today) {
-      setValid(true);
-    }
-  }, [session]);
-  // console.log(valid);
+  //   if (exp > today) {
+  //     setValid(true);
+  //   }
+  // }, [session]);
+
   return (
     <div className={styles.wrapMainInfo}>
       <Information />
       <div className={styles.wrapBtns}>
-        {valid ? (
-          <Link
-            href={`/user/training`}
-            className={`${styles.btnLink} ${styles.btnLogin}`}
-          >
-            Увійти
-          </Link>
+        {session !== null ? (
+          redirect("/user")
         ) : (
           <Link
             href="/signin"
@@ -52,3 +51,10 @@ export default function MainInfo() {
     </div>
   );
 }
+
+//  <Link
+//             href="/user/training"
+//             className={`${styles.btnLink} ${styles.btnLogin}`}
+//           >
+//             Увійти
+//           </Link>

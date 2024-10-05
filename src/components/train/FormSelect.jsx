@@ -27,6 +27,7 @@ export default function FormSelect({ choosedBook }) {
 
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState({});
+  // console.log("SELECT", option);
   const arrStart = data;
 
   const Arr = Array.isArray(arrStart) && arrStart.length > 0;
@@ -56,7 +57,7 @@ export default function FormSelect({ choosedBook }) {
           {Arr ? (
             arrStart.map(
               (item) => (
-                item.category === bookCategory.init,
+                (item.category = bookCategory.init),
                 (
                   <li
                     key={uuidv4()}

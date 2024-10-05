@@ -14,6 +14,7 @@ export default function TrainPanel() {
   const [begin, setBegin] = useState();
   const [end, setEnd] = useState();
   const [books, setBooks] = useState([]);
+  // console.log("TRAIN", books);
 
   const choosedBook = (option) => {
     setBooks((prevState) => {
