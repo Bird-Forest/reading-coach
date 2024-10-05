@@ -4,8 +4,26 @@ import { open_sans } from "@/app/fonts";
 import React, { useCallback, useEffect, useState } from "react";
 import { differenceInMilliseconds } from "date-fns";
 import styles from "./Counter.module.css";
+import { useSession } from "next-auth/react";
+import { bookCategory } from "@/constants/bookCategory";
+import useSWR from "swr";
 
-export default function CounterGoal({ coach }) {
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+export default function CounterGoal({ train }) {
+  const [coach, setCoach] = useState(train);
+
+  const { data: session } = useSession();
+  const id = session?.user.id;
+  const shouldFetch = !!id;
+  const { data } = useSWR(
+    shouldFetch ? `/api/coaches?id=${id}` : null,
+    fetcher,
+    {
+      refreshInterval: 3600,
+    }
+  );
+
   const [endDay, setEndDay] = useState({
     days: 0,
     hours: 0,
@@ -17,8 +35,11 @@ export default function CounterGoal({ coach }) {
     if (!coach) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
     const lastDay = coach.finish;
+    const unreadedBooks = coach.books.filter(
+      (book) => book.category === bookCategory.init
+    );
     const result = differenceInMilliseconds(new Date(lastDay), new Date());
-    if (result > 0) {
+    if (result > 0 && unreadedBooks.length > 0) {
       return {
         days: Math.floor(result / (1000 * 60 * 60 * 24)),
         hours: Math.floor((result / (1000 * 60 * 60)) % 24),
@@ -31,6 +52,7 @@ export default function CounterGoal({ coach }) {
   }, [coach]);
 
   useEffect(() => {
+    setCoach(data);
     if (!coach) return;
     setEndDay(getTimer());
     const timer = setInterval(() => {
@@ -38,7 +60,7 @@ export default function CounterGoal({ coach }) {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [getTimer, coach]);
+  }, [getTimer, coach, data]);
 
   return (
     <div className={styles.wrapCountBox}>

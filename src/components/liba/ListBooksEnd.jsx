@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Library.module.css";
 import BookItem from "@/components/book/BookItem";
 import { IoStarOutline, IoStar } from "react-icons/io5";
@@ -11,13 +11,13 @@ import TableHeaderEnd from "../table/TableHeaderEnd";
 import { updateBook } from "@/services/books";
 import useSWR from "swr";
 import { bookCategory } from "@/constants/bookCategory";
-import Loading from "../helper/Loading";
 import { useSession } from "next-auth/react";
 import SpinnerO from "../helper/SpinnerO";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function ListBooksEnd() {
+export default function ListBooksEnd({ arrEnd }) {
+  const [books, setBooks] = useState(arrEnd);
   const { data: session } = useSession();
   const userId = session?.user.id;
   const category = bookCategory.end;
@@ -28,6 +28,11 @@ export default function ListBooksEnd() {
     fetcher,
     { refreshInterval: 3600 }
   );
+  useEffect(() => {
+    if (!data) return;
+    setBooks(data);
+  }, [data]);
+
   const [showModal, setShowModal] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
 
@@ -55,7 +60,7 @@ export default function ListBooksEnd() {
           <div className={styles.wrapTabList}>
             <TableHeaderEnd />
             <ul className={styles.listStart}>
-              {data.map((item) => (
+              {books.map((item) => (
                 <li key={item._id} className={styles.wrapBookEnd}>
                   <BookItem
                     title={item.title}

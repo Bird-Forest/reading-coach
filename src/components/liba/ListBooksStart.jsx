@@ -1,18 +1,18 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Library.module.css";
 import TableHeaders from "../table/TableHeaders";
 import BookItem from "../book/BookItem";
 import useSWR from "swr";
 import { bookCategory } from "@/constants/bookCategory";
-import Loading from "../helper/Loading";
 import { useSession } from "next-auth/react";
 import SpinnerO from "../helper/SpinnerO";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function ListBooksStart() {
+export default function ListBooksStart({ arrStart }) {
+  const [books, setBooks] = useState(arrStart);
   const { data: session } = useSession();
   const userId = session?.user.id;
   const category = bookCategory.start;
@@ -24,6 +24,11 @@ export default function ListBooksStart() {
     { refreshInterval: 3600 }
   );
 
+  useEffect(() => {
+    if (!data) return;
+    setBooks(data);
+  }, [data]);
+
   return (
     <>
       {isLoading ? (
@@ -34,7 +39,7 @@ export default function ListBooksStart() {
           <div className={styles.wrapTabList}>
             <TableHeaders />
             <ul className={styles.listStart}>
-              {data.map((item) => (
+              {books.map((item) => (
                 <li
                   key={item._id}
                   className={`${styles.wrapBook} ${styles.bgBook}`}

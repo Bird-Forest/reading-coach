@@ -26,7 +26,7 @@ export default async function StatisticPage() {
         <Counter coach={coach} />
       </div>
       <div className={styles.goal}>
-        <GoalStatistics coach={coach} />
+        <GoalStatistics train={coach} />
       </div>
       <div className={styles.books}>
         <StatListBooks />

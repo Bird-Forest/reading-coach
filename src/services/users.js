@@ -7,6 +7,77 @@ import jwt from "jsonwebtoken";
 
 const secretKey = process.env.SEKRET_KEY;
 
+export async function createSessionUser(values) {
+  try {
+    await initializeUserModel();
+    const user = await User.findOne({ email: values.email }).exec();
+
+    if (user) {
+      throw new Error("You are already registered");
+    }
+    const saltRounds = 10;
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hash = bcrypt.hashSync(values.pwd, salt);
+
+    const newUser = await User.create({
+      name: values.name,
+      email: values.email,
+      pwd: hash,
+    });
+
+    const id = newUser._id;
+    const name = newUser.name;
+
+    const userId = JSON.parse(JSON.stringify(id));
+    const userName = JSON.parse(JSON.stringify(name));
+
+    return {
+      id: userId,
+      name: userName,
+    };
+  } catch (e) {
+    console.log("Action", e);
+    return {
+      message: e.message,
+    };
+  }
+}
+
+export async function getSessionUser(values) {
+  try {
+    await initializeUserModel();
+    const user = await User.findOne({ email: values.email }).exec();
+
+    if (!user) {
+      return {
+        message: "You are not registered",
+      };
+    }
+    let pwd = values.pwd;
+    const pwdCompare = await bcrypt.compare(pwd, user.pwd);
+
+    if (!pwdCompare) {
+      throw new Error("409");
+    }
+
+    const id = user._id;
+    const name = user.name;
+
+    const userId = JSON.parse(JSON.stringify(id));
+    const userName = JSON.parse(JSON.stringify(name));
+
+    return {
+      id: userId,
+      name: userName,
+    };
+  } catch (e) {
+    console.log("Action", e);
+    return {
+      message: "Email or password is wrong",
+    };
+  }
+}
+
 export async function registerUser(values) {
   try {
     await initializeUserModel();
@@ -104,51 +175,3 @@ export async function loginUser(values) {
     };
   }
 }
-
-export async function getSessionUser(values) {
-  try {
-    await initializeUserModel();
-    const user = await User.findOne({ email: values.email }).exec();
-
-    if (!user) {
-      return {
-        message: "You are not registered",
-      };
-    }
-    let pwd = values.pwd;
-    const pwdCompare = await bcrypt.compare(pwd, user.pwd);
-
-    if (!pwdCompare) {
-      throw new Error("409");
-    }
-
-    // return JSON.parse(JSON.stringify(user));
-    // const data = JSON.parse(JSON.stringify(user));
-    const id = user._id;
-    const name = user.name;
-    const email = user.email;
-    const userId = JSON.parse(JSON.stringify(id));
-    const userName = JSON.parse(JSON.stringify(name));
-    const userEmail = JSON.parse(JSON.stringify(email));
-
-    return {
-      id: userId,
-      name: userName,
-      // email: userEmail,
-    };
-
-    // return data;
-  } catch (e) {
-    console.log("Action", e);
-    return {
-      message: "Email or password is wrong",
-    };
-  }
-}
-
-//  if (!user) {
-//    // throw new Error("You are not registered");
-//    return {
-//      message: "You are not registered",
-//    };
-//  }

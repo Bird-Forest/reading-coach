@@ -46,7 +46,7 @@ export default function Counter({ coach }) {
   return (
     <div className={styles.wrapCounter}>
       <CounterYear />
-      <CounterGoal coach={coach} />
+      <CounterGoal train={coach} />
       {isModal &&
         createPortal(
           <OverlayModal

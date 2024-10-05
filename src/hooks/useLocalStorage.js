@@ -25,22 +25,11 @@ export default function useLocalStorage(key) {
   return tokenData;
 }
 
-// export default function useLocalStorage(key, defaultValue) {
-//   const [state, setState] = useState(() => {
-//     return JSON.parse(window.localStorage.getItem(key)) ?? defaultValue;
-//   });
+// *** Для зберігання в формі
+// useEffect(() => {
+//   window.localStorage.setItem("authToken", token);
+// }, [token]);
 
-//   useEffect(() => {
-//     window.localStorage.setItem(key, JSON.stringify(state));
-//   }, [key, state]);
-//   console.log("HOOK", state);
-//   return [state, setState];
-// }
-
-// import jwt from "jsonwebtoken";
-// const decodeToken = jwt.decode(token)
-// console.log(decodeToken)
-// try {
-//   const {id, username} = jwt.verify(token, secretKey)
-// }catch(e){console.log(e.message);
-// }
+//  setToken(res.token);
+// *** Для виклику в клієнтських компоентах
+//  const { username } = useLocalStorage("authToken");

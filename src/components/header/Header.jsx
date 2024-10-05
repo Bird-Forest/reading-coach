@@ -10,7 +10,6 @@ import { useSession } from "next-auth/react";
 
 export default function Header() {
   const { data: session } = useSession();
-  // const { exp } = useLocalStorage("authToken");
   const [valid, setValid] = useState(false);
 
   useEffect(() => {

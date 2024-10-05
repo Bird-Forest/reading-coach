@@ -70,6 +70,7 @@
 .input {
   display: flex;
   width: inherit;
+  font-family: var(--font-montserrat);
   height: 42px;
   border: 1px solid rgb(166, 171, 185);
   background-color: rgb(246, 247, 251);

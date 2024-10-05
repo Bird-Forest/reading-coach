@@ -7,17 +7,14 @@ import { Book, initializeBookModel } from "@/models/book";
 
 //  *** FOR API/books
 export const getBooksByCategory = async (category, userId) => {
-  // console.log("S", category, userId);
   try {
     await initializeBookModel();
     const books = await Book.find({
       category,
       owner: userId,
     }).exec();
-    // console.log("SERVER", books);
+
     return books;
-    // const data = JSON.parse(JSON.stringify(books));
-    // return data;
   } catch (e) {
     console.log(e);
     return {
@@ -26,12 +23,12 @@ export const getBooksByCategory = async (category, userId) => {
   }
 };
 
-export const createBook = async (values, id) => {
+export const createBook = async (values, userId) => {
   try {
     await initializeBookModel();
     const book = await Book.create({
       ...values,
-      owner: mongoose.Types.ObjectId.createFromHexString(id),
+      owner: mongoose.Types.ObjectId.createFromHexString(userId),
       // owner: mongoose.Types.ObjectId(id),
     });
     return {
@@ -46,10 +43,6 @@ export const createBook = async (values, id) => {
 };
 
 export const updateBook = async (id, book) => {
-  // console.log("ID", id);
-  // console.log("BOOK", book);
-  // const session = await mongoose.startSession();
-  // session.startTransaction();
   try {
     await initializeBookModel();
     const bookId = await Book.findByIdAndUpdate(id, book, { new: true }).lean();
@@ -175,36 +168,3 @@ export const getBook = async (id) => {
 //     };
 //   }
 // };
-
-// Преобразуйте строку в ObjectId
-// const book = await Book.create(values);
-// import { NextApiRequest, NextApiResponse } from "next";
-// import dbConnect from "../../lib/dbConnect";
-// // import Book from "../../models/Book";
-// import { getSession } from "next-auth/client";
-
-// export default async function handler() {
-// // req: NextApiRequest,
-// // res: NextApiResponse
-//   await dbConnect();
-
-//   const session = await getSession({ req });
-//   if (!session) {
-//     return res.status(401).json({ message: "Not authenticated" });
-//   }
-
-//   const { title, author } = req.body;
-
-//   try {
-//     const newBook = new Book({
-//       title,
-//       author,
-//       createdBy: session.user.id, // Используем ID пользователя из сессии
-//     });
-
-//     await newBook.save();
-//     res.status(201).json(newBook);
-//   } catch (error) {
-//     res.status(500).json({ message: "Error saving book", error });
-//   }
-// }

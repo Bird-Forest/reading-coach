@@ -1,16 +1,11 @@
 "use server";
 
 import mongoose from "mongoose";
-import {
-  Coach,
-  initializeCoachModel,
-  updateBooksCategory,
-} from "@/models/coach";
+import { Coach, initializeCoachModel } from "@/models/coach";
 import { bookCategory } from "@/constants/bookCategory";
 import { bookSchema } from "@/models/book";
 
 export const createCoach = async (item, userId) => {
-  // console.log("SWRVER", item, userId);
   try {
     await initializeCoachModel();
     const newTrain = await Coach.create({
@@ -48,7 +43,6 @@ export const getLastCoach = async (id) => {
     return data;
   } catch (error) {
     console.log(error);
-    // res.status(500).json({ message: "Server error", error });
   }
 };
 
@@ -108,7 +102,6 @@ export const updateBooksCoach = async (coachId, update) => {
         await mongoose
           .model("Book")
           .findByIdAndUpdate(book._id, { category: bookCategory.end });
-      // .findByIdAndUpdate(book._id, { category: book.category });
     }
     return {
       message: "Успішно додано",
@@ -123,7 +116,7 @@ export const deleteUnreadedBooks = async (coachId, update) => {
   const readedBooks = update.books.filter(
     (book) => book.category === bookCategory.end
   );
-  console.log("DB", readedBooks);
+
   try {
     await initializeCoachModel();
     const coach = await Coach.findByIdAndUpdate(
@@ -140,7 +133,7 @@ export const deleteUnreadedBooks = async (coachId, update) => {
     const unreadedBooks = update.books.filter(
       (book) => book.category === bookCategory.init
     );
-    console.log("COACH", unreadedBooks);
+
     for (let book of unreadedBooks) {
       await mongoose
         .model("Book")
@@ -165,76 +158,3 @@ export const getAllCoaches = async (userId) => {
     return { message: "Відбулася помилка" };
   }
 };
-
-// export const createCoach = async (train, userId) => {
-//   try {
-//     await initializeCoachModel();
-//     const newTrain = await Coach.create({
-//       ...train,
-//       owner: mongoose.Types.ObjectId(userId),
-//     });
-//     return JSON.parse(JSON.stringify(newTrain));
-//   } catch (e) {
-//     console.log(e);
-//     return { message: "Відбулася помилка" };
-//   }
-// };
-
-// export const updateCoach = async (id, data) => {
-//   try {
-//     await initializeCoachModel();
-//     const updatedCoach = await Coach.findByIdAndUpdate(id, data, {
-//       new: true,
-//     }).lean();
-//     return JSON.parse(JSON.stringify(updatedCoach));
-//   } catch (e) {
-//     console.log(e);
-//     return { message: "Відбулася помилка" };
-//   }
-// };
-
-// export const deleteCoach = async (id) => {
-//   try {
-//     await initializeCoachModel();
-//     await Coach.findByIdAndDelete(id);
-//   } catch (e) {
-//     console.log(e);
-//     return { message: "Відбулася помилка" };
-//   }
-// };
-
-// export const addStartDate = async (value, id) => {
-//   try {
-//     await initializeCoachModel();
-//     const newTrain = await Coach.findByIdAndUpdate({
-//       start: value,
-//       // owner: mongoose.Types.ObjectId.createFromHexString(id),
-//     }).exec();
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
-
-// export const addEndDate = async (value, id) => {
-//   try {
-//     await initializeCoachModel();
-//     const newTrain = await Coach.findByIdAndUpdate(
-//       { _id: id },
-//       { finish: value, new: true }
-//     ).lean();
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
-
-// export const addBookTrain = async (value, id) => {
-//   try {
-//     await initializeCoachModel();
-//     const newTrain = await Coach.findByIdAndUpdate(
-//       { _id: id },
-//       { end: value, new: true }
-//     ).lean();
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };

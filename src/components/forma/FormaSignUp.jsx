@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import styles from "./Form.module.css";
@@ -8,10 +8,10 @@ import ButtonSubmit from "../button/ButtonSubmit";
 import Link from "next/link";
 import ButtonGoogl from "../button/ButtonGoogl";
 import { useRouter } from "next/navigation";
-import { registerUser } from "@/services/users";
 import Spinner from "../helper/Spinner";
 import FieldUser from "./FieldUser";
 import Notif from "../helper/Notif";
+import { signIn } from "next-auth/react";
 
 const initialValues = {
   name: "",
@@ -22,12 +22,8 @@ const initialValues = {
 
 export default function FormaSignUp() {
   const [notif, setNotif] = useState("");
-  const [token, setToken] = useState("");
+  const [auth, setAuth] = useState(false);
   const router = useRouter();
-
-  useEffect(() => {
-    window.localStorage.setItem("authToken", token);
-  }, [token]);
 
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -56,13 +52,22 @@ export default function FormaSignUp() {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
-              const res = await registerUser(values);
+              const res = await signIn("credentials", {
+                name: values.name,
+                email: values.email,
+                pwd: values.pwd,
+                redirect: false,
+              });
               setSubmitting(true);
-              setNotif(res.message);
-              setToken(res.token);
-              if (notif === "Success") {
+              if (res && !res.error) {
+                console.log(res);
+                setAuth(true);
                 resetForm();
+                setSubmitting(false);
                 router.push(`/user/library`);
+              } else {
+                setAuth(false);
+                setNotif("Помилка авторизації");
               }
             }}
           >
@@ -94,7 +99,7 @@ export default function FormaSignUp() {
                 />
                 <div className={styles.wrapFieldBtn}>
                   <div className={styles.wrapTextMess}>
-                    {notif !== "Success" && (
+                    {!auth && (
                       <Notif message={notif} onClose={() => setNotif(false)} />
                     )}
                   </div>

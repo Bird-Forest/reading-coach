@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import styles from "./Form.module.css";
@@ -9,12 +9,9 @@ import Link from "next/link";
 import ButtonGoogl from "../button/ButtonGoogl";
 import { useRouter } from "next/navigation";
 import Spinner from "../helper/Spinner";
-import { loginUser } from "@/services/users";
 import FieldUser from "./FieldUser";
 import Notif from "../helper/Notif";
-// import { signIn } from "@/configs/auth";
 import { signIn } from "next-auth/react";
-// import { useSession } from "next-auth/react";
 
 const initialValues = {
   email: "",

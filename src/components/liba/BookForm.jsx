@@ -5,11 +5,11 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import styles from "./BookForm.module.css";
 import { bookCategory } from "@/constants/bookCategory";
-import useLocalStorage from "@/hooks/useLocalStorage";
 import FieldBook from "./FieldBook";
 import { createBook } from "@/services/books";
 import Notif from "../helper/Notif";
 import SpinnerO from "../helper/SpinnerO";
+import { useSession } from "next-auth/react";
 
 const initialValues = {
   title: "",
@@ -17,13 +17,13 @@ const initialValues = {
   pages: "",
   year: "",
   category: bookCategory.start,
-  // owner: "",
 };
 
 export default function BookForm() {
   const [notif, setNotif] = useState("");
-  const { id } = useLocalStorage("authToken");
-  // console.log(id);
+  const { data: session } = useSession();
+  const userId = session?.user.id;
+
   const validationSchema = Yup.object({
     title: Yup.string().required("поле не може бути порожнім").trim(),
     author: Yup.string().required("поле не може бути порожнім").trim(),
@@ -44,7 +44,7 @@ export default function BookForm() {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
-        const res = await createBook(values, id);
+        const res = await createBook(values, userId);
         setSubmitting(true);
         setNotif(res.message);
         resetForm();

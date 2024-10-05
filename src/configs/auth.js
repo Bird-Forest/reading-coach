@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
-import { getSessionUser } from "@/services/users";
+import { createSessionUser, getSessionUser } from "@/services/users";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET,
@@ -12,17 +12,21 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     }),
     Credentials({
       credentials: {
+        name: {},
         email: {},
         pwd: {},
       },
       authorize: async (credentials) => {
-        // console.log("PROVIDER", credentials);
         if (!credentials.email || !credentials.pwd) return null;
-
         let user = null;
-
         user = await getSessionUser(credentials);
-        // console.log("USER", user);
+        console.log("IN", user);
+        if (user && user.message === "You are not registered") {
+          user = await createSessionUser(credentials);
+          console.log("UP", user);
+          return user;
+        }
+
         return user;
       },
     }),
@@ -33,13 +37,11 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         token.id = user.id;
         token.name = user.name;
       }
-      // console.log("TOKEN", token);
       return token;
     },
     async session({ session, token }) {
       session.user.id = token.id;
       session.user.name = token.name;
-      // console.log("SESS", session);
       return session;
     },
   },
