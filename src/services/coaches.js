@@ -3,7 +3,6 @@
 import mongoose from "mongoose";
 import { Coach, initializeCoachModel } from "@/models/coach";
 import { bookCategory } from "@/constants/bookCategory";
-import { bookSchema } from "@/models/book";
 
 export const createCoach = async (item, userId) => {
   try {
@@ -13,12 +12,6 @@ export const createCoach = async (item, userId) => {
       owner: mongoose.Types.ObjectId.createFromHexString(userId),
     });
     const data = JSON.parse(JSON.stringify(newTrain));
-
-    // newTrain.books.forEach((book) => {
-    //   book.category = bookCategory.init;
-    // });
-
-    // await newTrain.save();
 
     for (let book of newTrain.books) {
       if (book.category === bookCategory.init)

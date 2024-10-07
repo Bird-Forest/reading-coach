@@ -11,10 +11,28 @@
   height: 100vh;
   background-color: rgba(43, 43, 43, 0.1);
 }
+/* *** BUTTON COLOR */
+.btnOrang {
+  color: rgb(255, 255, 255);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: rgb(255, 107, 8);
+  border: 1px solid rgb(255, 107, 8);
+}
+.btnOrang:hover {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: rgb(209, 88, 7);
+}
+.btnWhite {
+  color: rgb(36, 42, 55);
+  border: 1px solid rgb(36, 42, 55);
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.btnWhite:hover {
+  border: 1px solid rgb(255, 107, 8);
+}
 /* *** START STEPS */
 .wrapStart {
-  /* top: 94px;
-  position: absolute; */
   display: flex;
   flex-direction: column;
   width: 280px;
@@ -142,21 +160,13 @@
   height: 40px;
   justify-content: center;
   align-items: center;
-  color: rgb(255, 255, 255);
   font-family: var(--font-montserrat);
   font-size: 14px;
   font-weight: 500;
   line-height: 1.22;
   text-align: center;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-  background-color: rgb(255, 107, 8);
-  border: none;
+  outline: none;
   cursor: pointer;
-}
-.btnStep:hover,
-.btnStep:focus {
-  /* box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25); */
-  background-color: rgb(209, 88, 7);
 }
 /* *** RESUME */
 .wrapResume {
@@ -290,55 +300,10 @@
   outline: none;
   cursor: pointer;
 }
-/* .btnResWhite {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 40px;
-  color: rgb(36, 42, 55);
-  font-family: var(--font-montserrat);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.21;
-  border: 1px solid rgb(36, 42, 55);
-  background-color: rgb(255, 255, 255);
-  outline: transparent;
-  cursor: pointer;
-} */
-/* .btnResWhite:hover,
-.btnResWhite:focus {
-  border: 1px solid rgb(242, 81, 55);
-} */
-/* .btnResOrang {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 40px;
-  color: rgb(255, 255, 255);
-  font-family: var(--font-montserrat);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.21;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-  background-color: rgb(255, 107, 8);
-  outline: transparent;
-  border: none;
-  cursor: pointer;
-} */
-/* .btnResOrang:hover,
-.btnResOrang:focus {
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-  background-color: rgb(209, 88, 7);
-} */
 @media screen and (min-width: 768px) {
   .btnResume {
     width: 130px;
   }
-  /* .btnResOrang {
-    width: 130px;
-  } */
 }
 /* *** READY MODAL */
 .wrapReady {
@@ -389,20 +354,12 @@
   align-items: center;
   width: 130px;
   height: 40px;
-  color: rgb(255, 255, 255);
   font-family: var(--font-montserrat);
   font-size: 14px;
   font-weight: 500;
   line-height: 1.21;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-  background-color: rgb(255, 107, 8);
-  border: none;
   outline: none;
   cursor: pointer;
-}
-.btnReady:hover {
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-  background-color: rgb(209, 88, 7);
 }
 /* *** SUPPORT MODAL */
 .wrapSupport {
@@ -463,29 +420,8 @@
   font-weight: 500;
   line-height: 1.21;
   text-decoration: none;
-  /* border: none; */
   outline: none;
   cursor: pointer;
-}
-/* *** BUTTON COLOR */
-.btnOrang {
-  color: rgb(255, 255, 255);
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-  background-color: rgb(255, 107, 8);
-  border: 1px solid rgb(255, 107, 8);
-}
-.btnOrang:hover {
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-  background-color: rgb(209, 88, 7);
-}
-.btnWhite {
-  color: rgb(0, 0, 0);
-  border: 1px solid rgb(0, 0, 0);
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-}
-.btnWhite:hover {
-  border: 1px solid rgb(255, 107, 8);
 }
 /* *** LOG OUT MODAL */
 .wrapOutModal {

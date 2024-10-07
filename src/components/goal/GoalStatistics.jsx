@@ -32,8 +32,7 @@ export default function GoalStatistics({ train }) {
     setCoach(data);
     const selectedBooks = coach.books;
     if (!selectedBooks) return;
-    // const result = selectedBooks.length;
-    // setGoalBooks(result);
+
     setGoalBooks(selectedBooks.length);
 
     setAllDays(coach.totalDay);
@@ -42,11 +41,8 @@ export default function GoalStatistics({ train }) {
       (book) => book.category === bookCategory.init
     );
     setRest(readBooks.length);
-
-    // const left = readBooks.length;
-    // setRest(left);
   }, [coach, goalBooks, data]);
-  // console.log(goalBooks);
+
   return (
     <div className={styles.wrapGoalStat}>
       <h2 className={styles.titleGoal}>Моя мета прочитати</h2>

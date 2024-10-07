@@ -16,6 +16,15 @@ const coachSchema = new mongoose.Schema(
   },
   { versionKey: false, timestamps: true }
 );
+
+let Coach;
+const initializeCoachModel = async () => {
+  await connectDB();
+  Coach = mongoose.models.Coach || mongoose.model("Coach", coachSchema);
+};
+export { initializeCoachModel, Coach };
+
+// ***************************************************8
 // Функция для обновления категории книг в зависимости от текущего состояния
 // export async function updateBooksCategory(coach) {
 //   if (coach.isModified("books")) {
@@ -38,74 +47,3 @@ const coachSchema = new mongoose.Schema(
 //   await updateBooksCategory(coach);
 //   next();
 // });
-
-let Coach;
-const initializeCoachModel = async () => {
-  await connectDB();
-  Coach = mongoose.models.Coach || mongoose.model("Coach", coachSchema);
-};
-export { initializeCoachModel, Coach };
-
-// ***************************************************8
-// coachSchema.pre("save", async function (next) {
-//   const coach = this;
-//   if (coach.isModified("books")) {
-//     for (let book of coach.books) {
-//       await mongoose
-//         .model("Book")
-//         .findByIdAndUpdate(book._id, { category: "init" });
-//     }
-//   }
-//   next();
-// });
-
-// interface IReadingGoal extends Document {
-//   user: mongoose.Types.ObjectId;
-//   book: mongoose.Types.ObjectId;
-//   startDate: Date;
-//   endDate: Date;
-//   dailyProgress: {
-//     date: Date,
-//     time: string,
-//     pagesRead: number,
-//   }[];
-//   totalPlannedPages(): Promise<number>;
-//   totalPagesRead(): number;
-// }
-
-// const goalScSchema = new Schema({
-//   user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-//   book: { type: mongoose.Schema.Types.ObjectId, ref: "Book", required: true },
-//   startDate: { type: Date, required: true },
-//   endDate: { type: Date, required: true },
-//   dailyProgress: [
-//     {
-//       date: { type: Date, required: true },
-//       time: { type: String, required: true },
-//       pagesRead: { type: Number, required: true },
-//     },
-//   ],
-// });
-
-// Метод для подсчета общего количества запланированных страниц
-// ReadingGoalSchema.methods.totalPlannedPages = async function () {
-//   const book = await mongoose.model("Book").findById(this.book);
-//   return book ? book.pages : 0;
-// };
-
-// Метод для подсчета общего количества прочитанных страниц
-// ReadingGoalSchema.methods.totalPagesRead = function () {
-//   return this.dailyProgress.reduce(
-//     (total, progress) => total + progress.pagesRead,
-//     0
-//   );
-// };
-
-// export default mongoose.model("ReadingGoal", ReadingGoalSchema);
-
-// const readingGoal = await ReadingGoal.findById(goalId);
-// const plannedPages = await readingGoal.totalPlannedPages();
-// const pagesRead = readingGoal.totalPagesRead();
-
-// console.log(`Запланировано страниц: ${plannedPages}`);
-// console.log(`Прочитано страниц: ${pagesRead}`);

@@ -19,23 +19,3 @@ export default function Loading() {
     </div>
   );
 }
-
-// const Loading: React.FC<LoadingProps> = ({
-//   visible = true,
-//   height = "96",
-//   width = "96",
-//   color = "grey",
-//   strokeWidth = "5",
-//   animationDuration = "0.75",
-//   ariaLabel = "rotating-lines-loading",
-//   wrapperStyle = {},
-//   wrapperClass = "",
-// }) => {
-//   return (
-//     <div className={styles.bg1}>
-//       <div className={styles.bg1}></div>
-//     </div>
-//   );
-// };
-
-// export default Loading;

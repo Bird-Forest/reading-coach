@@ -2,12 +2,6 @@
 
 import React, { useEffect } from "react";
 import styles from "./Modal.module.css";
-// import { OverlayModalProps } from "@/types/overlay";
-
-// interface OverlayModalProps {
-//   closeModal: () => void;
-//   content: React.ReactNode;
-// }
 
 export default function OverlayModal({ closeModal, content }) {
   useEffect(() => {

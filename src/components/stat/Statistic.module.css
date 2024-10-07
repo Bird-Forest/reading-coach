@@ -66,37 +66,6 @@
   display: grid;
   grid-area: result;
 }
-/* .caseStatMob {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 280px;
-  gap: 40px;
-  padding: 0;
-} */
-
-/* @media screen and (min-width: 768px) {
-  .caseStatMob {
-    gap: 36px;
-  }
-} */
-/* .caseStatDesck {
-  display: none;
-} */
-/* @media screen and (min-width: 1280px) {
-  .caseStatMob {
-    display: none;
-  }
-  .caseStatDesck {
-    display: flex;
-    flex-wrap: wrap;
-    row-gap: 40px;
-    column-gap: 32px;
-    width: 1264px;
-    height: 790px;
-  }
-} */
 /* *** LIST BOOK STATISTIC */
 .wrapListBook {
   display: flex;

@@ -49,15 +49,13 @@ export async function getSessionUser(values) {
     const user = await User.findOne({ email: values.email }).exec();
 
     if (!user) {
-      return {
-        message: "You are not registered",
-      };
+      throw new Error("You are not registered");
     }
     let pwd = values.pwd;
     const pwdCompare = await bcrypt.compare(pwd, user.pwd);
 
     if (!pwdCompare) {
-      throw new Error("409");
+      throw new Error("Email or password is wrong");
     }
 
     const id = user._id;
@@ -74,6 +72,36 @@ export async function getSessionUser(values) {
     console.log("Action", e);
     return {
       message: "Email or password is wrong",
+    };
+  }
+}
+
+export async function getSessionGoogle(profile) {
+  try {
+    await initializeUserModel();
+
+    let user = await User.findOne({ email: profile.email });
+    if (!user) {
+      user = await User.create({
+        name: profile.name,
+        email: profile.email,
+      });
+    }
+
+    const id = user._id;
+    const name = user.name;
+
+    const userId = JSON.parse(JSON.stringify(id));
+    const userName = JSON.parse(JSON.stringify(name));
+
+    return {
+      id: userId,
+      name: userName,
+    };
+  } catch (e) {
+    console.log("Action", e);
+    return {
+      message: e.message,
     };
   }
 }
@@ -95,19 +123,11 @@ export async function registerUser(values) {
       email: values.email,
       pwd: hash,
     });
-    // const data = JSON.parse(JSON.stringify(newUser));
     const res = await User.findOne({ email: values.email }).exec();
-    // console.log("RES", res);
     const payload = {
       id: res._id,
       username: res.name,
     };
-    // const result = add(new Date(), {
-    //   days: 1,
-    //   hours: 5,
-    // });
-    // const expirationDate = new Date(result);
-    // const expirationTime = Math.floor(expirationDate.getTime() / 1000);
 
     const token = jwt.sign(payload, secretKey, { expiresIn: "24h" });
     await User.findByIdAndUpdate(res._id, { token });

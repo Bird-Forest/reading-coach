@@ -11,7 +11,6 @@
 }
 @media screen and (min-width: 768px) {
   .wrapEmpty {
-    /* display: none; */
     justify-content: center;
     width: 704px;
     height: 62px;

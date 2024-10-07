@@ -34,8 +34,8 @@ export default function CounterGoal() {
   const getTimer = useCallback(() => {
     if (!coach) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
-    const lastDay = coach.finish;
-    const unreadedBooks = coach.books.filter(
+    const lastDay = coach?.finish;
+    const unreadedBooks = coach?.books.filter(
       (book) => book.category === bookCategory.init
     );
     const result = differenceInMilliseconds(new Date(lastDay), new Date());
@@ -52,7 +52,6 @@ export default function CounterGoal() {
   }, [coach]);
 
   useEffect(() => {
-    // if (!coach) return;
     if (!data) return;
     setCoach(data);
     setEndDay(getTimer());
@@ -110,26 +109,3 @@ export default function CounterGoal() {
     </div>
   );
 }
-
-// const getTimer = () => {
-//   const result = differenceInMilliseconds(
-//     new Date(2024, 8, 27, 0, 0, 0, 0),
-//     new Date()
-//   );
-//   let count = {};
-//   if (result > 0) {
-//     count = {
-//       days: Math.floor(result / (1000 * 60 * 60 * 24)),
-//       hours: Math.floor((result / (1000 * 60 * 60)) % 24),
-//       minutes: Math.floor((result / 1000 / 60) % 60),
-//       seconds: Math.floor((result / 1000) % 60),
-//     };
-//     return count;
-//   }
-//   return (count = {
-//     days: 0,
-//     hours: 0,
-//     minutes: 0,
-//     seconds: 0,
-//   });
-// };

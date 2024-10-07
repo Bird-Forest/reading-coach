@@ -13,13 +13,13 @@ export default function BookItemEmpty() {
       </div>
       <div className={styles.wrapTextEmpty}>
         <p className={styles.textEmpty}>
-          Автор:<p>...</p>
+          Автор:<span>...</span>
         </p>
         <p className={styles.textEmpty}>
-          Рік:<p>...</p>
+          Рік:<span>...</span>
         </p>
         <p className={styles.textEmpty}>
-          Стор.:<p>...</p>
+          Стор.:<span>...</span>
         </p>
       </div>
     </div>

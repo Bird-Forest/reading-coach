@@ -14,8 +14,8 @@ export default function ButtonOut() {
 
   const exitApplication = () => {
     signOut({ redirect: false });
-    router.push("/");
     setShowModal(false);
+    router.push(" ");
   };
 
   const openModal = () => {
@@ -24,12 +24,6 @@ export default function ButtonOut() {
   const closeModal = () => {
     setShowModal(false);
   };
-
-  // const exitApplication = () => {
-  //   localStorage.removeItem("authToken");
-  //   router.push("/");
-  //   setShowModal(false);
-  // };
 
   return (
     <div className={styles.wrapBtnOut}>
@@ -51,16 +45,3 @@ export default function ButtonOut() {
     </div>
   );
 }
-
-//  <div className={styles.wrapBtnOut}>
-//       <form
-//         action={async () => {
-//           await signOut();
-//           router.push("/");
-//         }}
-//       >
-//         <button onClick={() => signOut()} className={styles.btnOut}>
-//           Вихід
-//         </button>
-//       </form>
-//     </div>

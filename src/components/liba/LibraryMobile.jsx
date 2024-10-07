@@ -28,7 +28,7 @@ export default function LibraryMobile({ id, arrStart, arrInit, arrEnd }) {
       ) : (
         <div className={styles.wrapList}>
           <BookCategories
-            userId={id}
+            id={id}
             arrStart={arrStart}
             arrInit={arrInit}
             arrEnd={arrEnd}

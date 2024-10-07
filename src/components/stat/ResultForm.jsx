@@ -4,11 +4,8 @@ import React, { useState } from "react";
 import styles from "./Result.module.css";
 import { format } from "date-fns";
 import { updateReportCoach } from "@/services/coaches";
-// import Spinner from "../helper/Spinner";
-// import { useFormStatus } from "react-dom";
 
 export default function ResultForm({ coach }) {
-  // const { pending } = useFormStatus();
   const [result, setResult] = useState("");
   const nowDate = format(new Date(), "dd.MM.yyyy");
   const id = coach ? coach._id : "";
@@ -52,7 +49,6 @@ export default function ResultForm({ coach }) {
       >
         <button button="button" className={styles.btnResult}>
           Додати результат
-          {/* {pending ? <Spinner /> : "Додати результат"} */}
         </button>
       </form>
     </div>

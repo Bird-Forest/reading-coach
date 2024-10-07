@@ -94,8 +94,3 @@ export default function FormaSignIn() {
     </div>
   );
 }
-
-// useEffect(() => {
-//   window.localStorage.setItem("authToken", token);
-// }, [token]);
-// const res = await loginUser(values);

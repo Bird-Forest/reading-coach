@@ -16,6 +16,13 @@ export const bookSchema = new mongoose.Schema(
   { versionKey: false, timestamps: true }
 );
 
+let Book;
+const initializeBookModel = async () => {
+  await connectDB();
+  Book = mongoose.models.Book || mongoose.model("Book", bookSchema);
+};
+export { initializeBookModel, Book };
+
 // bookSchema.pre("save", async function (next) {
 //   const book = this;
 //   if (book.isModified("category")) {
@@ -26,21 +33,3 @@ export const bookSchema = new mongoose.Schema(
 //   }
 //   next();
 // });
-
-let Book;
-const initializeBookModel = async () => {
-  await connectDB();
-  Book = mongoose.models.Book || mongoose.model("Book", bookSchema);
-};
-export { initializeBookModel, Book };
-
-// owner: {
-//   type: Schema.Types.ObjectId,
-//   ref: "User",
-//   requied: true,
-// },
-
-// const connection = mongoose.createConnection(uri);
-// export const Book = connection.model("Book", bookShema);
-
-// createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },

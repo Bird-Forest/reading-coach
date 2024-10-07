@@ -52,14 +52,6 @@ export const updateBook = async (id, book) => {
         message: "Відбулася помилка",
       };
     }
-    // await Coach.findOneAndUpdate(
-    //   { "books._id": id },
-    //   { $set: { "books.$": book } },
-    //   { session }
-    // );
-
-    // await session.commitTransaction();
-    // session.endSession();
 
     const data = JSON.parse(JSON.stringify(book));
     return data;

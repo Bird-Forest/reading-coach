@@ -13,17 +13,11 @@ export default function ButtonAction({ formAction, item, children }) {
   const { data: session } = useSession();
   const userId = session?.user.id;
 
-  // const path = usePathname();
-  // const segments = path.split("/");
-  // const userId = segments[2];
-  // console.log("BTN ACTION", userId);
-
   return (
     <div className={styles.wrapBtnAction}>
       <form
         action={async () => {
           const res = await formAction(item, userId);
-          // console.log(res);
           router.push(`/user`);
         }}
       >

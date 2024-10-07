@@ -300,20 +300,3 @@
     cursor: pointer;
   }
 }
-/* *** BUTTON TRAIN */
-/* .btnAddTrain {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 171px;
-  height: 42px;
-  color: rgb(255, 255, 255);
-  font-family: var(--font-montserrat);
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.25;
-  background-color: rgb(255, 107, 8);
-  border: none;
-  outline: none;
-  cursor: pointer;
-} */

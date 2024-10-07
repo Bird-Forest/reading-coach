@@ -120,41 +120,6 @@
   outline: none;
   padding: 12px;
 }
-/* .btnOpen {
-  top: 18px;
-  right: 0;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  width: 24px;
-  height: 42px;
-  background-color: transparent;
-  border: none;
-  outline: transparent;
-  cursor: pointer;
-  padding: 0;
-} */
-/* .iconOpen {
-  width: 22px;
-  height: 22px;
-  fill: rgb(36, 42, 55);
-} */
-/* .btnResult {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 240px;
-  height: 42px;
-  color: rgb(255, 255, 255);
-  font-family: var(--font-montserrat);
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.25;
-  background-color: rgb(255, 107, 8);
-  border: none;
-  outline: none;
-  cursor: pointer;
-} */
 /* *** LIST RESULT */
 .wrapListResult {
   display: flex;
@@ -198,9 +163,6 @@
     display: none;
   }
   .titleList::after {
-    /* content: "";
-    display: inline-block;
-    flex: 1; */
     border-bottom: 2px solid rgb(224, 229, 235);
     margin: 0 0 0 4px;
   }
@@ -212,10 +174,6 @@
   .titleList::before {
     display: inline-block;
   }
-  /* .titleList::after {
-    border-bottom: 2px solid rgb(224, 229, 235);
-    margin: 0 0 0 4px;
-  } */
 }
 .wrapList {
   display: flex;
@@ -243,11 +201,6 @@
   background-color: rgb(177, 181, 194);
   cursor: pointer;
 }
-/* @media screen and (min-width: 768px) {
-  .wrapList {
-   
-  }
-} */
 .wrapItem {
   display: flex;
   justify-content: space-between;

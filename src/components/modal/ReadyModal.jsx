@@ -15,7 +15,11 @@ export default function ReadyModal({ closeModal }) {
         Вітаю!
         <br /> Ще одна книга прочитана.
       </p>
-      <button type="button" onClick={closeModal} className={styles.btnReady}>
+      <button
+        type="button"
+        onClick={closeModal}
+        className={`${styles.btnReady} ${styles.btnOrang}`}
+      >
         Готово
       </button>
     </div>

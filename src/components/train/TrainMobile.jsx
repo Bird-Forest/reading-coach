@@ -10,7 +10,6 @@ import FormSelect from "./FormSelect";
 import TrainListBooks from "./TrainListBooks";
 import ButtonAction from "../button/ButtonAction";
 import MyChart from "../chart/MyChart";
-import { bookCategory } from "@/constants/bookCategory";
 import { differenceInCalendarDays } from "date-fns";
 import { createCoach } from "@/services/coaches";
 import BookItemEmpty from "../book/BookItemEmpty";
@@ -24,6 +23,9 @@ export default function TrainMobile() {
 
   const totalDays = differenceInCalendarDays(new Date(end), new Date(begin));
   const totalBooks = books.length;
+  const totalPages = books.reduce((acc, book) => {
+    return acc + book.pages;
+  }, 0);
 
   const trainingStart = (value) => {
     setBegin(value);
@@ -34,20 +36,26 @@ export default function TrainMobile() {
   };
 
   const choosedBook = (option) => {
-    setBooks((prevState) => [...prevState, option]);
+    setBooks((prevState) => {
+      // Проверяем, есть ли уже такой элемент в массиве
+      if (!prevState.includes(option)) {
+        return [...prevState, option];
+      }
+      return prevState;
+    });
   };
 
   const deleteBook = (id) => {
     const newBooks = books.filter((item) => item._id !== id);
     setBooks(newBooks);
   };
+
   const train = {
     start: begin,
     finish: end,
     books: books,
     totalDay: totalDays,
-    totalPage: totalBooks,
-    category: bookCategory.init,
+    totalPage: totalPages,
   };
   const isBooks = totalBooks > 0;
   return (

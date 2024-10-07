@@ -8,7 +8,7 @@ export async function GET(req) {
 
   if (!category || !userId) {
     return NextResponse.json(
-      // { message: "Missing parameters" },
+      { message: "Missing parameters" },
       { status: 400 }
     );
   }

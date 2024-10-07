@@ -8,11 +8,9 @@ import StartSteps from "../modal/StartSteps";
 import { bookCategory } from "@/constants/bookCategory";
 import { updateBooksCoach } from "@/services/coaches";
 import useSWR from "swr";
-// import Loading from "../helper/Loading";
 import { createPortal } from "react-dom";
 import OverlayModal from "../modal/OverlayModal";
 import ReadyModal from "../modal/ReadyModal";
-// import { usePathname } from "next/navigation";
 import SpinnerO from "../helper/SpinnerO";
 import { useSession } from "next-auth/react";
 
@@ -21,7 +19,6 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 export default function StatListBooks() {
   const { data: session } = useSession();
   const id = session?.user.id;
-  // console.log(id);
 
   const shouldFetch = !!id;
   const { data, isLoading } = useSWR(
@@ -97,11 +94,3 @@ export default function StatListBooks() {
     </>
   );
 }
-
-// const books = coach.books.reduce((acc, el) => {
-//   if (el._id === item._id) {
-//     el.categoty = bookCategory.end;
-//   }
-//   acc.push(el);
-//   return acc;
-// }, []);

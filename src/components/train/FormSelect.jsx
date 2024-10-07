@@ -5,7 +5,6 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import styles from "./FormTrain.module.css";
 import { v4 as uuidv4 } from "uuid";
 import useSWR from "swr";
-// import { usePathname } from "next/navigation";
 import { bookCategory } from "@/constants/bookCategory";
 import { useSession } from "next-auth/react";
 
@@ -14,9 +13,6 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 export default function FormSelect({ choosedBook }) {
   const { data: session } = useSession();
   const userId = session?.user.id;
-  // const path = usePathname();
-  // const segments = path.split("/");
-  // const userId = segments[2];
   const category = bookCategory.start;
 
   const { data } = useSWR(
@@ -27,7 +23,6 @@ export default function FormSelect({ choosedBook }) {
 
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState({});
-  // console.log("SELECT", option);
   const arrStart = data;
 
   const Arr = Array.isArray(arrStart) && arrStart.length > 0;

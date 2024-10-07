@@ -55,12 +55,11 @@ export default function StartSteps() {
         <button
           type="button"
           onClick={() => setIsShow(false)}
-          className={styles.btnStep}
+          className={`${styles.btnStep} ${styles.btnOrang}`}
         >
           Ok
         </button>
       </div>
     </div>
-    // </div>
   );
 }

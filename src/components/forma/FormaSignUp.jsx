@@ -60,7 +60,6 @@ export default function FormaSignUp() {
               });
               setSubmitting(true);
               if (res && !res.error) {
-                console.log(res);
                 setAuth(true);
                 resetForm();
                 setSubmitting(false);

@@ -8,7 +8,7 @@ export default function ResumeModal({ item, closeModal, getResume }) {
   const [checkboxStates, setCheckboxStates] = useState(
     item.rating ?? [false, false, false, false, false]
   );
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(item.resume || "");
   const handleResume = () => {
     const book = {
       ...item,
@@ -50,6 +50,7 @@ export default function ResumeModal({ item, closeModal, getResume }) {
             name="resume"
             placeholder="..."
             autoFocus
+            value={message}
             onChange={(e) => setMessage(e.target.value)}
             className={styles.textarResume}
           />
@@ -58,7 +59,6 @@ export default function ResumeModal({ item, closeModal, getResume }) {
           <button
             type="button"
             onClick={closeModal}
-            // className={styles.btnResWhite}
             className={`${styles.btnResume} ${styles.btnWhite}`}
           >
             Назад
@@ -66,7 +66,6 @@ export default function ResumeModal({ item, closeModal, getResume }) {
           <button
             type="button"
             onClick={handleResume}
-            // className={styles.btnResOrang}
             className={`${styles.btnResume} ${styles.btnOrang}`}
           >
             Зберегти

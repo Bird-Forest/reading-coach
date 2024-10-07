@@ -14,19 +14,6 @@ export default function TrainPanel() {
   const [begin, setBegin] = useState();
   const [end, setEnd] = useState();
   const [books, setBooks] = useState([]);
-  // console.log("TRAIN", books);
-
-  const choosedBook = (option) => {
-    setBooks((prevState) => {
-      // Проверяем, есть ли уже такой элемент в массиве
-      if (!prevState.includes(option)) {
-        return [...prevState, option];
-      }
-      return prevState;
-    });
-    // setBooks((prevState) => [...prevState, option]);
-  };
-
   const totalDays = differenceInCalendarDays(new Date(end), new Date(begin));
   const totalBooks = books.length;
   const totalPages = books.reduce((acc, book) => {
@@ -41,10 +28,21 @@ export default function TrainPanel() {
     setEnd(value);
   };
 
+  const choosedBook = (option) => {
+    setBooks((prevState) => {
+      // Проверяем, есть ли уже такой элемент в массиве
+      if (!prevState.includes(option)) {
+        return [...prevState, option];
+      }
+      return prevState;
+    });
+  };
+
   const deleteBook = (id) => {
     const newBooks = books.filter((item) => item._id !== id);
     setBooks(newBooks);
   };
+
   const train = {
     start: begin,
     finish: end,
@@ -77,15 +75,3 @@ export default function TrainPanel() {
     </div>
   );
 }
-
-// <form
-//           action={async () => {
-//             const res = await createCoach(train, userId);
-//             console.log(res);
-//             // router.push(`/users/${userId}`);
-//           }}
-//         >
-//           <button button="button" className={styles.btnAction}>
-//             Почати тренування
-//           </button>
-//         </form>

@@ -7,7 +7,7 @@ import styles from "./Util.module.css";
 export default function Spinner() {
   return (
     <div className={styles.wrapSpin}>
-      <BeatLoader color="#ffffff" />
+      <BeatLoader size={15} color="#ffffff" />
     </div>
   );
 }

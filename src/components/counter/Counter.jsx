@@ -14,21 +14,20 @@ import { deleteUnreadedBooks } from "@/services/coaches";
 
 export default function Counter({ coach }) {
   const [isModal, setIsModal] = useState(false);
-  // console.log(coach);
+
   const router = useRouter();
   useEffect(() => {
     if (!coach) return;
     const selectedBooks = coach.books;
-    // console.log(selectedBooks);
+
     if (!selectedBooks) return;
     const pastDay = isPast(new Date(coach.finish));
-    // console.log(pastDay);
+
     const unreadBook = selectedBooks.some(
       (book) => book.category === bookCategory.init
     );
-    // console.log(unreadBook);
+
     const execution = pastDay && unreadBook;
-    // console.log(execution);
     setIsModal(execution);
   }, [coach]);
 

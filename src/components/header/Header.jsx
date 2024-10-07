@@ -13,7 +13,7 @@ export default function Header() {
   const [valid, setValid] = useState(false);
 
   useEffect(() => {
-    if (!session) setValid(false);
+    if (!session) return;
 
     const today = getTime(new Date());
     const exp = session ? getTime(new Date(session.expires)) : 0;
