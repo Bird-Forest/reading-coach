@@ -6,6 +6,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import styles from "./FormTrain.module.css";
 import GetPeriod from "../calendar/GetPeriod";
 import { formatISO, isBefore, format, isPast, endOfYesterday } from "date-fns";
+import GetMonth from "../calendar/GetMonth";
 
 export default function FormDate({ trainingStart, trainingEnd }) {
   const [startDay, setStartDay] = useState("");
@@ -58,7 +59,7 @@ export default function FormDate({ trainingStart, trainingEnd }) {
         <div
           className={!openStart ? styles.noneCalendar : styles.blockCalendar}
         >
-          <GetPeriod getValue={getStartDay} />
+          <GetMonth getValue={getStartDay} />
         </div>
       </div>
 
@@ -84,7 +85,7 @@ export default function FormDate({ trainingStart, trainingEnd }) {
           </button>
         </label>
         <div className={!openEnd ? styles.noneCalendar : styles.blockCalendar}>
-          <GetPeriod getValue={getEndDay} />
+          <GetMonth getValue={getEndDay} />
         </div>
       </div>
     </div>
