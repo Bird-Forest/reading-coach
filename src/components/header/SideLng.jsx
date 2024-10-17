@@ -16,8 +16,9 @@ export default function SideLng() {
   // };
   const switchLocale = () => {
     const newLocale = locale === "uk" ? "en" : "uk"; // Пример переключения между двумя локалями
-    const newPathname = `/${newLocale}${pathname.substring(locale.length + 1)}`;
-    router.replace(newPathname);
+    // const newPathname = `/${newLocale}${pathname.substring(locale.length + 1)}`;
+    // router.replace(newPathname);
+    router.replace(pathname, { locale: newLocale });
   };
 
   return (
