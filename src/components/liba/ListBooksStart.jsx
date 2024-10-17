@@ -12,7 +12,7 @@ import { useTranslations } from "next-intl";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function ListBooksStart({ userId }) {
+export default function ListBooksStart({ userId, getLengthStart }) {
   const t = useTranslations("library");
   const [books, setBooks] = useState([]);
 
@@ -28,7 +28,8 @@ export default function ListBooksStart({ userId }) {
   useEffect(() => {
     if (!data) return;
     setBooks(data);
-  }, [data]);
+    getLengthStart(data);
+  }, [data, getLengthStart]);
 
   const Arr = Array.isArray(books) && books.length > 0;
 

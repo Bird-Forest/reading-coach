@@ -48,18 +48,6 @@ export const getLastCoach = async (id) => {
   }
 };
 
-// export const getCoachById = async (id) => {
-//   try {
-//     await initializeCoachModel();
-//     const coach = await Coach.findById({ _id: id }).lean();
-//     // return JSON.parse(JSON.stringify(coach));
-//     return coach;
-//   } catch (e) {
-//     console.log(e);
-//     return { message: "Відбулася помилка" };
-//   }
-// };
-
 export const updateReportCoach = async (id, item) => {
   try {
     await initializeCoachModel();

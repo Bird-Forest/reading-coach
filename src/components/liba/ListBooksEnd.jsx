@@ -17,14 +17,15 @@ import { useTranslations } from "next-intl";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function ListBooksEnd({ arrEnd }) {
+export default function ListBooksEnd({ userId }) {
   const t = useTranslations("library");
-  const [books, setBooks] = useState(arrEnd);
-  const { data: session } = useSession();
-  const userId = session?.user.id;
+  const [books, setBooks] = useState([]);
+  // const [books, setBooks] = useState(arrEnd);
+  // const { data: session } = useSession();
+  // const userId = session?.user.id;
   const category = bookCategory.end;
-
   const shouldFetch = !!userId;
+
   const { data, isLoading } = useSWR(
     shouldFetch ? `/api/books?category=${category}&id=${userId}` : null,
     fetcher,
@@ -52,6 +53,8 @@ export default function ListBooksEnd({ arrEnd }) {
     closeModal();
   };
 
+  const Arr = Array.isArray(books) && books.length > 0;
+
   return (
     <>
       {isLoading ? (
@@ -62,58 +65,60 @@ export default function ListBooksEnd({ arrEnd }) {
           <div className={styles.wrapTabList}>
             <TableHeaderEnd />
             <ul className={styles.listStart}>
-              {books.map((item) => (
-                <li key={item._id} className={styles.wrapBookEnd}>
-                  <BookItem
-                    title={item.title}
-                    author={item.author}
-                    pages={item.pages}
-                    category={item.category}
-                    year={item.year}
-                  />
-                  <div className={styles.wrapItemEnd}>
-                    <div className={styles.wrapKeyStar}>
-                      <p className={styles.keyBook}>{t("rating")}</p>
-                      <ul className={styles.wrapStars}>
-                        {item.rating?.map((el, i) => (
-                          <li key={i} className={styles.wrapStar}>
-                            {el ? (
-                              <IoStar className={styles.iconStar} />
-                            ) : (
-                              <IoStarOutline className={styles.iconStar} />
-                            )}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className={styles.wrapBtnResume}>
-                      <button
-                        type="button"
-                        onClick={() => openModal(item)}
-                        className={styles.btnResume}
-                      >
-                        {t("resume_btn")}
-                      </button>
-                      {showModal &&
-                        currentItem &&
-                        currentItem._id === item._id &&
-                        createPortal(
-                          <OverlayModal
-                            item={currentItem}
-                            content={
-                              <ResumeModal
+              {Arr
+                ? books.map((item) => (
+                    <li key={item._id} className={styles.wrapBookEnd}>
+                      <BookItem
+                        title={item.title}
+                        author={item.author}
+                        pages={item.pages}
+                        category={item.category}
+                        year={item.year}
+                      />
+                      <div className={styles.wrapItemEnd}>
+                        <div className={styles.wrapKeyStar}>
+                          <p className={styles.keyBook}>{t("rating")}</p>
+                          <ul className={styles.wrapStars}>
+                            {item.rating?.map((el, i) => (
+                              <li key={i} className={styles.wrapStar}>
+                                {el ? (
+                                  <IoStar className={styles.iconStar} />
+                                ) : (
+                                  <IoStarOutline className={styles.iconStar} />
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className={styles.wrapBtnResume}>
+                          <button
+                            type="button"
+                            onClick={() => openModal(item)}
+                            className={styles.btnResume}
+                          >
+                            {t("resume_btn")}
+                          </button>
+                          {showModal &&
+                            currentItem &&
+                            currentItem._id === item._id &&
+                            createPortal(
+                              <OverlayModal
                                 item={currentItem}
-                                closeModal={closeModal}
-                                getResume={getResume}
-                              />
-                            }
-                          />,
-                          document.body
-                        )}
-                    </div>
-                  </div>
-                </li>
-              ))}
+                                content={
+                                  <ResumeModal
+                                    item={currentItem}
+                                    closeModal={closeModal}
+                                    getResume={getResume}
+                                  />
+                                }
+                              />,
+                              document.body
+                            )}
+                        </div>
+                      </div>
+                    </li>
+                  ))
+                : []}
             </ul>
           </div>
         </div>

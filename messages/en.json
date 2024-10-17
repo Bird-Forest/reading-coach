@@ -46,7 +46,7 @@
     "error_field": "field cannot be empty",
     "error_year": "minimum number of characters is 4",
     "error_pages": "minimum number of characters is 2",
-    "title_end": "Going to read",
+    "title_end": "Already read",
     "rating": "Rating:",
     "resume_btn": "Resume",
     "title_init": "Reading now",
