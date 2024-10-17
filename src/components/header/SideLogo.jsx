@@ -7,7 +7,7 @@ import { abril } from "@/app/fonts";
 
 export default function SideLogo() {
   return (
-    <SidebarItem pathname="/">
+    <SidebarItem href="/">
       <h4 className={`${abril.className} ${styles.logo}`}>BR</h4>
     </SidebarItem>
   );

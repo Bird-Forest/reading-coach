@@ -2,20 +2,19 @@
 
 import React, { useEffect, useState } from "react";
 import styles from "./Main.module.css";
-import Link from "next/link";
 import Information from "./Information";
-import { useSession } from "next-auth/react";
 import { getTime } from "date-fns";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 
-export default function MainInfo() {
+export default function MainInfo({ session }) {
   const [valid, setValid] = useState(false);
-  const { data: session } = useSession();
+  const t = useTranslations("home");
 
   useEffect(() => {
-    if (!session) return;
+    if (session === null) return;
     const today = getTime(new Date());
     const exp = getTime(new Date(session.expires));
-
     if (exp > today) {
       setValid(true);
     }
@@ -26,22 +25,19 @@ export default function MainInfo() {
       <Information />
       <div className={styles.wrapBtns}>
         {valid ? (
-          <Link
-            href="/user/training"
-            className={`${styles.btnLink} ${styles.btnLogin}`}
-          >
-            Увійти
+          <Link href="/user" className={`${styles.btnLink} ${styles.btnLogin}`}>
+            {t("btn_in")}
           </Link>
         ) : (
           <Link
             href="/signin"
             className={`${styles.btnLink} ${styles.btnLogin}`}
           >
-            Увійти
+            {t("btn_in")}
           </Link>
         )}
         <Link href="/signup" className={`${styles.btnLink} ${styles.btnAuth}`}>
-          Реєстрація
+          {t("btn_up")}
         </Link>
       </div>
     </div>

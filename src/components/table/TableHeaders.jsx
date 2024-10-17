@@ -1,13 +1,15 @@
 import React from "react";
 import styles from "./Table.module.css";
+import { useTranslations } from "next-intl";
 
 export default function TableHeaders() {
+  const t = useTranslations("table_header");
   return (
     <div className={styles.wrapTable}>
-      <p className={styles.textTab}>Назва книги</p>
-      <p className={styles.textTab}>Автор</p>
-      <p className={styles.textTab}>Рік</p>
-      <p className={styles.textTab}>Стор.</p>
+      <p className={styles.textTab}>{t("tab_title")}</p>
+      <p className={styles.textTab}>{t("tab_author")}</p>
+      <p className={styles.textTab}>{t("tab_year")}</p>
+      <p className={styles.textTab}>{t("tab_pages")}</p>
     </div>
   );
 }

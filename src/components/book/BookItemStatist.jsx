@@ -4,8 +4,10 @@ import React from "react";
 import styles from "./Book.module.css";
 import { bookCategory } from "@/constants/bookCategory";
 import { LuSquare, LuCheckSquare } from "react-icons/lu";
+import { useTranslations } from "next-intl";
 
 export default function BookItemStatist({ item, updateProgress }) {
+  const t = useTranslations("book");
   const endCategory = item.category === bookCategory.end;
 
   return (
@@ -39,15 +41,15 @@ export default function BookItemStatist({ item, updateProgress }) {
         <h6 className={styles.titleBook}>{item.title}</h6>
       </div>
       <div className={styles.wrapTextBook}>
-        <p className={styles.keyBook}>Автор:</p>
+        <p className={styles.keyBook}>{t("author")}</p>
         <p className={styles.textBook}>{item.author}</p>
       </div>
       <div className={styles.wrapTextBook}>
-        <p className={styles.keyBook}>Рік:</p>
+        <p className={styles.keyBook}>{t("year")}</p>
         <p className={styles.textBook}>{item.year}</p>
       </div>
       <div className={styles.wrapTextBook}>
-        <p className={styles.keyBook}>Стор.:</p>
+        <p className={styles.keyBook}>{t("pages")}</p>
         <p className={styles.textBook}>{item.pages}</p>
       </div>
     </div>

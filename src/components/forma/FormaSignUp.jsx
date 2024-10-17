@@ -5,13 +5,13 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import styles from "./Form.module.css";
 import ButtonSubmit from "../button/ButtonSubmit";
-import Link from "next/link";
 import ButtonGoogl from "../button/ButtonGoogl";
-import { useRouter } from "next/navigation";
 import Spinner from "../helper/Spinner";
 import FieldUser from "./FieldUser";
 import Notif from "../helper/Notif";
 import { signIn } from "next-auth/react";
+import { Link, useRouter } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 const initialValues = {
   name: "",
@@ -21,26 +21,27 @@ const initialValues = {
 };
 
 export default function FormaSignUp() {
+  const t = useTranslations("home");
   const [notif, setNotif] = useState("");
   const [auth, setAuth] = useState(false);
   const router = useRouter();
 
   const validationSchema = Yup.object({
     name: Yup.string()
-      .min(2, "мінімальна кількість символів 2")
-      .required("поле не може бути порожнім")
+      .min(2, `${t("error_name")}`)
+      .required(`${t("error_field")}`)
       .trim(),
     email: Yup.string()
-      .email("не вірний email")
-      .required("поле не може бути порожнім")
+      .email(`${t("error_email")}`)
+      .required(`${t("error_field")}`)
       .trim(),
     pwd: Yup.string()
-      .min(8, "мінімальна кількість символів 8")
-      .required("поле не може бути порожнім")
+      .min(8, `${t("error_pwd1")}`)
+      .required(`${t("error_field")}`)
       .trim(),
     confirmPwd: Yup.string()
-      .oneOf([Yup.ref("pwd"), ""], "паролі не співпадають")
-      .required("поле не може бути порожнім")
+      .oneOf([Yup.ref("pwd"), ""], `${t("error_pwd2")}`)
+      .required(`${t("error_field")}`)
       .trim(),
   });
   return (
@@ -66,32 +67,32 @@ export default function FormaSignUp() {
                 router.push(`/user/library`);
               } else {
                 setAuth(false);
-                setNotif("Помилка авторизації");
+                setNotif(`${t("error_auth")}`);
               }
             }}
           >
             {(props) => (
               <Form className={styles.form}>
                 <FieldUser
-                  label="Ім’я"
+                  label={t("form_name")}
                   name="name"
                   type="name"
                   placeholder="..."
                 />
                 <FieldUser
-                  label="Електронна адреса"
+                  label={t("form_email")}
                   name="email"
                   type="text"
                   placeholder="your@email.com"
                 />
                 <FieldUser
-                  label="Пароль"
+                  label={t("form_pwd_1")}
                   name="pwd"
                   type="pwd"
                   placeholder="..."
                 />
                 <FieldUser
-                  label="Підтвердити пароль"
+                  label={t("form_pwd_2")}
                   name="confirmPwd"
                   type="confirmPwd"
                   placeholder="..."
@@ -103,16 +104,16 @@ export default function FormaSignUp() {
                     )}
                   </div>
                   <ButtonSubmit>
-                    {props.isSubmitting ? <Spinner /> : "Зареєструватися"}
+                    {props.isSubmitting ? <Spinner /> : `${t("form_btn")}`}
                   </ButtonSubmit>
                 </div>
               </Form>
             )}
           </Formik>
           <div className={styles.wrapLink}>
-            <p className={styles.textLink}>Вже з нами?</p>
+            <p className={styles.textLink}>{t("form_text")}</p>
             <Link href="/signin" className={styles.linkAuth}>
-              Увійти
+              {t("btn_in")}
             </Link>
           </div>
         </div>

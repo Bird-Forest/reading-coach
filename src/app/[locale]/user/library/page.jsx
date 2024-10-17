@@ -6,8 +6,10 @@ import { getBooksEnd, getBooksInit, getBooksStart } from "@/services/books";
 import { revalidatePath } from "next/cache";
 import LibraryMobile from "@/components/liba/LibraryMobile";
 import { auth } from "@/configs/auth";
+import { unstable_setRequestLocale } from "next-intl/server";
 
-export default async function LibraryPage() {
+export default async function LibraryPage({ params: { locale } }) {
+  unstable_setRequestLocale(locale);
   const session = await auth();
   if (!session.user) return null;
 

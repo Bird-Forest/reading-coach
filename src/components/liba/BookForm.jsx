@@ -10,6 +10,7 @@ import { createBook } from "@/services/books";
 import Notif from "../helper/Notif";
 import SpinnerO from "../helper/SpinnerO";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 
 const initialValues = {
   title: "",
@@ -20,19 +21,24 @@ const initialValues = {
 };
 
 export default function BookForm() {
+  const t = useTranslations("library");
   const [notif, setNotif] = useState("");
   const { data: session } = useSession();
   const userId = session?.user.id;
 
   const validationSchema = Yup.object({
-    title: Yup.string().required("поле не може бути порожнім").trim(),
-    author: Yup.string().required("поле не може бути порожнім").trim(),
+    title: Yup.string()
+      .required(`${t("error_field")}`)
+      .trim(),
+    author: Yup.string()
+      .required(`${t("error_field")}`)
+      .trim(),
     pages: Yup.number()
-      .min(2, "мінімальна кількість символів 2")
-      .required("поле не може бути порожнім"),
+      .min(2, `${t("error_pages")}`)
+      .required(`${t("error_field")}`),
     year: Yup.string()
-      .min(4, "мінімальна кількість символів 4")
-      .required("поле не може бути порожнім")
+      .min(4, `${t("error_year")}`)
+      .required(`${t("error_field")}`)
       .trim(),
     category: Yup.string()
       .oneOf(Object.values(bookCategory))
@@ -52,14 +58,10 @@ export default function BookForm() {
     >
       {(props) => (
         <Form className={styles.createForm}>
-          <FieldBook label=" Назва книги" name="title" placeholder="..." />
-          <FieldBook label="Автор книги" name="author" placeholder="..." />
-          <FieldBook label="Рік випуску" name="year" placeholder="..." />
-          <FieldBook
-            label="Кількість сторінок"
-            name="pages"
-            placeholder="..."
-          />
+          <FieldBook label={t("form_title")} name="title" placeholder="..." />
+          <FieldBook label={t("form_author")} name="author" placeholder="..." />
+          <FieldBook label={t("form_year")} name="year" placeholder="..." />
+          <FieldBook label={t("form_pages")} name="pages" placeholder="..." />
           <div className={styles.wrapBtnAdd}>
             <div className={styles.wrapTextMess}>
               {notif && (
@@ -67,7 +69,7 @@ export default function BookForm() {
               )}
             </div>
             <button type="submit" className={styles.btnCreate}>
-              {props.isSubmitting ? <SpinnerO /> : "Додати"}
+              {props.isSubmitting ? <SpinnerO /> : `${t("form_btn")}`}
             </button>
           </div>
         </Form>

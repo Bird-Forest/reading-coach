@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import styles from "./Result.module.css";
 import { format } from "date-fns";
 import { updateReportCoach } from "@/services/coaches";
+import { useTranslations } from "next-intl";
 
 export default function ResultForm({ coach }) {
+  const t = useTranslations("statistics");
   const [result, setResult] = useState("");
   const nowDate = format(new Date(), "dd.MM.yyyy");
   const id = coach ? coach._id : "";
@@ -20,7 +22,7 @@ export default function ResultForm({ coach }) {
       <div className={styles.wrapField}>
         <div className={styles.wrapDate}>
           <label className={styles.label}>
-            <span className={styles.labelText}>Дата</span>
+            <span className={styles.labelText}>{t("label_date")}</span>
             <input
               type="text"
               defaultValue={nowDate}
@@ -30,7 +32,7 @@ export default function ResultForm({ coach }) {
         </div>
         <div className={styles.wrapPage}>
           <label className={styles.label}>
-            <span className={styles.labelText}>Кількість сторінок</span>
+            <span className={styles.labelText}>{t("label_pages")}</span>
             <input
               type="text"
               value={result}
@@ -48,7 +50,7 @@ export default function ResultForm({ coach }) {
         className={styles.wrapBtnResult}
       >
         <button button="button" className={styles.btnResult}>
-          Додати результат
+          {t("btn_form")}
         </button>
       </form>
     </div>

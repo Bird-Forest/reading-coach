@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import styles from "./Modal.module.css";
 import { IoStarOutline, IoStar } from "react-icons/io5";
+import { useTranslations } from "next-intl";
 
 export default function ResumeModal({ item, closeModal, getResume }) {
+  const t = useTranslations("modal");
   const [checkboxStates, setCheckboxStates] = useState(
     item.rating ?? [false, false, false, false, false]
   );
@@ -20,7 +22,7 @@ export default function ResumeModal({ item, closeModal, getResume }) {
 
   return (
     <div className={styles.wrapResume} onClick={(e) => e.stopPropagation()}>
-      <h4 className={styles.titleResume}>Обрати рейтинг книги</h4>
+      <h4 className={styles.titleResume}>{t("resume_title")}</h4>
       <div className={styles.wrapEorm}>
         <ul className={styles.wrapStars}>
           {item.rating?.map((el, i) => (
@@ -45,7 +47,7 @@ export default function ResumeModal({ item, closeModal, getResume }) {
           ))}
         </ul>
         <label className={styles.labelResume}>
-          Резюме
+          {t("resume_label")}
           <textarea
             name="resume"
             placeholder="..."
@@ -61,14 +63,14 @@ export default function ResumeModal({ item, closeModal, getResume }) {
             onClick={closeModal}
             className={`${styles.btnResume} ${styles.btnWhite}`}
           >
-            Назад
+            {t("resume_back")}
           </button>
           <button
             type="button"
             onClick={handleResume}
             className={`${styles.btnResume} ${styles.btnOrang}`}
           >
-            Зберегти
+            {t("resume_save")}
           </button>
         </div>
       </div>

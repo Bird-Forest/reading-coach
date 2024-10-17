@@ -13,8 +13,10 @@ import MyChart from "../chart/MyChart";
 import { differenceInCalendarDays } from "date-fns";
 import { createCoach } from "@/services/coaches";
 import BookItemEmpty from "../book/BookItemEmpty";
+import { useTranslations } from "next-intl";
 
 export default function TrainMobile() {
+  const t = useTranslations("training");
   const [isForm, setIsForm] = useState(true);
 
   const [begin, setBegin] = useState("");
@@ -72,7 +74,7 @@ export default function TrainMobile() {
             </button>
           </div>
           <div className={styles.wrapFormTrain}>
-            <h2 className={styles.titleTrain}>Моє тренування</h2>
+            <h2 className={styles.titleTrain}>{t("form_title")}</h2>
             <FormDate trainingStart={trainingStart} trainingEnd={trainingEnd} />
             <FormSelect choosedBook={choosedBook} />
           </div>
@@ -87,7 +89,7 @@ export default function TrainMobile() {
           )}
           {isBooks && (
             <ButtonAction formAction={createCoach} item={train}>
-              Почати тренування
+              {t("btn_training")}
             </ButtonAction>
           )}
           <MyChart />

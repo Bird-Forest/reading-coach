@@ -7,8 +7,10 @@ import styles from "./FormTrain.module.css";
 import GetPeriod from "../calendar/GetPeriod";
 import { formatISO, isBefore, format, isPast, endOfYesterday } from "date-fns";
 import GetMonth from "../calendar/GetMonth";
+import { useTranslations } from "next-intl";
 
 export default function FormDate({ trainingStart, trainingEnd }) {
+  const t = useTranslations("training");
   const [startDay, setStartDay] = useState("");
   const [endDay, setEndDay] = useState("");
   const [openStart, setOpenStart] = useState(false);
@@ -36,14 +38,14 @@ export default function FormDate({ trainingStart, trainingEnd }) {
   return (
     <div className={styles.formDate}>
       <div className={styles.wrapDate}>
-        {before && <p className={styles.wrapError}>Помилкова дата</p>}
+        {before && <p className={styles.wrapError}>{t("form_error")}</p>}
         <label className={styles.labelDate}>
           <input
             type="text"
             defaultValue={valueStart}
             readOnly={valueStart}
             className={styles.inputDate}
-            placeholder="Початок"
+            placeholder={t("form_start")}
           />
           <div className={styles.wrapIconCldr}>
             <RxCalendar className={styles.iconCldr} />
@@ -71,7 +73,7 @@ export default function FormDate({ trainingStart, trainingEnd }) {
             defaultValue={valueEnd}
             readOnly={valueEnd}
             className={styles.inputDate}
-            placeholder="Завершення"
+            placeholder={t("form_end")}
           />
           <div className={styles.wrapIconCldr}>
             <RxCalendar className={styles.iconCldr} />

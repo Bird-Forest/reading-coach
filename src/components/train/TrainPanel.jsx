@@ -9,8 +9,10 @@ import FormSelect from "./FormSelect";
 import FormDate from "./FormDate";
 import ButtonAction from "../button/ButtonAction";
 import { createCoach } from "@/services/coaches";
+import { useTranslations } from "next-intl";
 
 export default function TrainPanel() {
+  const t = useTranslations("training");
   const [begin, setBegin] = useState();
   const [end, setEnd] = useState();
   const [books, setBooks] = useState([]);
@@ -59,7 +61,7 @@ export default function TrainPanel() {
       </div>
       <div className={styles.caseForm}>
         <div className={styles.wrapFormTrain}>
-          <h2 className={styles.titleTrain}>Моє тренування</h2>
+          <h2 className={styles.titleTrain}>{t("form_title")}</h2>
           <FormDate trainingStart={trainingStart} trainingEnd={trainingEnd} />
           <FormSelect choosedBook={choosedBook} />
         </div>
@@ -68,7 +70,7 @@ export default function TrainPanel() {
         <TrainListBooks books={books} deleteBook={deleteBook} />
         {isBooks && (
           <ButtonAction formAction={createCoach} item={train}>
-            Почати тренування
+            {t("btn_training")}
           </ButtonAction>
         )}
       </div>

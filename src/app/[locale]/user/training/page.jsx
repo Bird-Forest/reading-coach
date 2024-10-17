@@ -4,8 +4,10 @@ import TrainPanel from "@/components/train/TrainPanel";
 import { revalidatePath } from "next/cache";
 import TrainMobile from "@/components/train/TrainMobile";
 import MyChart from "@/components/chart/MyChart";
+import { unstable_setRequestLocale } from "next-intl/server";
 
-export default async function TrainPage() {
+export default async function TrainPage({ params: { locale } }) {
+  unstable_setRequestLocale(locale);
   revalidatePath(`/user/training`, "page");
   return (
     <>

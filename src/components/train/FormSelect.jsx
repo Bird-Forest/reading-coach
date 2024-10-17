@@ -7,10 +7,12 @@ import { v4 as uuidv4 } from "uuid";
 import useSWR from "swr";
 import { bookCategory } from "@/constants/bookCategory";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function FormSelect({ choosedBook }) {
+  const t = useTranslations("training");
   const { data: session } = useSession();
   const userId = session?.user.id;
   const category = bookCategory.start;
@@ -36,7 +38,7 @@ export default function FormSelect({ choosedBook }) {
             defaultValue={option.title}
             readOnly={option.title}
             className={styles.inputSelect}
-            placeholder="Обрати книги з бібліотеки"
+            placeholder={t("form_select")}
           />
           <button
             type="button"
@@ -65,7 +67,7 @@ export default function FormSelect({ choosedBook }) {
               )
             )
           ) : (
-            <p className={styles.options}>Нажаль тут поки ще нічого не має</p>
+            <p className={styles.options}>{t("select_empty")}</p>
           )}
         </ul>
       </div>
@@ -75,7 +77,7 @@ export default function FormSelect({ choosedBook }) {
           onClick={() => choosedBook(option)}
           className={styles.btnCreate}
         >
-          Додати
+          {t("form_btn")}
         </button>
       </div>
     </div>

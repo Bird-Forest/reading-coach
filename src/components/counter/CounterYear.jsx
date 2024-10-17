@@ -4,8 +4,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import styles from "./Counter.module.css";
 import { endOfYear, differenceInMilliseconds } from "date-fns";
 import { open_sans } from "@/app/fonts";
+import { useTranslations } from "next-intl";
 
 export default function CounterYear() {
+  const t = useTranslations("counter");
   const [endYear, setEndYear] = useState({
     days: 0,
     hours: 0,
@@ -37,7 +39,7 @@ export default function CounterYear() {
 
   return (
     <div className={styles.wrapCountBox}>
-      <p className={styles.wrapText}>До закінчення року залишилось</p>
+      <p className={styles.wrapText}>{t("year_title")}</p>
       <div className={styles.counter}>
         <div className={styles.countElem}>
           <p
@@ -46,7 +48,7 @@ export default function CounterYear() {
           >
             {endYear.days}
           </p>
-          <p className={styles.countText}>ДН</p>
+          <p className={styles.countText}>{t("days")}</p>
         </div>
         <span className={styles.countDot}>:</span>
         <div className={styles.countElem}>
@@ -56,7 +58,7 @@ export default function CounterYear() {
           >
             {endYear.hours}
           </p>
-          <p className={styles.countText}>ГОД</p>
+          <p className={styles.countText}>{t("hours")}</p>
         </div>
         <span className={styles.countDot}>:</span>
         <div className={styles.countElem}>
@@ -66,7 +68,7 @@ export default function CounterYear() {
           >
             {endYear.minutes}
           </p>
-          <p className={styles.countText}>ХВ</p>
+          <p className={styles.countText}>{t("minutes")}</p>
         </div>
         <span className={styles.countDot}>:</span>
         <div className={styles.countElem}>
@@ -76,7 +78,7 @@ export default function CounterYear() {
           >
             {endYear.seconds}
           </p>
-          <p className={styles.countText}>СЕК</p>
+          <p className={styles.countText}>{t("secondes")}</p>
         </div>
       </div>
     </div>

@@ -1,8 +1,10 @@
 import React from "react";
 import { MdMenuBook } from "react-icons/md";
 import styles from "./Book.module.css";
+import { useTranslations } from "next-intl";
 
 export default function BookItemEmpty() {
+  const t = useTranslations("book");
   return (
     <div className={styles.wrapEmpty}>
       <div className={styles.wrapTitleEmpty}>
@@ -13,13 +15,16 @@ export default function BookItemEmpty() {
       </div>
       <div className={styles.wrapTextEmpty}>
         <p className={styles.textEmpty}>
-          Автор:<span>...</span>
+          {t("author")}
+          <span>...</span>
         </p>
         <p className={styles.textEmpty}>
-          Рік:<span>...</span>
+          {t("year")}
+          <span>...</span>
         </p>
         <p className={styles.textEmpty}>
-          Стор.:<span>...</span>
+          {t("pages")}
+          <span>...</span>
         </p>
       </div>
     </div>

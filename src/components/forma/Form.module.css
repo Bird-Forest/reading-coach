@@ -254,6 +254,9 @@
   line-height: 1.15;
   text-align: center;
 }
+.textLink:hover {
+  color: rgb(255, 107, 8);
+}
 .linkAuth {
   display: grid;
   color: rgb(255, 107, 8);

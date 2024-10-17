@@ -1,6 +1,109 @@
 {
-  "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page"
+  "home": {
+    "title_1": "Will help you to",
+    "text_11": "Create your goal faster and proceed to read",
+    "text_12": "Divide process proportionally for each day",
+    "text_13": "Track your success",
+    "title_2": "You may also",
+    "text_21": "Pose your own independent point of view",
+    "text_22": "Improve your professional skills according to new knowledge",
+    "text_23": "Become an interesting interlocutor",
+    "quotation": "Books are the ships of thoughts, wandering through the waves of time.",
+    "author": "Francis Bacon",
+    "btn_in": "Log in",
+    "btn_up": "Register",
+    "form_name": "Name",
+    "form_email": "Email",
+    "form_pwd_1": "Password",
+    "form_pwd_2": "Confirm password",
+    "form_btn": "Register",
+    "form_text": "Already have an account?",
+    "error_auth": "Authorization error",
+    "error_field": "field cannot be empty",
+    "error_name": "minimum number of characters is 2",
+    "error_email": "invalid email",
+    "error_pwd1": "minimum number of characters is 8",
+    "error_pwd2": "passwords do not match"
+  },
+  "table_header": {
+    "tab_title": "Book title",
+    "tab_author": "Author",
+    "tab_year": "Year",
+    "tab_pages": "Pages",
+    "tab_rating": "Rating"
+  },
+  "book": {
+    "author": "Author:",
+    "year": "Year:",
+    "pages": "Pages:"
+  },
+  "library": {
+    "form_title": "Book title",
+    "form_author": "Author",
+    "form_year": "Publication date",
+    "form_pages": "Amount of pages",
+    "form_btn": "Add",
+    "error_field": "field cannot be empty",
+    "error_year": "minimum number of characters is 4",
+    "error_pages": "minimum number of characters is 2",
+    "title_end": "Going to read",
+    "rating": "Rating:",
+    "resume_btn": "Resume",
+    "title_init": "Reading now",
+    "title_start": "Going to read ",
+    "library_btn": "My training"
+  },
+  "goal": {
+    "title": "My goals",
+    "amount_books": "Amount of books",
+    "amount_days": "Amount of days",
+    "books_left": "Books left"
+  },
+  "training": {
+    "form_title": "My training",
+    "form_start": "Start",
+    "form_end": "Finish",
+    "form_select": "Choose books from the library",
+    "select_empty": "There is still nothing here",
+    "form_btn": "Add",
+    "form_error": "Wrong date",
+    "btn_training": "Start traning"
+  },
+  "counter": {
+    "year_title": "Years countdown",
+    "goals_title": "Goals countdown",
+    "days": "DAYS",
+    "hours": "HRS",
+    "minutes": "MINS",
+    "secondes": "SECS"
+  },
+  "statistics": {
+    "title": "Results",
+    "label_date": "Date",
+    "label_pages": "Amount of pages",
+    "btn_form": "Add result",
+    "list_title": "STATISTICS",
+    "list_page": "pages"
+  },
+  "modal": {
+    "start_step1": "Step 1.",
+    "step1_title": "Create your own library",
+    "step1_text": "Add there books which you are going to read.",
+    "start_step2": "Step 2.",
+    "step2_title": "Create your first training",
+    "step2_text": "Set a goal, choose period, start training.",
+    "resume_title": "Choose rating of the book",
+    "resume_label": "Resume",
+    "resume_back": "Back",
+    "resume_save": "Save",
+    "redy_text": "Congratulations!<br></br>Another book read.",
+    "redy_btn": "Done",
+    "supp_text": "Well done!<br> but you need to be a little bit faster. </br> You can do it)",
+    "supp_train": "New training",
+    "supp_back": "New training",
+    "exit_text": "The changes you made will be lost if you navigate away from this application",
+    "exit_cancel": "Cancel",
+    "exit_leave": "Leave this app",
+    "exit_header": "Logout"
   }
 }

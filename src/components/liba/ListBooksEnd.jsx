@@ -13,10 +13,12 @@ import useSWR from "swr";
 import { bookCategory } from "@/constants/bookCategory";
 import { useSession } from "next-auth/react";
 import SpinnerO from "../helper/SpinnerO";
+import { useTranslations } from "next-intl";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function ListBooksEnd({ arrEnd }) {
+  const t = useTranslations("library");
   const [books, setBooks] = useState(arrEnd);
   const { data: session } = useSession();
   const userId = session?.user.id;
@@ -56,7 +58,7 @@ export default function ListBooksEnd({ arrEnd }) {
         <SpinnerO />
       ) : (
         <div className={styles.wrapListAny}>
-          <h5 className={styles.titleList}>Прочитано</h5>
+          <h5 className={styles.titleList}>{t("title_end")}</h5>
           <div className={styles.wrapTabList}>
             <TableHeaderEnd />
             <ul className={styles.listStart}>
@@ -71,7 +73,7 @@ export default function ListBooksEnd({ arrEnd }) {
                   />
                   <div className={styles.wrapItemEnd}>
                     <div className={styles.wrapKeyStar}>
-                      <p className={styles.keyBook}>Рейтинг:</p>
+                      <p className={styles.keyBook}>{t("rating")}</p>
                       <ul className={styles.wrapStars}>
                         {item.rating?.map((el, i) => (
                           <li key={i} className={styles.wrapStar}>
@@ -90,7 +92,7 @@ export default function ListBooksEnd({ arrEnd }) {
                         onClick={() => openModal(item)}
                         className={styles.btnResume}
                       >
-                        Резюме
+                        {t("resume_btn")}
                       </button>
                       {showModal &&
                         currentItem &&

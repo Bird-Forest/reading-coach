@@ -1,10 +1,20 @@
 import styles from "@/components/info/Main.module.css";
 import MainInfo from "@/components/info/MainInfo";
+import { auth } from "@/configs/auth";
+import { unstable_setRequestLocale } from "next-intl/server";
+// import { routing } from "@/i18n/routing";
 
-export default async function Home() {
+// export function generateStaticParams() {
+//   return routing.locales.map((locale) => ({ locale }));
+// }
+
+export default async function Home({ params: { locale } }) {
+  unstable_setRequestLocale(locale);
+  const session = await auth();
+
   return (
     <section className={styles.pageMain}>
-      <MainInfo />
+      <MainInfo session={session} />
     </section>
   );
 }

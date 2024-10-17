@@ -5,10 +5,12 @@ import styles from "./Result.module.css";
 import { format } from "date-fns";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function ResultList() {
+  const t = useTranslations("statistics");
   const { data: session } = useSession();
   const id = session?.user.id;
   const shouldFetch = !!id;
@@ -31,7 +33,7 @@ export default function ResultList() {
   return (
     <div className={styles.wrapListResult}>
       <p className={styles.titleList}>
-        <span>СТАТИСТИКА</span>
+        <span>{t("list_title")}</span>
       </p>
       <ul className={styles.wrapList}>
         {Arr ? (
@@ -45,7 +47,7 @@ export default function ResultList() {
               </p>
               <p className={styles.deep}>
                 {result.pagesRead}
-                <span className={styles.grey}>стор.</span>
+                <span className={styles.grey}>{t("list_page")}</span>
               </p>
             </li>
           ))

@@ -7,10 +7,12 @@ import styles from "./Counter.module.css";
 import { useSession } from "next-auth/react";
 import { bookCategory } from "@/constants/bookCategory";
 import useSWR from "swr";
+import { useTranslations } from "next-intl";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function CounterGoal() {
+  const t = useTranslations("counter");
   const [coach, setCoach] = useState();
 
   const { data: session } = useSession();
@@ -64,7 +66,7 @@ export default function CounterGoal() {
 
   return (
     <div className={styles.wrapCountBox}>
-      <p className={styles.wrapText}>До досягнення мети залишилось</p>
+      <p className={styles.wrapText}>{t("goals_title")}</p>
       <div className={styles.counter}>
         <div className={styles.countElem}>
           <p
@@ -73,7 +75,7 @@ export default function CounterGoal() {
           >
             {endDay.days}
           </p>
-          <p className={styles.countText}>ДН</p>
+          <p className={styles.countText}>{t("days")}</p>
         </div>
         <span className={styles.countDot}>:</span>
         <div className={styles.countElem}>
@@ -83,7 +85,7 @@ export default function CounterGoal() {
           >
             {endDay.hours}
           </p>
-          <p className={styles.countText}>ГОД</p>
+          <p className={styles.countText}>{t("hours")}</p>
         </div>
         <span className={styles.countDot}>:</span>
         <div className={styles.countElem}>
@@ -93,7 +95,7 @@ export default function CounterGoal() {
           >
             {endDay.minutes}
           </p>
-          <p className={styles.countText}>ХВ</p>
+          <p className={styles.countText}>{t("minutes")}</p>
         </div>
         <span className={styles.countDot}>:</span>
         <div className={styles.countElem}>
@@ -103,7 +105,7 @@ export default function CounterGoal() {
           >
             {endDay.seconds}
           </p>
-          <p className={styles.countText}>СЕК</p>
+          <p className={styles.countText}>{t("secondes")}</p>
         </div>
       </div>
     </div>

@@ -6,10 +6,12 @@ import styles from "./Goal.module.css";
 import { bookCategory } from "@/constants/bookCategory";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function GoalStatistics({ train }) {
+  const t = useTranslations("goal");
   const [coach, setCoach] = useState(train);
 
   const { data: session } = useSession();
@@ -45,25 +47,25 @@ export default function GoalStatistics({ train }) {
 
   return (
     <div className={styles.wrapGoalStat}>
-      <h2 className={styles.titleGoal}>Моя мета прочитати</h2>
+      <h2 className={styles.titleGoal}>{t("title")}</h2>
       <div className={styles.boxCountStat}>
         <div className={styles.countGoalStat}>
           <p className={`${open_sans.className} ${styles.countStat}`}>
             {goalBooks}
           </p>
-          <p className={styles.textStat}>Кількість книжок</p>
+          <p className={styles.textStat}>{t("amount_books")}</p>
         </div>
         <div className={styles.countGoalStat}>
           <p className={`${open_sans.className} ${styles.countStat}`}>
             {allDays}
           </p>
-          <p className={styles.textStat}>Кількість днів</p>
+          <p className={styles.textStat}>{t("amount_days")}</p>
         </div>
         <div className={styles.countGoalStat}>
           <p className={`${open_sans.className} ${styles.countOrang}`}>
             {rest}
           </p>
-          <p className={styles.textStat}>Залишилось книжок</p>
+          <p className={styles.textStat}>{t("books_left")}</p>
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import { Providers } from "@/components/helper/Providers";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { unstable_setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 
 const montserrat = Montserrat({
@@ -32,6 +33,7 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children, params: { locale } }) {
+  unstable_setRequestLocale(locale);
   const messages = await getMessages();
 
   return (

@@ -8,10 +8,12 @@ import useSWR from "swr";
 import { bookCategory } from "@/constants/bookCategory";
 import SpinnerO from "../helper/SpinnerO";
 import StartSteps from "../modal/StartSteps";
+import { useTranslations } from "next-intl";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function ListBooksStart({ userId }) {
+  const t = useTranslations("library");
   const [books, setBooks] = useState([]);
 
   const category = bookCategory.start;
@@ -36,7 +38,7 @@ export default function ListBooksStart({ userId }) {
         <SpinnerO />
       ) : (
         <div className={styles.wrapListAny}>
-          <h5 className={styles.titleList}>Маю намір прочитати</h5>
+          <h5 className={styles.titleList}>{t("title_start")}</h5>
           <div className={styles.wrapTabList}>
             <TableHeaders />
             <ul className={styles.listStart}>

@@ -8,14 +8,17 @@ import StatListBooks from "@/components/stat/StatListBooks";
 import { getLastCoach } from "@/services/coaches";
 import { revalidatePath } from "next/cache";
 import { auth } from "@/configs/auth";
+import { unstable_setRequestLocale } from "next-intl/server";
 
-export default async function StatisticPage() {
+export default async function StatisticPage({ params: { locale } }) {
+  unstable_setRequestLocale(locale);
   const session = await auth();
-  if (!session) return null;
+  // if (session === null) return null;
   const id = session ? session.user.id : "";
   const coach = await getLastCoach(id);
 
   revalidatePath(`/user`, "page");
+  // console.log("USER", locale);
 
   return (
     <div className={styles.caseStatist}>

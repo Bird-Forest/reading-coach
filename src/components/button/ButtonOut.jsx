@@ -5,17 +5,19 @@ import styles from "./Button.module.css";
 import { createPortal } from "react-dom";
 import OverlayModal from "../modal/OverlayModal";
 import LogOutModal from "../modal/LogOutModal";
-import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
+import { useRouter } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 export default function ButtonOut() {
+  const t = useTranslations("modal");
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
 
   const exitApplication = () => {
     signOut({ redirect: false });
     setShowModal(false);
-    router.push(" ");
+    router.push("/");
   };
 
   const openModal = () => {
@@ -28,7 +30,7 @@ export default function ButtonOut() {
   return (
     <div className={styles.wrapBtnOut}>
       <button onClick={openModal} className={styles.btnOut}>
-        Вихід
+        {t("exit_header")}
       </button>
       {showModal &&
         createPortal(

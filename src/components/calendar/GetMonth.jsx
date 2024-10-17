@@ -48,7 +48,7 @@ export default function GetMonth({ getValue, month }) {
               <button
                 type="button"
                 value={item}
-                disabled={isPast(new Date(item))}
+                // disabled={isPast(new Date(item))}
                 onClick={getValue}
                 className={
                   isToday(new Date(item))

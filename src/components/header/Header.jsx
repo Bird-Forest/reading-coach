@@ -5,23 +5,17 @@ import styles from "./Header.module.css";
 import Sidebar from "./Sidebar";
 import SideLogo from "./SideLogo";
 import SideLng from "./SideLng";
-import { getTime } from "date-fns";
-import { useSession } from "next-auth/react";
+import { usePathname } from "@/i18n/routing";
 
 export default function Header() {
-  const { data: session } = useSession();
   const [valid, setValid] = useState(false);
+  const path = usePathname();
 
   useEffect(() => {
-    if (!session) return;
-
-    const today = getTime(new Date());
-    const exp = session ? getTime(new Date(session.expires)) : 0;
-
-    if (session !== null && exp > today) {
-      setValid(true);
-    }
-  }, [session]);
+    const segments = path.split("/");
+    const page = segments[1];
+    if (page === "user") setValid(true);
+  }, [path]);
 
   return (
     <div className={styles.header}>
