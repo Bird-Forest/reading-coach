@@ -64,7 +64,7 @@ export default function FormaSignUp() {
                 setAuth(true);
                 resetForm();
                 setSubmitting(false);
-                router.push(`/user/library`);
+                router.push("/user/library");
               } else {
                 setAuth(false);
                 setNotif(`${t("error_auth")}`);

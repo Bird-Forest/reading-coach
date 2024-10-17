@@ -53,7 +53,7 @@ export default function FormaSignIn() {
                 setAuth(true);
                 resetForm();
                 setSubmitting(false);
-                router.push(`/user/training`);
+                router.push("/user");
               } else {
                 setAuth(false);
                 setNotif(`${t("error_auth")}`);
