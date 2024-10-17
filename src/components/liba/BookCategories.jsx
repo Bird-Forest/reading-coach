@@ -7,11 +7,13 @@ import ListBooksStart from "./ListBooksStart";
 import styles from "@/components/liba/Library.module.css";
 import ButtonLink from "../button/ButtonLink";
 import { useTranslations } from "next-intl";
+import StartSteps from "../modal/StartSteps";
 
 export default function BookCategories({ id }) {
   const t = useTranslations("library");
   const [lengthStart, setLengthStart] = useState(0);
   const [lengthInit, setLengthInit] = useState(0);
+  const [lengthEnd, setLengthEnd] = useState(0);
 
   const getLengthStart = (books) => {
     setLengthStart(books.length);
@@ -19,17 +21,33 @@ export default function BookCategories({ id }) {
   const getLengthInit = (books) => {
     setLengthInit(books.length);
   };
-
+  const getLengthEnd = (books) => {
+    setLengthEnd(books.length);
+  };
   const isBtnTrain = lengthStart > 0 && lengthInit === 0;
+  const emptyPage = lengthStart === 0 && lengthInit === 0 && lengthEnd === 0;
 
-  console.log(lengthStart);
-  console.log(lengthInit);
+  // console.log(lengthStart);
+  // console.log(lengthInit);
 
   return (
     <div className={styles.wrapAllList}>
-      <ListBooksEnd userId={id} />
-      <ListBooksInit userId={id} getLengthInit={getLengthInit} />
-      <ListBooksStart userId={id} getLengthStart={getLengthStart} />
+      {lengthEnd > 0 ? (
+        <ListBooksEnd userId={id} getLengthEnd={getLengthEnd} />
+      ) : (
+        []
+      )}
+      {lengthInit > 0 ? (
+        <ListBooksInit userId={id} getLengthInit={getLengthInit} />
+      ) : (
+        []
+      )}
+      {lengthStart > 0 ? (
+        <ListBooksStart userId={id} getLengthStart={getLengthStart} />
+      ) : (
+        []
+      )}
+      {emptyPage && <StartSteps />}
       {isBtnTrain && (
         <ButtonLink path={`/user/training`}>{t("library_btn")}</ButtonLink>
       )}

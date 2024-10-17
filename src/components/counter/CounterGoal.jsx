@@ -11,21 +11,19 @@ import { useTranslations } from "next-intl";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function CounterGoal() {
+export default function CounterGoal({ id }) {
   const t = useTranslations("counter");
-  const [coach, setCoach] = useState();
 
-  const { data: session } = useSession();
-  const id = session?.user.id;
   const shouldFetch = !!id;
-  const { data } = useSWR(
+  const { data: coach } = useSWR(
     shouldFetch ? `/api/coaches?id=${id}` : null,
     fetcher,
     {
       refreshInterval: 3600,
     }
   );
-
+  const [lastDay, setLastDay] = useState(new Date());
+  const [length, setLength] = useState(0);
   const [endDay, setEndDay] = useState({
     days: 0,
     hours: 0,
@@ -33,36 +31,38 @@ export default function CounterGoal() {
     seconds: 0,
   });
 
-  const getTimer = useCallback(() => {
-    if (!coach) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  useEffect(() => {
+    if (!coach) return;
+    setLastDay(coach.finish);
+    const arr = coach.books
+      ? coach.books.filter((book) => book.category === bookCategory.init)
+      : [];
+    setLength(arr.length);
+  }, [coach]);
 
-    const lastDay = coach?.finish;
-    const unreadedBooks = coach?.books.filter(
-      (book) => book.category === bookCategory.init
-    );
+  const getTimer = useCallback(() => {
+    // if (!coach || !coach.books)
+    //   return { days: 0, hours: 0, minutes: 0, seconds: 0 };
     const result = differenceInMilliseconds(new Date(lastDay), new Date());
-    if (result > 0 && unreadedBooks.length > 0) {
+    if (result > 0 && length > 0) {
       return {
         days: Math.floor(result / (1000 * 60 * 60 * 24)),
         hours: Math.floor((result / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((result / 1000 / 60) % 60),
         seconds: Math.floor((result / 1000) % 60),
       };
-    } else {
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
     }
-  }, [coach]);
+    return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  }, [lastDay, length]);
 
   useEffect(() => {
-    if (!data) return;
-    setCoach(data);
+    if (!coach) return;
     setEndDay(getTimer());
     const timer = setInterval(() => {
       setEndDay(getTimer());
     }, 1000);
-
     return () => clearInterval(timer);
-  }, [getTimer, data]);
+  }, [getTimer, coach]);
 
   return (
     <div className={styles.wrapCountBox}>

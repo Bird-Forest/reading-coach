@@ -9,10 +9,10 @@ import { bookCategory } from "@/constants/bookCategory";
 import OverlayModal from "../modal/OverlayModal";
 import SupportModal from "../modal/SupportModal";
 import { createPortal } from "react-dom";
-import { useRouter } from "next/navigation";
 import { deleteUnreadedBooks } from "@/services/coaches";
+import { useRouter } from "@/i18n/routing";
 
-export default function Counter({ coach }) {
+export default function Counter({ coach, id }) {
   const [isModal, setIsModal] = useState(false);
 
   const router = useRouter();
@@ -35,7 +35,7 @@ export default function Counter({ coach }) {
     const coachId = coach._id;
     const update = coach;
     await deleteUnreadedBooks(coachId, update);
-    router.push(`/user/training`);
+    router.push("/user/training");
   };
 
   const closeModal = () => {
@@ -45,7 +45,7 @@ export default function Counter({ coach }) {
   return (
     <div className={styles.wrapCounter}>
       <CounterYear />
-      <CounterGoal />
+      <CounterGoal id={id} />
       {isModal &&
         createPortal(
           <OverlayModal

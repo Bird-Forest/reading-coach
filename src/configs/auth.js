@@ -23,14 +23,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       authorize: async (credentials) => {
         if (!credentials.email || !credentials.pwd) return null;
         let user = null;
-        user = await getSessionUser(credentials);
-
-        if (user && user.message === "You are not registered") {
-          user = await createSessionUser(credentials);
-          console.log("UP", user);
-          return user;
-        }
-
+        user = await createSessionUser(credentials);
         return user;
       },
     }),

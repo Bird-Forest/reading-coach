@@ -43,24 +43,20 @@ export default function ListBooksStart({ userId, getLengthStart }) {
           <div className={styles.wrapTabList}>
             <TableHeaders />
             <ul className={styles.listStart}>
-              {Arr ? (
-                books.map((item) => (
-                  <li
-                    key={item._id}
-                    className={`${styles.wrapBook} ${styles.bgBook}`}
-                  >
-                    <BookItem
-                      title={item.title}
-                      author={item.author}
-                      pages={item.pages}
-                      category={item.category}
-                      year={item.year}
-                    />
-                  </li>
-                ))
-              ) : (
-                <StartSteps />
-              )}
+              {books.map((item) => (
+                <li
+                  key={item._id}
+                  className={`${styles.wrapBook} ${styles.bgBook}`}
+                >
+                  <BookItem
+                    title={item.title}
+                    author={item.author}
+                    pages={item.pages}
+                    category={item.category}
+                    year={item.year}
+                  />
+                </li>
+              ))}
             </ul>
           </div>
         </div>

@@ -13,20 +13,49 @@ export async function createSessionUser(values) {
     const user = await User.findOne({ email: values.email }).exec();
 
     if (user) {
-      throw new Error("You are already registered");
+      return user;
+    } else {
+      const saltRounds = 10;
+      const salt = bcrypt.genSaltSync(saltRounds);
+      const hash = bcrypt.hashSync(values.pwd, salt);
+
+      const newUser = await User.create({
+        name: values.name,
+        email: values.email,
+        pwd: hash,
+      });
+      const id = newUser._id;
+      const name = newUser.name;
+      const userId = JSON.parse(JSON.stringify(id));
+      const userName = JSON.parse(JSON.stringify(name));
+
+      return {
+        id: userId,
+        name: userName,
+      };
     }
-    const saltRounds = 10;
-    const salt = bcrypt.genSaltSync(saltRounds);
-    const hash = bcrypt.hashSync(values.pwd, salt);
+  } catch (e) {
+    console.log("Action", e);
+    return {
+      message: e.message,
+    };
+  }
+}
 
-    const newUser = await User.create({
-      name: values.name,
-      email: values.email,
-      pwd: hash,
-    });
+export async function getSessionGoogle(profile) {
+  try {
+    await initializeUserModel();
 
-    const id = newUser._id;
-    const name = newUser.name;
+    let user = await User.findOne({ email: profile.email });
+    if (!user) {
+      user = await User.create({
+        name: profile.name,
+        email: profile.email,
+      });
+    }
+
+    const id = user._id;
+    const name = user.name;
 
     const userId = JSON.parse(JSON.stringify(id));
     const userName = JSON.parse(JSON.stringify(name));
@@ -72,36 +101,6 @@ export async function getSessionUser(values) {
     console.log("Action", e);
     return {
       message: "Email or password is wrong",
-    };
-  }
-}
-
-export async function getSessionGoogle(profile) {
-  try {
-    await initializeUserModel();
-
-    let user = await User.findOne({ email: profile.email });
-    if (!user) {
-      user = await User.create({
-        name: profile.name,
-        email: profile.email,
-      });
-    }
-
-    const id = user._id;
-    const name = user.name;
-
-    const userId = JSON.parse(JSON.stringify(id));
-    const userName = JSON.parse(JSON.stringify(name));
-
-    return {
-      id: userId,
-      name: userName,
-    };
-  } catch (e) {
-    console.log("Action", e);
-    return {
-      message: e.message,
     };
   }
 }

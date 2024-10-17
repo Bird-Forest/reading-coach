@@ -23,7 +23,7 @@ export default async function StatisticPage({ params: { locale } }) {
   return (
     <div className={styles.caseStatist}>
       <div className={styles.counter}>
-        <Counter coach={coach} />
+        <Counter coach={coach} id={id} />
       </div>
       <div className={styles.goal}>
         <GoalStatistics train={coach} />
