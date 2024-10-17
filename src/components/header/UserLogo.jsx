@@ -8,15 +8,16 @@ import { abril } from "@/app/fonts";
 
 export default function UserLogo({ page }) {
   const { data: session } = useSession();
-  const [firstLetter, setFirstLetter] = useState("");
+  console.log(session);
+  // const [firstLetter, setFirstLetter] = useState("");
 
-  useEffect(() => {
-    if (!session) return;
-    const userName = session.user.name;
-    const word = userName.slice(0, 1);
-    const letter = word.toUpperCase();
-    setFirstLetter(letter);
-  }, [session]);
+  // useEffect(() => {
+  //   if (!session) return;
+  //   const userName = session.user.name;
+  //   const word = userName.slice(0, 1);
+  //   const letter = word.toUpperCase();
+  //   setFirstLetter(letter);
+  // }, [session]);
   // const userName = session ? session.user.name : " ";
   // const word = session ? userName.slice(0, 1) : " ";
   // const firstLetter = word.toUpperCase();
@@ -25,7 +26,7 @@ export default function UserLogo({ page }) {
     <div className={styles.wrapUser}>
       <SidebarItem current={!page} href="/user">
         <p className={`${abril.className} ${styles.letterName}`}>
-          {firstLetter}
+          {/* {firstLetter} */} O
         </p>
       </SidebarItem>
     </div>
