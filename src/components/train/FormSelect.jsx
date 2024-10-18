@@ -27,6 +27,14 @@ export default function FormSelect({ choosedBook }) {
   const [option, setOption] = useState({});
   const arrStart = data;
 
+  const selectedBook = (item) => {
+    const initBook = {
+      ...item,
+      category: bookCategory.init,
+    };
+    setOption(initBook);
+  };
+
   const Arr = Array.isArray(arrStart) && arrStart.length > 0;
 
   return (
@@ -52,20 +60,15 @@ export default function FormSelect({ choosedBook }) {
       <div className={!open ? styles.noneSelect : styles.blockSelect}>
         <ul className={styles.wrapOptions}>
           {Arr ? (
-            arrStart.map(
-              (item) => (
-                (item.category = bookCategory.init),
-                (
-                  <li
-                    key={uuidv4()}
-                    onClick={() => setOption(item)}
-                    className={styles.options}
-                  >
-                    {item.title}
-                  </li>
-                )
-              )
-            )
+            arrStart.map((item) => (
+              <li
+                key={uuidv4()}
+                onClick={() => selectedBook(item)}
+                className={styles.options}
+              >
+                {item.title}
+              </li>
+            ))
           ) : (
             <p className={styles.options}>{t("select_empty")}</p>
           )}

@@ -16,8 +16,6 @@ export default function ListBooksStart({ userId, arrStart }) {
   const t = useTranslations("library");
   const [books, setBooks] = useState(arrStart || []);
 
-  // console.log(userId, arrStart);
-
   const category = bookCategory.start;
   const shouldFetch = !!userId;
 
@@ -31,10 +29,6 @@ export default function ListBooksStart({ userId, arrStart }) {
     if (!data) return;
     setBooks(data);
   }, [data]);
-
-  console.log(userId);
-
-  // const Arr = Array.isArray(books) && books.length > 0;
 
   return (
     <>
