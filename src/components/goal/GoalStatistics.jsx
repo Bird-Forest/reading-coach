@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./Goal.module.css";
 import { bookCategory } from "@/constants/bookCategory";
 import useSWR from "swr";
-import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -14,8 +13,6 @@ export default function GoalStatistics({ train, id }) {
   const t = useTranslations("goal");
   const [coach, setCoach] = useState(train);
 
-  // const { data: session } = useSession();
-  // const id = session?.user.id;
   const shouldFetch = !!id;
   const { data } = useSWR(
     shouldFetch ? `/api/coaches?id=${id}` : null,

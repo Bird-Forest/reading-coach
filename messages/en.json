@@ -1,4 +1,8 @@
 {
+  "not_found": {
+    "text": "Page not found",
+    "link": "Return to the main page"
+  },
   "home": {
     "title_1": "Will help you to",
     "text_11": "Create your goal faster and proceed to read",

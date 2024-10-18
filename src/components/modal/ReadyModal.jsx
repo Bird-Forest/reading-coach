@@ -27,6 +27,3 @@ export default function ReadyModal({ closeModal }) {
     </div>
   );
 }
-
-/* Вітаю!
-        <br /> Ще одна книга прочитана. */

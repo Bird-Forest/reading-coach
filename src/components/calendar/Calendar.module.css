@@ -69,12 +69,6 @@
   border-radius: 4px;
   background-color: rgb(245, 247, 250);
 }
-/* .dayMonth {
-  background-color: rgb(245, 247, 250);
-}
-.border {
-  border: 1px solid rgb(245, 247, 250);
-} */
 .day {
   display: grid;
   grid-template-columns: 28px;
@@ -99,22 +93,3 @@
   color: rgb(255, 107, 8);
   font-weight: 600;
 }
-/* .btnChoose {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 36px;
-  align-items: center;
-  justify-items: center;
-  color: rgb(166, 171, 185);
-  font-family: var(--font-montserrat);
-  font-size: 16px;
-  font-weight: 500;
-  background-color: rgb(246, 247, 251);
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 0;
-}
-.btnChoose:hover {
-  border: 1px solid rgb(242, 81, 55);
-} */

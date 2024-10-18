@@ -29,8 +29,6 @@ export default function ListBooksInit({ userId, arrInit }) {
     setBooks(data);
   }, [data]);
 
-  const Arr = Array.isArray(books) && books.length > 0;
-  console.log(books);
   return (
     <>
       {isLoading ? (

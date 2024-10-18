@@ -53,7 +53,6 @@ export async function getSessionGoogle(profile) {
         email: profile.email,
       });
     }
-
     const id = user._id;
     const name = user.name;
 

@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { RxCalendar } from "react-icons/rx";
 import { IoMdArrowDropdown } from "react-icons/io";
 import styles from "./FormTrain.module.css";
-import GetPeriod from "../calendar/GetPeriod";
 import { formatISO, isBefore, format, isPast, endOfYesterday } from "date-fns";
 import GetMonth from "../calendar/GetMonth";
 import { useTranslations } from "next-intl";

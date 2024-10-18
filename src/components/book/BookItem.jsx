@@ -1,20 +1,20 @@
 import React from "react";
 import { MdMenuBook } from "react-icons/md";
 import styles from "./Book.module.css";
-import { bookCategory } from "@/constants/bookCategory";
 import { useTranslations } from "next-intl";
+import { bookCategory } from "@/constants/bookCategory";
 
 export default function BookItem(item) {
   const t = useTranslations("book");
   return (
     <div key={item._id} className={styles.wrapBox}>
       <div className={styles.wrapTitleBook}>
-        <div className={styles.wrapIcon}>
+        <div className={styles.wrapIcon} key={item.category}>
           <MdMenuBook
             className={
               item.category === bookCategory.init
-                ? `${styles.iconBookOrang}`
-                : `${styles.iconBook}`
+                ? styles.iconBookOrang
+                : styles.iconBook
             }
           />
         </div>

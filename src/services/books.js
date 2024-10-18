@@ -132,30 +132,3 @@ export const getBook = async (id) => {
     };
   }
 };
-// export const getAllBooks = async () => {
-//   try {
-//     await initializeBookModel();
-//     const books = await Book.find().lean();
-//     return books;
-//   } catch (e) {
-//     console.log(e);
-//     return {
-//       message: "Відбулася помилка",
-//     };
-//   }
-// };
-
-// export const deleteBook = async (id) => {
-//   try {
-//     await initializeBookModel();
-//     const book = await Book.findOneAndDelete({ _id: id }).lean();
-//     if (!book) {
-//       throw new Error("is absent");
-//     }
-//   } catch (e) {
-//     console.log(e);
-//     return {
-//       message: "Відбулася помилка",
-//     };
-//   }
-// };

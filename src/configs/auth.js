@@ -1,11 +1,7 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
-import {
-  createSessionUser,
-  getSessionGoogle,
-  getSessionUser,
-} from "@/services/users";
+import { createSessionUser, getSessionGoogle } from "@/services/users";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET,

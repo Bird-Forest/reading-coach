@@ -36,7 +36,3 @@ export default function SupportModal({ removeBooks, closeModal }) {
     </div>
   );
 }
-
-// Ти молодчина,
-//         <br /> але потрібно швидше! <br />
-//         Наступного разу тобі все вдасться

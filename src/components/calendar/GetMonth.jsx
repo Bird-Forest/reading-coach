@@ -4,11 +4,12 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
 import { datePeriod } from "@/constants/datePeriod";
-import { format, isToday, isPast, startOfDay } from "date-fns";
+import { format, isToday } from "date-fns";
 import findCurrentMonth from "@/constants/findCurrentMonth";
 import styles from "./Calendar.module.css";
+import { useFormatter } from "next-intl";
 
-export default function GetMonth({ getValue, month }) {
+export default function GetMonth({ getValue }) {
   const id = findCurrentMonth(datePeriod);
   const [index, setIndex] = useState(id);
 
@@ -18,7 +19,14 @@ export default function GetMonth({ getValue, month }) {
 
   const showMonth = datePeriod[index];
   const total = datePeriod.length;
-  const monthName = format(new Date(showMonth[20]), " MMMM, y");
+
+  const formater = useFormatter();
+  const dayMonth = showMonth[20];
+  const dateTime = new Date(dayMonth);
+  const currentMonth = formater.dateTime(dateTime, {
+    year: "numeric",
+    month: "long",
+  });
 
   return (
     <div className={styles.wrapMonth}>
@@ -31,7 +39,7 @@ export default function GetMonth({ getValue, month }) {
         >
           <IoMdArrowDropleft className={styles.iconMonth} />
         </button>
-        <p className={styles.textMonth}>{monthName}</p>
+        <p className={styles.textMonth}>{currentMonth}</p>
         <button
           type="button"
           disabled={index === total}
@@ -48,7 +56,6 @@ export default function GetMonth({ getValue, month }) {
               <button
                 type="button"
                 value={item}
-                // disabled={isPast(new Date(item))}
                 onClick={getValue}
                 className={
                   isToday(new Date(item))

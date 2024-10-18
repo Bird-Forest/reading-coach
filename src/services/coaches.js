@@ -19,7 +19,6 @@ export const createCoach = async (item, userId) => {
           .model("Book")
           .findByIdAndUpdate(book._id, { category: bookCategory.init });
     }
-
     return {
       message: "Успішно додано",
     };
@@ -66,7 +65,6 @@ export const updateReportCoach = async (id, item) => {
     } else {
       coach.progress.push(item);
     }
-
     await coach.save();
 
     return {
@@ -106,7 +104,6 @@ export const deleteUnreadedBooks = async (coachId, update) => {
   const readedBooks = update.books.filter(
     (book) => book.category === bookCategory.end
   );
-
   try {
     await initializeCoachModel();
     const coach = await Coach.findByIdAndUpdate(
@@ -123,7 +120,6 @@ export const deleteUnreadedBooks = async (coachId, update) => {
     const unreadedBooks = update.books.filter(
       (book) => book.category === bookCategory.init
     );
-
     for (let book of unreadedBooks) {
       await mongoose
         .model("Book")

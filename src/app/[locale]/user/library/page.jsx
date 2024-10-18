@@ -22,11 +22,7 @@ export default async function LibraryPage({ params: { locale } }) {
     booksInit,
     booksEnd,
   ]);
-
   revalidatePath(`/user/library`, "page");
-  // console.log("START", arrStart);
-  // console.log("INIT", arrInit);
-  // console.log("END", arrEnd);
 
   return (
     <>

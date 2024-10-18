@@ -11,7 +11,6 @@ import TableHeaderEnd from "../table/TableHeaderEnd";
 import { updateBook } from "@/services/books";
 import useSWR from "swr";
 import { bookCategory } from "@/constants/bookCategory";
-import { useSession } from "next-auth/react";
 import SpinnerO from "../helper/SpinnerO";
 import { useTranslations } from "next-intl";
 
@@ -20,9 +19,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 export default function ListBooksEnd({ userId, arrEnd }) {
   const t = useTranslations("library");
   const [books, setBooks] = useState(arrEnd);
-  // const [books, setBooks] = useState(arrEnd);
-  // const { data: session } = useSession();
-  // const userId = session?.user.id;
+
   const category = bookCategory.end;
   const shouldFetch = !!userId;
 
@@ -52,8 +49,6 @@ export default function ListBooksEnd({ userId, arrEnd }) {
     const res = await updateBook(id, book);
     closeModal();
   };
-
-  const Arr = Array.isArray(books) && books.length > 0;
 
   return (
     <>

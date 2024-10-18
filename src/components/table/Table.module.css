@@ -54,15 +54,6 @@
   }
 }
 /* *** TABLE HEADERS END */
-/* .textRating {
-  display: flex;
-  color: rgb(137, 143, 159);
-  font-family: var(--font-montserrat);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.21;
-  text-align: left;
-} */
 .textTabEnd {
   display: flex;
   color: rgb(137, 143, 159);

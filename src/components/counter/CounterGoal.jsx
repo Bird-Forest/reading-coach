@@ -4,7 +4,6 @@ import { open_sans } from "@/app/fonts";
 import React, { useCallback, useEffect, useState } from "react";
 import { differenceInMilliseconds } from "date-fns";
 import styles from "./Counter.module.css";
-import { useSession } from "next-auth/react";
 import { bookCategory } from "@/constants/bookCategory";
 import useSWR from "swr";
 import { useTranslations } from "next-intl";
@@ -41,8 +40,6 @@ export default function CounterGoal({ id }) {
   }, [coach]);
 
   const getTimer = useCallback(() => {
-    // if (!coach || !coach.books)
-    //   return { days: 0, hours: 0, minutes: 0, seconds: 0 };
     const result = differenceInMilliseconds(new Date(lastDay), new Date());
     if (result > 0 && length > 0) {
       return {

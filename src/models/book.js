@@ -22,14 +22,3 @@ const initializeBookModel = async () => {
   Book = mongoose.models.Book || mongoose.model("Book", bookSchema);
 };
 export { initializeBookModel, Book };
-
-// bookSchema.pre("save", async function (next) {
-//   const book = this;
-//   if (book.isModified("category")) {
-//     await Coach.findOneAndUpdate(
-//       { "books._id": book._id },
-//       { $set: { "books.$.category": book.category } }
-//     );
-//   }
-//   next();
-// });
