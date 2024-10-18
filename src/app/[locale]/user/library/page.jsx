@@ -14,14 +14,14 @@ export default async function LibraryPage({ params: { locale } }) {
   if (!session.user) return null;
 
   const id = session.user.id;
-  // const booksStart = getBooksStart(id);
-  // const booksInit = getBooksInit(id);
-  // const booksEnd = getBooksEnd(id);
-  // const [arrStart, arrInit, arrEnd] = await Promise.all([
-  //   booksStart,
-  //   booksInit,
-  //   booksEnd,
-  // ]);
+  const booksStart = getBooksStart(id);
+  const booksInit = getBooksInit(id);
+  const booksEnd = getBooksEnd(id);
+  const [arrStart, arrInit, arrEnd] = await Promise.all([
+    booksStart,
+    booksInit,
+    booksEnd,
+  ]);
 
   revalidatePath(`/user/library`, "page");
   // console.log("START", arrStart);
@@ -33,18 +33,18 @@ export default async function LibraryPage({ params: { locale } }) {
       <div className={styles.wrapLibMob}>
         <LibraryMobile
           id={id}
-          // arrStart={arrStart}
-          // arrInit={arrInit}
-          // arrEnd={arrEnd}
+          arrStart={arrStart}
+          arrInit={arrInit}
+          arrEnd={arrEnd}
         />
       </div>
       <div className={styles.wrapLibDeck}>
         <BookForm />
         <BookCategories
           id={id}
-          // arrStart={arrStart}
-          // arrInit={arrInit}
-          // arrEnd={arrEnd}
+          arrStart={arrStart}
+          arrInit={arrInit}
+          arrEnd={arrEnd}
         />
       </div>
     </>

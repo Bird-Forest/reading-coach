@@ -51,8 +51,12 @@ export default function BookForm() {
       validationSchema={validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         const res = await createBook(values, userId);
+        if (res.status === 201) {
+          setNotif(`${t("mess_ok")}`);
+        } else {
+          setNotif(`${t("mess_er")}`);
+        }
         setSubmitting(true);
-        setNotif(res.message);
         resetForm();
       }}
     >

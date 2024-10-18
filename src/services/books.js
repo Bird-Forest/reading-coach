@@ -31,12 +31,12 @@ export const createBook = async (values, userId) => {
       // owner: mongoose.Types.ObjectId(id),
     });
     return {
-      message: "Успішно додано",
+      status: 201,
     };
   } catch (e) {
     console.log(e);
     return {
-      message: "Відбулася помилка",
+      status: 404,
     };
   }
 };

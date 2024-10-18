@@ -10,12 +10,12 @@ import { useTranslations } from "next-intl";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function GoalStatistics({ train }) {
+export default function GoalStatistics({ train, id }) {
   const t = useTranslations("goal");
   const [coach, setCoach] = useState(train);
 
-  const { data: session } = useSession();
-  const id = session?.user.id;
+  // const { data: session } = useSession();
+  // const id = session?.user.id;
   const shouldFetch = !!id;
   const { data } = useSWR(
     shouldFetch ? `/api/coaches?id=${id}` : null,
@@ -30,7 +30,7 @@ export default function GoalStatistics({ train }) {
   const [rest, setRest] = useState(0);
 
   useEffect(() => {
-    if (!coach) return;
+    if (!data) return;
     setCoach(data);
     const selectedBooks = coach.books;
     if (!selectedBooks) return;

@@ -12,9 +12,11 @@ import { useTranslations } from "next-intl";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function ListBooksStart({ userId, getLengthStart }) {
+export default function ListBooksStart({ userId, arrStart }) {
   const t = useTranslations("library");
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState(arrStart || []);
+
+  // console.log(userId, arrStart);
 
   const category = bookCategory.start;
   const shouldFetch = !!userId;
@@ -28,10 +30,11 @@ export default function ListBooksStart({ userId, getLengthStart }) {
   useEffect(() => {
     if (!data) return;
     setBooks(data);
-    getLengthStart(data);
-  }, [data, getLengthStart]);
+  }, [data]);
 
-  const Arr = Array.isArray(books) && books.length > 0;
+  console.log(userId);
+
+  // const Arr = Array.isArray(books) && books.length > 0;
 
   return (
     <>

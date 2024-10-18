@@ -13,8 +13,8 @@ export default function BookItem(item) {
           <MdMenuBook
             className={
               item.category === bookCategory.init
-                ? styles.iconBookOrang
-                : styles.iconBook
+                ? `${styles.iconBookOrang}`
+                : `${styles.iconBook}`
             }
           />
         </div>

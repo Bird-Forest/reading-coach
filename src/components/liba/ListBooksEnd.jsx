@@ -17,9 +17,9 @@ import { useTranslations } from "next-intl";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function ListBooksEnd({ userId, getLengthEnd }) {
+export default function ListBooksEnd({ userId, arrEnd }) {
   const t = useTranslations("library");
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState(arrEnd);
   // const [books, setBooks] = useState(arrEnd);
   // const { data: session } = useSession();
   // const userId = session?.user.id;
@@ -34,8 +34,7 @@ export default function ListBooksEnd({ userId, getLengthEnd }) {
   useEffect(() => {
     if (!data) return;
     setBooks(data);
-    getLengthEnd(data);
-  }, [data, getLengthEnd]);
+  }, [data]);
 
   const [showModal, setShowModal] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);

@@ -11,9 +11,9 @@ import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function ListBooksInit({ userId, getLengthInit }) {
+export default function ListBooksInit({ userId, arrInit }) {
   const t = useTranslations("library");
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState(arrInit);
 
   const category = bookCategory.init;
   const shouldFetch = !!userId;
@@ -27,8 +27,7 @@ export default function ListBooksInit({ userId, getLengthInit }) {
   useEffect(() => {
     if (!data) return;
     setBooks(data);
-    getLengthInit(data);
-  }, [data, getLengthInit]);
+  }, [data]);
 
   const Arr = Array.isArray(books) && books.length > 0;
   console.log(books);

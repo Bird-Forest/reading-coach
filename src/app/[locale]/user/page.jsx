@@ -26,7 +26,7 @@ export default async function StatisticPage({ params: { locale } }) {
         <Counter coach={coach} id={id} />
       </div>
       <div className={styles.goal}>
-        <GoalStatistics train={coach} />
+        <GoalStatistics train={coach} id={id} />
       </div>
       <div className={styles.books}>
         <StatListBooks />

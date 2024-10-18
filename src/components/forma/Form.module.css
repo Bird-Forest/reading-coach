@@ -253,6 +253,7 @@
   font-weight: 500;
   line-height: 1.15;
   text-align: center;
+  cursor: pointer;
 }
 .textLink:hover {
   color: rgb(255, 107, 8);
