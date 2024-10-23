@@ -77,13 +77,15 @@ export async function getSessionUser(values) {
     const user = await User.findOne({ email: values.email }).exec();
 
     if (!user) {
-      throw new Error("You are not registered");
+      // throw new Error("404");
+      return { name: "404" };
     }
     let pwd = values.pwd;
     const pwdCompare = await bcrypt.compare(pwd, user.pwd);
 
     if (!pwdCompare) {
-      throw new Error("Email or password is wrong");
+      // throw new Error("401");
+      return { name: "401" };
     }
 
     const id = user._id;
@@ -98,9 +100,7 @@ export async function getSessionUser(values) {
     };
   } catch (e) {
     console.log("Action", e);
-    return {
-      message: "Email or password is wrong",
-    };
+    // return error;
   }
 }
 

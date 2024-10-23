@@ -1,7 +1,13 @@
+"use srver";
+
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
-import { createSessionUser, getSessionGoogle } from "@/services/users";
+import {
+  createSessionUser,
+  getSessionGoogle,
+  getSessionUser,
+} from "@/services/users";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET,
@@ -19,8 +25,18 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       authorize: async (credentials) => {
         if (!credentials.email || !credentials.pwd) return null;
         let user = null;
-        user = await createSessionUser(credentials);
-        return user;
+        if (credentials.name) {
+          user = await createSessionUser(credentials);
+          return user;
+        } else {
+          user = await getSessionUser(credentials);
+          if (!user) {
+            // throw new Error(user);
+            return user;
+          }
+          // console.log("ERRROR", error);
+          return user;
+        }
       },
     }),
   ],
@@ -46,6 +62,10 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       return session;
     },
   },
+
+  // pages: {
+  //   signIn: "/signin", // Убедитесь, что этот путь верный
+  // },
 });
 
 // **** npm install @auth/mongodb-adapter mongodb ***

@@ -6,15 +6,23 @@ import Sidebar from "./Sidebar";
 import SideLogo from "./SideLogo";
 import SideLng from "./SideLng";
 import { usePathname } from "@/i18n/routing";
+import { useSession } from "next-auth/react";
 
 export default function Header() {
   const [valid, setValid] = useState(false);
   const path = usePathname();
+  // const session = useSession();
+  // console.log(session);
 
   useEffect(() => {
     const segments = path.split("/");
     const page = segments[1];
-    if (page === "user") setValid(true);
+    // console.log(page);
+    if (page === "user") {
+      setValid(true);
+    } else {
+      setValid(false);
+    }
   }, [path]);
 
   return (

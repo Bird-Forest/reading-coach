@@ -9,7 +9,7 @@ import ButtonGoogl from "../button/ButtonGoogl";
 import Spinner from "../helper/Spinner";
 import FieldUser from "./FieldUser";
 import Notif from "../helper/Notif";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { Link, useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
@@ -23,6 +23,8 @@ export default function FormaSignIn() {
   const [notif, setNotif] = useState("");
   const [auth, setAuth] = useState(false);
   const router = useRouter();
+  const session = useSession();
+  const value = session.data;
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -48,15 +50,16 @@ export default function FormaSignIn() {
                 pwd: values.pwd,
                 redirect: false,
               });
+              console.log("RES", res);
               setSubmitting(true);
-              if (res && !res.error) {
+              if (value.user.name === "404") {
+                setAuth(false);
+                setNotif(`${t("error_auth404")}`);
+              } else {
                 setAuth(true);
                 resetForm();
                 setSubmitting(false);
                 router.push("/user");
-              } else {
-                setAuth(false);
-                setNotif(`${t("error_auth")}`);
               }
             }}
           >

@@ -6,7 +6,7 @@ import { bookCategory } from "@/constants/bookCategory";
 
 export default function BookItem(item) {
   const t = useTranslations("book");
-  console.log(item);
+
   return (
     <div key={item._id} className={styles.wrapBox}>
       <div className={styles.wrapTitleBook}>

@@ -1,10 +1,13 @@
 /* *** MY CHART */
 .wrapChart {
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   gap: 20px;
   width: 280px;
-  height: 290px;
+  height: 340px;
   box-shadow: 0px 2px 3px 0px rgba(9, 30, 63, 0.25);
   background-color: rgb(255, 255, 255);
   padding: 24px 20px 40px 20px;
@@ -13,6 +16,7 @@
   .wrapChart {
     width: 704px;
     height: 340px;
+    padding: 24px 40px 40px 40px;
   }
 }
 @media screen and (min-width: 1280px) {
@@ -22,9 +26,24 @@
 }
 .wrapTitleChart {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   width: 236px;
+  height: 26px;
+}
+@media screen and (min-width: 768px) {
+  .wrapTitleChart {
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding-left: 4px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .wrapTitleChart {
+    padding-left: 12px;
+  }
 }
 .textChart {
   display: flex;

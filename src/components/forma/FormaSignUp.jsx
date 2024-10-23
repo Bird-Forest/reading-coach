@@ -67,7 +67,7 @@ export default function FormaSignUp() {
                 router.push("/user/library");
               } else {
                 setAuth(false);
-                setNotif(`${t("error_auth")}`);
+                setNotif(`${t("error_auth404")}`);
               }
             }}
           >
