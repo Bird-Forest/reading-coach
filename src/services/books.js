@@ -15,7 +15,6 @@ export const getBooksByCategory = async (category, userId) => {
 
     return books;
   } catch (e) {
-    console.log(e);
     return {
       message: "Відбулася помилка",
     };
@@ -34,7 +33,6 @@ export const createBook = async (values, userId) => {
       status: 201,
     };
   } catch (e) {
-    console.log(e);
     return {
       status: 404,
     };
@@ -55,7 +53,6 @@ export const updateBook = async (id, book) => {
     const data = JSON.parse(JSON.stringify(book));
     return data;
   } catch (e) {
-    console.log(e);
     return {
       message: "Відбулася помилка",
     };
@@ -73,7 +70,6 @@ export const getBooksStart = async (id) => {
 
     return books;
   } catch (e) {
-    console.log(e);
     return {
       message: "Відбулася помилка",
     };
@@ -91,7 +87,6 @@ export const getBooksInit = async (id) => {
 
     return books;
   } catch (e) {
-    console.log(e);
     return {
       message: "Відбулася помилка",
     };
@@ -109,7 +104,6 @@ export const getBooksEnd = async (id) => {
 
     return books;
   } catch (e) {
-    console.log(e);
     return {
       message: "Відбулася помилка",
     };
@@ -126,7 +120,6 @@ export const getBook = async (id) => {
     const data = JSON.parse(JSON.stringify(book));
     return data;
   } catch (e) {
-    console.log(e);
     return {
       message: "Відбулася помилка",
     };

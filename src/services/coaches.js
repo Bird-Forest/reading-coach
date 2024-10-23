@@ -23,7 +23,7 @@ export const createCoach = async (item, userId) => {
       message: "Успішно додано",
     };
   } catch (e) {
-    console.log(e);
+    return { message: "Відбулася помилка" };
   }
 };
 
@@ -43,7 +43,7 @@ export const getLastCoach = async (id) => {
 
     return data;
   } catch (error) {
-    console.log(error);
+    return { message: "Відбулася помилка" };
   }
 };
 
@@ -71,7 +71,6 @@ export const updateReportCoach = async (id, item) => {
       message: "Успішно додано",
     };
   } catch (e) {
-    console.log(e);
     return { message: "Відбулася помилка" };
   }
 };
@@ -95,7 +94,6 @@ export const updateBooksCoach = async (coachId, update) => {
       message: "Успішно додано",
     };
   } catch (e) {
-    console.log(e);
     return { message: "Відбулася помилка" };
   }
 };
@@ -129,7 +127,6 @@ export const deleteUnreadedBooks = async (coachId, update) => {
       message: "Успішно додано",
     };
   } catch (e) {
-    console.log(e);
     return { message: "Відбулася помилка" };
   }
 };
@@ -140,7 +137,6 @@ export const getAllCoaches = async (userId) => {
     const coaches = await Coach.find({ owner: userId }).lean();
     return JSON.parse(JSON.stringify(coaches));
   } catch (e) {
-    console.log(e);
     return { message: "Відбулася помилка" };
   }
 };

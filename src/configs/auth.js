@@ -34,7 +34,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
             // throw new Error(user);
             return user;
           }
-          // console.log("ERRROR", error);
           return user;
         }
       },

@@ -50,7 +50,6 @@ export default function FormaSignIn() {
                 pwd: values.pwd,
                 redirect: false,
               });
-              console.log("RES", res);
               setSubmitting(true);
               if (value.user.name === "404") {
                 setAuth(false);

@@ -16,7 +16,6 @@ export default function ButtonOut() {
 
   const exitApplication = () => {
     signOut({ redirect: false });
-    // signOut();
     router.push("/");
     setShowModal(false);
   };

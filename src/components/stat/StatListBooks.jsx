@@ -56,7 +56,6 @@ export default function StatListBooks() {
       books: newBooks,
     };
     const res = await updateBooksCoach(coachId, update);
-    console.log(res);
     setIsModal(true);
   };
 

@@ -11,13 +11,10 @@ import { useSession } from "next-auth/react";
 export default function Header() {
   const [valid, setValid] = useState(false);
   const path = usePathname();
-  // const session = useSession();
-  // console.log(session);
 
   useEffect(() => {
     const segments = path.split("/");
     const page = segments[1];
-    // console.log(page);
     if (page === "user") {
       setValid(true);
     } else {
