@@ -11,7 +11,6 @@ import TrainListBooks from "./TrainListBooks";
 import ButtonAction from "../button/ButtonAction";
 import MyChart from "../chart/MyChart";
 import { differenceInCalendarDays } from "date-fns";
-import { createCoach } from "@/services/coaches";
 import BookItemEmpty from "../book/BookItemEmpty";
 import { useTranslations } from "next-intl";
 
@@ -88,9 +87,7 @@ export default function TrainMobile() {
             <BookItemEmpty />
           )}
           {isBooks && (
-            <ButtonAction formAction={createCoach} item={train}>
-              {t("btn_training")}
-            </ButtonAction>
+            <ButtonAction item={train}>{t("btn_training")}</ButtonAction>
           )}
           <MyChart />
           <div className={styles.wrapBtnMore}>

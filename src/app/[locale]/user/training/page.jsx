@@ -9,6 +9,7 @@ import { unstable_setRequestLocale } from "next-intl/server";
 export default async function TrainPage({ params: { locale } }) {
   unstable_setRequestLocale(locale);
   revalidatePath(`/user/training`, "page");
+
   return (
     <>
       <div className={styles.wrapTrainMob}>

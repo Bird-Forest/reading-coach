@@ -8,11 +8,11 @@ import TrainListBooks from "./TrainListBooks";
 import FormSelect from "./FormSelect";
 import FormDate from "./FormDate";
 import ButtonAction from "../button/ButtonAction";
-import { createCoach } from "@/services/coaches";
 import { useTranslations } from "next-intl";
 
 export default function TrainPanel() {
   const t = useTranslations("training");
+
   const [begin, setBegin] = useState();
   const [end, setEnd] = useState();
   const [books, setBooks] = useState([]);
@@ -69,9 +69,7 @@ export default function TrainPanel() {
       <div className={styles.caseList}>
         <TrainListBooks books={books} deleteBook={deleteBook} />
         {isBooks && (
-          <ButtonAction formAction={createCoach} item={train}>
-            {t("btn_training")}
-          </ButtonAction>
+          <ButtonAction item={train}>{t("btn_training")}</ButtonAction>
         )}
       </div>
     </div>

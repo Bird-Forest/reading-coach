@@ -131,6 +131,8 @@
 }
 /* *** BUTTON ACTION */
 .wrapBtnAction {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -149,7 +151,7 @@
   font-weight: 600;
   line-height: 1.25;
   text-align: center;
-  text-decoration: none;
+  /* text-decoration: none; */
   background-color: rgb(255, 107, 8);
   border: none;
   outline: none;
