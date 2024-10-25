@@ -12,19 +12,22 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { data } from "./data";
-
-const renderColorfulLegendText = (value) => {
-  const color = value === "plan" ? "rgb(9, 30, 63)" : "rgb(255, 107, 8)";
-  return <span style={{ color }}>{value}</span>;
-};
+import { useTranslations } from "next-intl";
 import React from "react";
 
+const renderColorfulLegendText = (value, entry) => {
+  const { color } = entry;
+  return <span style={{ color }}>{value}</span>;
+};
+
 export default function LineGraph() {
+  const t = useTranslations("chart");
   return (
     <ResponsiveContainer
       width="90%"
       height={240}
-      style={{ position: "absolute", top: "-174px" }}
+      // style={{ position: "absolute", top: "-174px" }}
+      className={styles.wrapGraf}
     >
       <svg width="0" height="0">
         <defs>
@@ -45,10 +48,6 @@ export default function LineGraph() {
           iconSize={10}
           iconType="circle"
           formatter={renderColorfulLegendText}
-          payload={[
-            { value: "plan", type: "circle", color: "rgb(9, 30, 63)" },
-            { value: "fact", type: "circle", color: "rgb(255, 107, 8)" },
-          ]}
         />
         <XAxis
           dataKey="date"
@@ -99,3 +98,20 @@ export default function LineGraph() {
     </ResponsiveContainer>
   );
 }
+
+// const renderColorfulLegendText = (value) => {
+//   const color = value === "plan" ? "rgb(9, 30, 63)" : "rgb(255, 107, 8)";
+//   return <span style={{ color }}>{value}</span>;
+// };
+// payload={[
+//   {
+//     value: `${t("plan")}`,
+//     type: "circle",
+//     color: "rgb(9, 30, 63)",
+//   },
+//   {
+//     value: `${t("fact")}`,
+//     type: "circle",
+//     color: "rgb(255, 107, 8)",
+//   },
+// ]}

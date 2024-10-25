@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import styles from "./Form.module.css";
@@ -20,11 +20,29 @@ const initialValues = {
 
 export default function FormaSignIn() {
   const t = useTranslations("home");
+  const [newUser, setNewUser] = useState("");
   const [notif, setNotif] = useState("");
   const [auth, setAuth] = useState(false);
   const router = useRouter();
-  const session = useSession();
-  const value = session.data;
+  const { data } = useSession();
+
+  useEffect(() => {
+    if (!data) return;
+    setNewUser(data.user.name);
+    switch (newUser) {
+      case "404":
+        setAuth(false);
+        setNotif(`${t("error_auth404")}`);
+        break;
+      case "401":
+        setAuth(false);
+        setNotif(`${t("error_auth401")}`);
+        break;
+      default:
+        setAuth(true);
+        router.push("/user");
+    }
+  }, [data, newUser, router, t]);
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -51,11 +69,7 @@ export default function FormaSignIn() {
                 redirect: false,
               });
               setSubmitting(true);
-              if (value.user.name === "404") {
-                setAuth(false);
-                setNotif(`${t("error_auth404")}`);
-              } else {
-                setAuth(true);
+              if (res && auth) {
                 resetForm();
                 setSubmitting(false);
                 router.push("/user");

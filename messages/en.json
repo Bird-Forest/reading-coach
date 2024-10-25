@@ -112,5 +112,10 @@
     "exit_cancel": "Cancel",
     "exit_leave": "Leave this app",
     "exit_header": "Logout"
+  },
+  "chart": {
+    "text": "Amount of pages / Day",
+    "plan": "plan",
+    "fact": "fact"
   }
 }

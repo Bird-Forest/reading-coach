@@ -68,3 +68,8 @@
   text-align: left;
   text-transform: uppercase;
 }
+.wrapGraf {
+  position: absolute;
+  top: -174px;
+  display: block;
+}

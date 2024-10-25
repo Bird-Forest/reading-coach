@@ -12,7 +12,7 @@ export default function MainInfo({ session }) {
   const t = useTranslations("home");
 
   useEffect(() => {
-    if (session === null) return;
+    if (!session) return;
     const today = getTime(new Date());
     const exp = getTime(new Date(session.expires));
     if (exp > today) {

@@ -30,10 +30,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
           return user;
         } else {
           user = await getSessionUser(credentials);
-          if (!user) {
-            // throw new Error(user);
-            return user;
-          }
           return user;
         }
       },
