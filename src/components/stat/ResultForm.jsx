@@ -11,10 +11,12 @@ export default function ResultForm({ coach }) {
   const [result, setResult] = useState("");
   const nowDate = format(new Date(), "dd.MM.yyyy");
   const id = coach ? coach._id : "";
+  const newPlan = Math.round(coach.totalPage / coach.totalDay);
 
   const report = {
     date: new Date(),
     pagesRead: Number(result),
+    pagesPlan: Number(newPlan),
   };
 
   return (

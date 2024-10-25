@@ -29,20 +29,13 @@ export default function FormaSignIn() {
   useEffect(() => {
     if (!data) return;
     setNewUser(data.user.name);
-    switch (newUser) {
-      case "404":
-        setAuth(false);
-        setNotif(`${t("error_auth404")}`);
-        break;
-      case "401":
-        setAuth(false);
-        setNotif(`${t("error_auth401")}`);
-        break;
-      default:
-        setAuth(true);
-        router.push("/user");
+    if (newUser === "404" || newUser === "401") {
+      setAuth(false);
+    } else {
+      setAuth(true);
+      router.push("/user");
     }
-  }, [data, newUser, router, t]);
+  }, [data, newUser, router]);
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -69,10 +62,21 @@ export default function FormaSignIn() {
                 redirect: false,
               });
               setSubmitting(true);
-              if (res && auth) {
+              if (auth) {
                 resetForm();
                 setSubmitting(false);
                 router.push("/user");
+              } else {
+                switch (newUser) {
+                  case "404":
+                    setNotif(`${t("error_auth404")}`);
+                    break;
+                  case "401":
+                    setNotif(`${t("error_auth401")}`);
+                    break;
+                  default:
+                    setNotif("");
+                }
               }
             }}
           >
