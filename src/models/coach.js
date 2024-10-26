@@ -11,7 +11,13 @@ const coachSchema = new mongoose.Schema(
     totalDay: Number,
     totalPage: Number,
     category: { type: String, enum: bookCategory },
-    progress: [{ date: Date, pagesRead: Number, pagesPlan: Number }],
+    progress: [
+      {
+        date: Date,
+        pagesRead: { type: Number, default: 0 },
+        pagesPlan: { type: Number, default: 0 },
+      },
+    ],
     owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
   { versionKey: false, timestamps: true }

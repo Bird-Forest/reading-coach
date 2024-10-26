@@ -74,7 +74,8 @@ export default function StatListBooks() {
                 {arrBooks.map((item) => (
                   <li key={item._id} className={styles.wrapItem}>
                     <BookItemStatist
-                      updateProgress={() => updateProgress(item)}
+                      // updateProgress={() => updateProgress(item)}
+                      updateProgress={updateProgress}
                       item={item}
                     />
                   </li>

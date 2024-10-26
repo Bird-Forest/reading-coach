@@ -18,7 +18,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function ListBooksEnd({ userId, arrEnd }) {
   const t = useTranslations("library");
-  const [books, setBooks] = useState(arrEnd);
+  const [books, setBooks] = useState(arrEnd || []);
 
   const category = bookCategory.end;
   const shouldFetch = !!userId;

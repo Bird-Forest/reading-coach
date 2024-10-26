@@ -15,8 +15,9 @@ export default function BookItemStatist({ item, updateProgress }) {
       <div className={styles.wrapTitleBook}>
         <div className={styles.wrapIcon}>
           <button
-            button="button"
-            onClick={updateProgress}
+            type="button"
+            // onClick={updateProgress}
+            onClick={() => updateProgress(item)}
             className={styles.btnStat}
           >
             {endCategory ? (
