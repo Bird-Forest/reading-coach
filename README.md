@@ -21,9 +21,7 @@
 
 ### Додаток створений за допомогою фреймворка [Next.js](https://nextjs.org/) та опублікований на [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
 
----
-
-### Застосовані
+### Застосовані у додатку:
 
 - Інтернаціоналізація [next-intl](https://next-intl-docs.vercel.app/)
 - База даних [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
