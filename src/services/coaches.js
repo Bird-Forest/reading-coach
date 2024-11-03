@@ -81,9 +81,7 @@ export const updateBooksCoach = async (coachId, update) => {
     const coach = await Coach.findByIdAndUpdate(coachId, update, {
       new: true,
     }).lean();
-    if (!coach) {
-      return { message: "Відбулася помилка" };
-    }
+
     for (let book of update.books) {
       if (book.category === bookCategory.end)
         await mongoose
@@ -111,9 +109,9 @@ export const deleteUnreadedBooks = async (coachId, update) => {
       }
     ).lean();
 
-    if (!coach) {
-      return { message: "Відбулася помилка" };
-    }
+    // if (!coach) {
+    //   return { message: "Відбулася помилка" };
+    // }
 
     const unreadedBooks = update.books.filter(
       (book) => book.category === bookCategory.init

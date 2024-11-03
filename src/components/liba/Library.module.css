@@ -130,13 +130,14 @@
     flex-direction: row;
     width: 704px;
     height: 62px;
-
+    /* gap: 8px; */
     padding: 14px 20px;
   }
 }
 @media screen and (min-width: 1280px) {
   .wrapBookEnd {
     width: 1248px;
+    /* gap: 14px; */
   }
 }
 .wrapItemEnd {

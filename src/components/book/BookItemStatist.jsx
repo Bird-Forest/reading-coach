@@ -47,11 +47,11 @@ export default function BookItemStatist({ item, updateProgress }) {
       </div>
       <div className={styles.wrapTextBook}>
         <p className={styles.keyBook}>{t("year")}</p>
-        <p className={styles.textBook}>{item.year}</p>
+        <p className={`${styles.textBook} ${styles.position}`}>{item.year}</p>
       </div>
       <div className={styles.wrapTextBook}>
         <p className={styles.keyBook}>{t("pages")}</p>
-        <p className={styles.textBook}>{item.pages}</p>
+        <p className={`${styles.textBook} ${styles.position}`}>{item.pages}</p>
       </div>
     </div>
   );

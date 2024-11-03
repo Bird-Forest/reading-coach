@@ -93,7 +93,8 @@
 @media screen and (min-width: 768px) {
   .wrapList {
     width: 704px;
-    height: 186px;
+    /* height: 186px; */
+    height: auto;
     overflow-y: scroll;
     overflow-x: hidden;
   }
